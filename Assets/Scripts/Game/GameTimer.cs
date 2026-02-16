@@ -1,12 +1,19 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
+using UnityEngine;
 
 public class GameTimer
 {
     private int _maxTimerValue;
-    private int _valueTimer;
+    private float _currentValue;
 
-    public int ValueTimer () => _valueTimer;
+    private float _timerSpeed = 1f;
+    private float _difficultyTimer = 0f;
+
+    private CancellationTokenSource _cts;
+
+    public int ValueTimer => Mathf.CeilToInt(_currentValue);
 
     public static event Action<int, int> ChangeTimerAction;
     public static event Action GameOverAction;
@@ -18,29 +25,51 @@ public class GameTimer
 
     public void StartTimer()
     {
+        StopTimer();
+
         ResetTimer();
-        ChangeTimerAction.Invoke(_valueTimer, _maxTimerValue);
-        Timer();
+        ChangeTimerAction?.Invoke(ValueTimer, _maxTimerValue);
+
+        _cts = new CancellationTokenSource();
+        RunTimer(_cts.Token).Forget();
+    }
+
+    public void StopTimer()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
+        _cts = null;
     }
 
     public void ChangeTimer(int value)
     {
-        _valueTimer += value;
-        ChangeTimerAction.Invoke(_valueTimer, _maxTimerValue);
+        _currentValue = Mathf.Clamp(_currentValue + value, 0, _maxTimerValue);
+        ChangeTimerAction?.Invoke(ValueTimer, _maxTimerValue);
     }
 
-    private async UniTask Timer()
+    private async UniTaskVoid RunTimer(CancellationToken token)
     {
-        while (true) 
-        { 
-            await UniTask.Delay(1000);
+        while (!token.IsCancellationRequested)
+        {
+            await UniTask.Yield(PlayerLoopTiming.Update);
 
-            _valueTimer--;
-            ChangeTimerAction.Invoke(_valueTimer, _maxTimerValue);
+            float delta = Time.deltaTime;
 
-            if(_valueTimer <= 0)
+            _currentValue -= delta * _timerSpeed;
+
+            _difficultyTimer += delta;
+            if (_difficultyTimer >= 10f)
             {
-                GameOverAction.Invoke();     
+                _difficultyTimer = 0f;
+                _timerSpeed += 0.1f;
+            }
+
+            ChangeTimerAction?.Invoke(ValueTimer, _maxTimerValue);
+
+            if (_currentValue <= 0)
+            {
+                GameOverAction?.Invoke();
+                StopTimer();
                 return;
             }
         }
@@ -48,6 +77,8 @@ public class GameTimer
 
     private void ResetTimer()
     {
-        _valueTimer = 100;
+        _currentValue = _maxTimerValue;
+        _timerSpeed = 1f;
+        _difficultyTimer = 0f;
     }
 }

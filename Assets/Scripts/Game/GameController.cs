@@ -36,6 +36,6 @@ public class GameController : MonoBehaviour
     private void EatFood(FoodView foodView)
     {
         _gameTimer.ChangeTimer(foodView.Food.FoodValue);
-        Destroy(foodView);
+        Destroy(foodView.gameObject);
     }
 }

@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
     [SerializeField] private float _longPressTime = 0.5f;
 
-    private FoodView _hoveredFood;
-
     private bool _isPointerDown = false;
     private float _pointerDownTimer = 0f;
+
+    private FoodView _hoveredFood;
     private FoodView _pressedFood;
+
+    public static event Action<FoodView> ShowDescriptionAction;
+    public static event Action<FoodView> HideDescriptionAction;
 
     private void Update()
     {
@@ -24,7 +28,7 @@ public class InputController : MonoBehaviour
                 _isPointerDown = false;
                 _pointerDownTimer = 0f;
 
-                _pressedFood?.ShowDescription();
+                ShowDescriptionAction?.Invoke(_pressedFood);
             }
         }
     }
@@ -40,14 +44,14 @@ public class InputController : MonoBehaviour
             var food = hitHover.collider.GetComponent<FoodView>();
             if (_hoveredFood != food)
             {
-                _hoveredFood?.HideDescription();
+                HideDescriptionAction?.Invoke(_hoveredFood);
                 _hoveredFood = food;
-                _hoveredFood.ShowDescription();
+                ShowDescriptionAction?.Invoke(_hoveredFood);
             }
         }
         else
         {
-            _hoveredFood?.HideDescription();
+            HideDescriptionAction?.Invoke(_hoveredFood);
             _hoveredFood = null;
         }
 
@@ -84,15 +88,15 @@ public class InputController : MonoBehaviour
         }
         else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
         {
-            if (_isPointerDown && _pointerDownTimer < longPressTime)
+            if (_isPointerDown && _pointerDownTimer < _longPressTime)
             {
-                _pressedFood?.Eat();
+                _pressedFood?.EatFood();
             }
 
             _isPointerDown = false;
             _pointerDownTimer = 0f;
 
-            _pressedFood?.HideDescription();
+            HideDescriptionAction?.Invoke(_pressedFood);
             _pressedFood = null;
         }
 #endif

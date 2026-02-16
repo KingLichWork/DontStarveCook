@@ -39,14 +39,4 @@ public class FoodView : MonoBehaviour
     {
         EatFoodAction.Invoke(this);
     }
-
-    public void ShowDescription()
-    {
-
-    }
-
-    public void HideDescription()
-    {
-
-    }
 }
