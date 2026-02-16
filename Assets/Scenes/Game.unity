@@ -756,6 +756,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 99139226}
     m_Modifications:
+    - target: {fileID: 746595900392929614, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 1625493109195899416, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
       propertyPath: m_Name
       value: GameUI
