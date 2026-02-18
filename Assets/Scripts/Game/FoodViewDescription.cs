@@ -28,7 +28,10 @@ public class FoodViewDescription : MonoBehaviour
 
     public void Show(FoodView foodView)
     {
-        transform.position = Camera.main.WorldToScreenPoint(foodView.transform.position);
+        if (foodView == null)
+            return;
+
+        transform.position = Camera.main.WorldToScreenPoint(foodView.transform.position + new Vector3(0, 1));
 
         _nameText.text = foodView.Food.Name;
         _valueText.text = foodView.Food.FoodValue.ToString();

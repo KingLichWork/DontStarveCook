@@ -10,6 +10,7 @@ public class GameTimer
 
     private float _timerSpeed = 1f;
     private float _difficultyTimer = 0f;
+    private float _changeDiffucultyTime = 10f;
 
     private CancellationTokenSource _cts;
 
@@ -26,8 +27,6 @@ public class GameTimer
     public void StartTimer()
     {
         StopTimer();
-
-        ResetTimer();
         ChangeTimerAction?.Invoke(ValueTimer, _maxTimerValue);
 
         _cts = new CancellationTokenSource();
@@ -36,6 +35,8 @@ public class GameTimer
 
     public void StopTimer()
     {
+        ResetTimer();
+
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
@@ -58,7 +59,7 @@ public class GameTimer
             _currentValue -= delta * _timerSpeed;
 
             _difficultyTimer += delta;
-            if (_difficultyTimer >= 10f)
+            if (_difficultyTimer >= _changeDiffucultyTime)
             {
                 _difficultyTimer = 0f;
                 _timerSpeed += 0.1f;

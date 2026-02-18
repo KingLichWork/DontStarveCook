@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         Game();
+
+        for (int i = 0; i < 10; i++)
+            _spawner.SpawnFood();
     }
 
     private void OnEnable()
@@ -22,15 +25,10 @@ public class GameController : MonoBehaviour
         FoodView.EatFoodAction -= EatFood;
     }
 
-    public async UniTask Game()
+    public void Game()
     {
         _gameTimer.StartTimer();
-
-        while (true)
-        {
-            await UniTask.Delay(1000);
-            _spawner.SpawnFood();
-        }
+        //_spawner.StartSpawn(1f);
     }
 
     private void EatFood(FoodView foodView)

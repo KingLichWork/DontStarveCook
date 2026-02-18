@@ -12,84 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f147179246d3114c8d429500837c4ca, type: 3}
   m_Name: FoodData
   m_EditorClassIdentifier: 
-  _food:
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 7e3752255de19fd4bb9d493172bc6d60, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 5b51081126d5eb8409237f75abcc050b, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 51517e3ecfe9a3a41b927906d6da7de3, type: 3}
-  - _foodValue: 5
-    _decayTime: 0
-    _foodName: 
-    _type: 3
-    _sprite: {fileID: 21300000, guid: 8a7db80858b9df84ca594ca9aaed708b, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 36a7dfde584619c4c86e4d42bfc8447f, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 63edfc82e09347c46977b355ecbdec6b, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 93cc423e77679114e97320aa72ceee7d, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 091255a2daa77034aad748c061cf814f, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: f2907ab4e7a25e041bf6c88c88f719d1, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 0beb5590d3c25ad43917bdfe3efe2e6e, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 664477a6c5173fa4d872021909d97d47, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 0ebd1f933f64773489d4ca3a9f5f36a2, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: ac87f1f8a6384ec4f8a12fe4ad591b17, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: d8bb4e9ed4ce0d6408cfb8eb6ab8c1e7, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 265d4fa09d6622240866d86a27ed31a9, type: 3}
-  - _foodValue: 10
-    _decayTime: 0
-    _foodName: 
-    _type: 0
-    _sprite: {fileID: 21300000, guid: 2e6db877d1e50b643a2cecd9d4ff710e, type: 3}
+  _foods:
+  - {fileID: 11400000, guid: 48030ed51b391ac46b82ac39282430bc, type: 2}
+  - {fileID: 11400000, guid: 1563e34000038da469a8464925e00822, type: 2}
+  - {fileID: 11400000, guid: 643b762427ae0114aabef159e65aa990, type: 2}
+  - {fileID: 11400000, guid: 1a352605898779240b11d5574a6f945f, type: 2}
+  - {fileID: 11400000, guid: 90a76eb026e15b040befeb81f574a73d, type: 2}
+  - {fileID: 11400000, guid: e2925179772eaea46ac4979553791118, type: 2}
+  - {fileID: 11400000, guid: 0875e91aa79de1542a685ab1052c340f, type: 2}
+  - {fileID: 11400000, guid: 8600d4c5fb6ba764b9b525eceef92bde, type: 2}
+  - {fileID: 11400000, guid: c121e234e26fc3441ad5c26a6d483cec, type: 2}
+  - {fileID: 11400000, guid: 6f7ddb3ef64baa049907244abecd93fc, type: 2}
+  - {fileID: 11400000, guid: 009c61ed77a127a4da5f79da0fd5fa56, type: 2}
+  - {fileID: 11400000, guid: 7162f76448dd13b4b939460ad0603fa8, type: 2}
+  - {fileID: 11400000, guid: 9e5f413e109d1c84cb249b544a364c3e, type: 2}
+  - {fileID: 11400000, guid: 2e6b76b862bfe914dbbb04022118d506, type: 2}
+  - {fileID: 11400000, guid: c8d4ea731fccdea44997c9e6ba973a5e, type: 2}
+  - {fileID: 11400000, guid: 9a4f77c4f14369a43bb6a72f792ae650, type: 2}

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine;
 
 public class GameSpawner : MonoBehaviour
 {
@@ -7,11 +9,48 @@ public class GameSpawner : MonoBehaviour
 
     [SerializeField] private FoodData _foodData;
 
+    private CancellationTokenSource _cts;
+
+    private float _spawnTime;
+    private float _toNextSpawnTime;
+
+    public void StartSpawn(float timeSpawn)
+    {
+        _spawnTime = timeSpawn;
+        _cts = new CancellationTokenSource();
+        SpawnFood(_cts.Token).Forget();
+    }
+
+    private async UniTaskVoid SpawnFood(CancellationToken token)
+    {
+        while (!token.IsCancellationRequested)
+        {
+            await UniTask.Yield(PlayerLoopTiming.Update);
+
+            float delta = Time.deltaTime;
+
+            _toNextSpawnTime += delta;
+
+            if(_toNextSpawnTime >= _spawnTime)
+            {
+                _toNextSpawnTime = 0;
+                SpawnFood();
+            }
+        }
+    }
+
+    public void StopSpawn()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
+        _cts = null;
+    }
+
     public void SpawnFood()
     {
-        Food food = _foodData.Food[Random.Range(0, _foodData.Food.Count)];
+        Food food = _foodData.GetRandomFood();
 
         FoodView prefab = Instantiate(_prefab, _spawnPoint).GetComponent<FoodView>();
-        prefab.Init(food);
+        prefab.SetFood(food);
     }
 }
