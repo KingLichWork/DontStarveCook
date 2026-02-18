@@ -13,7 +13,6 @@ public class FoodViewDescription : MonoBehaviour
         InputController.ShowDescriptionAction += Show;
         InputController.HideDescriptionAction += Hide;
 
-        FoodView.UseFoodAction += Hide;
         FoodView.EatFoodAction += Hide;
     }
 
@@ -22,7 +21,6 @@ public class FoodViewDescription : MonoBehaviour
         InputController.ShowDescriptionAction -= Show;
         InputController.HideDescriptionAction -= Hide;
 
-        FoodView.UseFoodAction -= Hide;
         FoodView.EatFoodAction -= Hide;
     }
 

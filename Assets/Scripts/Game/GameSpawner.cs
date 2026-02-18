@@ -50,7 +50,7 @@ public class GameSpawner : MonoBehaviour
     {
         Food food = _foodData.GetRandomFood();
 
-        FoodView prefab = Instantiate(_prefab, _spawnPoint).GetComponent<FoodView>();
+        FoodViewGame prefab = Instantiate(_prefab, _spawnPoint).GetComponent<FoodViewGame>();
         prefab.SetFood(food);
     }
 }

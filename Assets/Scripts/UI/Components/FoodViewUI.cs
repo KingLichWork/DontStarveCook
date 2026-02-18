@@ -1,15 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class FoodViewUI : MonoBehaviour
+public class FoodViewUI : FoodView
 {
     [SerializeField] private Image _image;
+    [SerializeField] private RectTransform _rect;
 
-    private Food _food;
-
-    public void SetFood(Food food)
+    public override void SetFood(Food food)
     {
-        _food = food;
+        base.SetFood(food);
         _image.sprite = _food.Sprite;
+    }
+
+    public override void StartDrag(Vector2 pointerPos)
+    {
+        transform.SetAsLastSibling();
+    }
+
+    public override void Drag(Vector2 pointerPos)
+    {
+        _rect.position = pointerPos;
     }
 }

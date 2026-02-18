@@ -799,6 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0beb33456196f84996fcf0c4d96b0ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _graphicRaycaster: {fileID: 99139227}
 --- !u!1001 &2112807356
 PrefabInstance:
   m_ObjectHideFlags: 0

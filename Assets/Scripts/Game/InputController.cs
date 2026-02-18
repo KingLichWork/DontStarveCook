@@ -1,21 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InputController : MonoBehaviour
 {
-    private float _longPressTime = 0.5f;
-    private float _dragThreshold = 0.1f;
+    [SerializeField] private GraphicRaycaster _graphicRaycaster;
 
     private Camera _camera;
+
+    private const float LongPressTime = 0.5f;
+    private const float DragThreshold = 0.1f;
 
     private FoodView _selectedFood;
     private FoodView _pressedFood;
     private FoodView _draggedFood;
 
     private Vector2 _pressStartWorldPos;
-    private Vector3 _dragOffset;
-
     private float _pressTimer;
+
     private bool _isPressing;
     private bool _isDragging;
 
@@ -42,18 +46,18 @@ public class InputController : MonoBehaviour
 
     private void HandleMouse()
     {
-        Vector2 worldPos = GetWorldPosition(Input.mousePosition);
+        Vector2 screenPos = Input.mousePosition;
 
-        HandleHover(worldPos);
+        HandleHover(screenPos);
 
         if (Input.GetMouseButtonDown(0))
-            BeginPress(worldPos);
+            BeginPress(screenPos);
 
         if (Input.GetMouseButton(0))
-            UpdatePress(worldPos);
+            UpdatePress(screenPos);
 
         if (Input.GetMouseButtonUp(0))
-            EndPress(worldPos);
+            EndPress(screenPos);
     }
 
     #endregion
@@ -66,109 +70,107 @@ public class InputController : MonoBehaviour
             return;
 
         Touch touch = Input.GetTouch(0);
-        Vector2 worldPos = GetWorldPosition(touch.position);
+        Vector2 screenPos = touch.position;
 
         if (touch.phase == TouchPhase.Began)
-            BeginPress(worldPos);
+            BeginPress(screenPos);
 
-        if (touch.phase == TouchPhase.Moved)
-            UpdatePress(worldPos);
+        if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+            UpdatePress(screenPos);
 
         if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            EndPress(worldPos);
+            EndPress(screenPos);
     }
 
     #endregion
 
-    private Vector2 GetWorldPosition(Vector2 screenPos)
-    {
-        return _camera.ScreenToWorldPoint(screenPos);
-    }
-
-    private void HandleHover(Vector2 worldPos)
+    private void HandleHover(Vector2 screenPos)
     {
         if (_isDragging) return;
 
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
-        FoodView food = hit.collider ? hit.collider.GetComponent<FoodView>() : null;
+        FoodView food = RaycastFood(screenPos);
 
-        if (_selectedFood == food) return;
+        if (_selectedFood == food)
+            return;
 
-        HideDescriptionAction?.Invoke(_selectedFood);
+        if (_selectedFood != null)
+            HideDescriptionAction?.Invoke(_selectedFood);
+
         _selectedFood = food;
-        ShowDescriptionAction?.Invoke(_selectedFood);
+
+        if (_selectedFood != null)
+            ShowDescriptionAction?.Invoke(_selectedFood);
     }
 
-    private void BeginPress(Vector2 worldPos)
+    private void BeginPress(Vector2 screenPos)
     {
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
-        if (!hit.collider) return;
+        _pressedFood = RaycastFood(screenPos);
+        if (_pressedFood == null)
+            return;
 
-        _pressedFood = hit.collider.GetComponent<FoodView>();
-        if (_pressedFood == null) return;
-
-        _pressStartWorldPos = worldPos;
+        _pressStartWorldPos = ScreenToWorld(screenPos);
         _pressTimer = 0f;
         _isPressing = true;
         _isDragging = false;
-
-        _dragOffset = _pressedFood.transform.position - (Vector3)worldPos;
     }
 
-    private void UpdatePress(Vector2 worldPos)
+    private void UpdatePress(Vector2 screenPos)
     {
-        if (!_isPressing) return;
+        if (!_isPressing)
+            return;
 
+        Vector2 worldPos = ScreenToWorld(screenPos);
         float distance = Vector2.Distance(_pressStartWorldPos, worldPos);
 
-        if (!_isDragging && distance > _dragThreshold)
+        if (!_isDragging && distance > DragThreshold)
         {
-            StartDrag();
+            StartDrag(worldPos);
         }
 
         if (_isDragging)
         {
-            _draggedFood.transform.position = worldPos + (Vector2)_dragOffset;
+            _draggedFood.Drag(worldPos);
             return;
         }
 
         _pressTimer += Time.deltaTime;
-        if (_pressTimer >= _longPressTime)
+
+        if (_pressTimer >= LongPressTime)
         {
             ShowDescriptionAction?.Invoke(_pressedFood);
             _isPressing = false;
         }
     }
 
-    private void EndPress(Vector2 worldPos)
+    private void EndPress(Vector2 screenPos)
     {
+        Vector2 worldPos = ScreenToWorld(screenPos);
+
         if (_isDragging)
         {
+            _draggedFood.EndDrag(worldPos);
             TryDrop(worldPos);
         }
         else if (_isPressing)
         {
-            _pressedFood?.EatFood();
+            _pressedFood?.Eat();
         }
 
-        _isPressing = false;
-        _isDragging = false;
-        _draggedFood = null;
-        _pressedFood = null;
+        ResetState();
     }
 
-    private void StartDrag()
+    private void StartDrag(Vector2 worldPos)
     {
         _isDragging = true;
         _draggedFood = _pressedFood;
-        _draggedFood.StartDrag();
 
+        _draggedFood.StartDrag(worldPos);
         HideDescriptionAction?.Invoke(_draggedFood);
     }
 
     private void TryDrop(Vector2 worldPos)
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(worldPos, Vector3.forward);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(worldPos, Vector2.zero);
 
         foreach (var hit in hits)
         {
@@ -183,10 +185,12 @@ public class InputController : MonoBehaviour
                 case "MultiCook":
                     break;
                 default:
-                    _draggedFood.EnableRB();
+                    _draggedFood.EndDrag(worldPos);
                     break;
             }
         }
+
+        _draggedFood.EndDrag(worldPos);
     }
 
     private void TryDropOnStation(Collider2D collider)
@@ -194,8 +198,47 @@ public class InputController : MonoBehaviour
         CookingStation station = collider.GetComponent<CookingStation>();
 
         if (station == null || !station.TryCook(_draggedFood))
-        {
             _draggedFood.ReturnToStartPosition();
+    }
+
+    private FoodView RaycastFood(Vector2 screenPos)
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current)
+        {
+            position = screenPos
+        };
+
+        var results = new List<RaycastResult>();
+        _graphicRaycaster.Raycast(eventData, results);
+
+        foreach (var result in results)
+        {
+            if (result.gameObject.TryGetComponent<FoodView>(out var uiFood))
+                return uiFood;
         }
+
+        Vector2 worldPos = ScreenToWorld(screenPos);
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+        if (hit.collider &&
+            hit.collider.TryGetComponent<FoodView>(out var worldFood))
+        {
+            return worldFood;
+        }
+
+        return null;
+    }
+
+    private Vector2 ScreenToWorld(Vector2 screenPos)
+    {
+        return _camera.ScreenToWorldPoint(screenPos);
+    }
+
+    private void ResetState()
+    {
+        _isPressing = false;
+        _isDragging = false;
+        _draggedFood = null;
+        _pressedFood = null;
     }
 }
