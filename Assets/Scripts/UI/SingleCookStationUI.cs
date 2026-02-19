@@ -5,7 +5,9 @@ using VContainer;
 public class SingleCookStationUI : MonoBehaviour
 {
     [SerializeField] private Image _timerImage;
+    [SerializeField] private Transform _viewParent;
 
+    public Transform ViewParent => _viewParent;
     private CookingStation _cookingStation;
 
     [Inject]

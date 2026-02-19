@@ -26,6 +26,8 @@ public class InputController : MonoBehaviour
     public static event Action<FoodView> ShowDescriptionAction;
     public static event Action<FoodView> HideDescriptionAction;
 
+    public static event Action<FoodView, Vector2> DropAction;
+
     private void Awake()
     {
         _camera = Camera.main;
@@ -149,7 +151,8 @@ public class InputController : MonoBehaviour
         if (_isDragging)
         {
             _draggedFood.EndDrag(worldPos);
-            TryDrop(worldPos);
+
+            DropAction?.Invoke(_draggedFood, worldPos);
         }
         else if (_isPressing)
         {
@@ -166,39 +169,6 @@ public class InputController : MonoBehaviour
 
         _draggedFood.StartDrag(worldPos);
         HideDescriptionAction?.Invoke(_draggedFood);
-    }
-
-    private void TryDrop(Vector2 worldPos)
-    {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(worldPos, Vector2.zero);
-
-        foreach (var hit in hits)
-        {
-            switch (hit.collider.tag)
-            {
-                case "Block":
-                    _draggedFood.ReturnToStartPosition();
-                    break;
-                case "SingleCook":
-                    TryDropOnStation(hit.collider);
-                    break;
-                case "MultiCook":
-                    break;
-                default:
-                    _draggedFood.EndDrag(worldPos);
-                    break;
-            }
-        }
-
-        _draggedFood.EndDrag(worldPos);
-    }
-
-    private void TryDropOnStation(Collider2D collider)
-    {
-        CookingStation station = collider.GetComponent<CookingStation>();
-
-        if (station == null || !station.TryCook(_draggedFood))
-            _draggedFood.ReturnToStartPosition();
     }
 
     private FoodView RaycastFood(Vector2 screenPos)

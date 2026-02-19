@@ -21,4 +21,13 @@ public class FoodViewUI : FoodView
     {
         _rect.position = pointerPos;
     }
+
+    public override void EndDrag(Vector2 pointerWorldPos)
+    {
+        Food food = Food;
+
+        Destroy(gameObject);
+
+        //_factory.CreateGameView(food, worldDropPosition);
+    }
 }

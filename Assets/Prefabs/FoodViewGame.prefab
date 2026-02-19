@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4072584111560675015}
   - component: {fileID: 8951820726568715237}
   m_Layer: 0
-  m_Name: FoodView
+  m_Name: FoodViewGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
