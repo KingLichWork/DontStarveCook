@@ -25,7 +25,12 @@ public class FoodViewGame : FoodView
         _rb2D.bodyType = RigidbodyType2D.Kinematic;
     }
 
-    public override void EndDrag(Vector2 pointerWorldPos)
+    public override void Drag(Vector2 pointerPos)
+    {
+        transform.position = pointerPos;
+    }
+
+    public override void EndDrag()
     {
         EnableRB();
     }
@@ -47,6 +52,11 @@ public class FoodViewGame : FoodView
         Destroy(gameObject);
     }
 
+    public override Vector3 GetDescriptionPosition()
+    {
+        return Camera.main.WorldToScreenPoint(transform.position); 
+    }
+
     private void RefreshCollider()
     {
         _collider.pathCount = _sprite.sprite.GetPhysicsShapeCount();
@@ -57,5 +67,5 @@ public class FoodViewGame : FoodView
             _sprite.sprite.GetPhysicsShape(i, points);
             _collider.SetPath(i, points.ToArray());
         }
-    }
+    } 
 }

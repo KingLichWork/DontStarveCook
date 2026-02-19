@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class FoodViewDescription : MonoBehaviour
 {
+    [SerializeField] private RectTransform _rectTransform;
+
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _valueText;
 
@@ -26,10 +28,12 @@ public class FoodViewDescription : MonoBehaviour
 
     public void Show(FoodView foodView)
     {
-        if (foodView == null)
+        if (foodView == null) 
             return;
 
-        transform.position = Camera.main.WorldToScreenPoint(foodView.transform.position + new Vector3(0, 1));
+        Vector3 screenPos = foodView.GetDescriptionPosition();
+
+        _rectTransform.position = screenPos + Vector3.up * 200;
 
         _nameText.text = foodView.Food.Name;
         _valueText.text = foodView.Food.FoodValue.ToString();

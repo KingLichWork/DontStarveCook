@@ -63,24 +63,26 @@ public class GameController : MonoBehaviour
             }
         }
 
-        view.EndDrag(worldPos);
+        _foodViewFactory.CreateGameView(view.Food, worldPos);
+        Destroy(view.gameObject);
     }
 
     private void TryDropOnStation(FoodView view, Collider2D collider)
     {
-        CookingStation station = collider.GetComponent<CookingStation>();
+        SingleCookingStation station = collider.GetComponent<SingleCookingStation>();
 
-        if (station == null || !station.TryCook(view))
+        if (station == null || station.IsBusy)
         {
             view.ReturnToStartPosition();
             return;
         }
 
-        var food = view.Food;
-
+        Food food = view.Food;
         Destroy(view.gameObject);
 
-        _foodViewFactory.CreateUIView(food, _singleCookStationUI.ViewParent);
+        FoodViewUI newView = _foodViewFactory.CreateUIView(food, _singleCookStationUI.ViewParent);
+
+        station.SetFood(newView);
     }
 
     public void Game()

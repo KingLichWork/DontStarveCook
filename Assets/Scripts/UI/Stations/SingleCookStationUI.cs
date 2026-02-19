@@ -7,11 +7,13 @@ public class SingleCookStationUI : MonoBehaviour
     [SerializeField] private Image _timerImage;
     [SerializeField] private Transform _viewParent;
 
+    [SerializeField] private GameObject _holder;
+
     public Transform ViewParent => _viewParent;
-    private CookingStation _cookingStation;
+    private SingleCookingStation _cookingStation;
 
     [Inject]
-    public void Construct(CookingStation cookingStation)
+    public void Construct(SingleCookingStation cookingStation)
     {
         _cookingStation = cookingStation;
     }
@@ -35,7 +37,7 @@ public class SingleCookStationUI : MonoBehaviour
 
     private void StartCook()
     {
-        _timerImage.color = Color.green;
+        _timerImage.color = new Color(0,1,0,0.3f);
         ClearCook();
     }
 
@@ -46,7 +48,7 @@ public class SingleCookStationUI : MonoBehaviour
 
     private void ChangeCookStage()
     {
-        _timerImage.color = Color.red;
+        _timerImage.color = new Color(1,0,0,0.3f);
         ClearCook();
     }
 

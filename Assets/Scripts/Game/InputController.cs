@@ -150,7 +150,7 @@ public class InputController : MonoBehaviour
 
         if (_isDragging)
         {
-            _draggedFood.EndDrag(worldPos);
+            _draggedFood.EndDrag();
 
             DropAction?.Invoke(_draggedFood, worldPos);
         }

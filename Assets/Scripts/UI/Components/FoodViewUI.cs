@@ -6,6 +6,9 @@ public class FoodViewUI : FoodView
     [SerializeField] private Image _image;
     [SerializeField] private RectTransform _rect;
 
+    private Station _station;
+    private Transform _stationParent;
+    private Camera _mainCamera;
     public override void SetFood(Food food)
     {
         base.SetFood(food);
@@ -14,20 +17,42 @@ public class FoodViewUI : FoodView
 
     public override void StartDrag(Vector2 pointerPos)
     {
+        if(_mainCamera == null)
+            _mainCamera = Camera.main;
+
         transform.SetAsLastSibling();
+
+        if (_station != null)
+            _station.ClearStation();
     }
 
     public override void Drag(Vector2 pointerPos)
     {
-        _rect.position = pointerPos;
+        _rect.position = _mainCamera.WorldToScreenPoint(pointerPos);
     }
 
-    public override void EndDrag(Vector2 pointerWorldPos)
+    public override void Eat()
     {
-        Food food = Food;
-
+        base.Eat();
         Destroy(gameObject);
+    }
 
-        //_factory.CreateGameView(food, worldDropPosition);
+    public override void ReturnToStartPosition()
+    {
+        transform.position = _stationParent.transform.position;
+        _station.SetFood(this);
+    }
+
+    public void UsedForStation(Station station)
+    {
+        _station = station;
+        _stationParent = transform.parent;
+    }
+
+    public override Vector3 GetDescriptionPosition()
+    {
+        RectTransform rect = (RectTransform)transform;
+
+        return rect.position;
     }
 }

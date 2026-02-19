@@ -4,7 +4,7 @@ using VContainer.Unity;
 
 public class GameLifetimeScope : LifetimeScope
 {
-    [SerializeField] private CookingStation _cookingStation;
+    [SerializeField] private SingleCookingStation _cookingStation;
     [SerializeField] private SingleCookStationUI _singleCookStationUI;
     [SerializeField] private GameController _gameController;
     [SerializeField] private GameSpawner _spawner;
