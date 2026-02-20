@@ -23,7 +23,9 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterInstance(_uiPrefab);
 
         builder.RegisterComponent(_singleCookStationUI);
+        builder.RegisterComponent(_multiCookStationUI);
         builder.RegisterComponent(_cookingStation);
+        builder.RegisterComponent(_multiCookingStation);
         builder.RegisterComponent(_gameController);
         builder.RegisterComponent(_spawner);
         builder.RegisterComponent(_inputController);

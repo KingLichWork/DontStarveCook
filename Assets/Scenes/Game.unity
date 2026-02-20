@@ -770,9 +770,9 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _cookingStation: {fileID: 2043640890762284639}
-  _singleCookStationUI: {fileID: 0}
+  _singleCookStationUI: {fileID: 1874831012}
   _multiCookingStation: {fileID: 2043640890762284640}
-  _multiCookStationUI: {fileID: 0}
+  _multiCookStationUI: {fileID: 1497771060}
   _gameController: {fileID: 91024476}
   _spawner: {fileID: 256785850}
   _inputController: {fileID: 1574099363}
@@ -862,6 +862,17 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &1497771060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 683843171775984459, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+  m_PrefabInstance: {fileID: 85626032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d2f4e95f83c734f8ba4726c7ea307a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1574099361
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +918,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _graphicRaycaster: {fileID: 99139227}
+--- !u!114 &1874831012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 546507759623414758, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+  m_PrefabInstance: {fileID: 85626032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62dec5790c32864fb13df94c7d7688e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2043640890762284638
 PrefabInstance:
   m_ObjectHideFlags: 0
