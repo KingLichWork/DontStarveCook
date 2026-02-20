@@ -7,6 +7,7 @@ public class Food : ScriptableObject
     [SerializeField] private int _decayTime;
     [SerializeField] private string _name;
     [SerializeField] private FoodType _type;
+    [SerializeField] private float _foodTypeValue;
     [SerializeField] private Sprite _sprite;
 
     [SerializeField] private Food _cookedVersion;
@@ -29,6 +30,8 @@ public enum FoodType
     fish,
     vegetable,
     fruit,
-    egg
+    egg,
+    monster,
+    honey
 }
 
