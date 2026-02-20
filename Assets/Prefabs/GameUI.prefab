@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -631,7 +631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4413639703545049611, guid: c3fa2a1488499474e9dd18d1d26c3e11, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 175
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4413639703545049611, guid: c3fa2a1488499474e9dd18d1d26c3e11, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -651,7 +651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5125324118539809810, guid: c3fa2a1488499474e9dd18d1d26c3e11, type: 3}
       propertyPath: m_Name
-      value: MultiCookStation
+      value: MultiCookStationUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -753,7 +753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5876949864329794674, guid: d6a280b168c03da4b8a8dc8ca0bfbe1c, type: 3}
       propertyPath: m_Name
-      value: SingleCookStation
+      value: SingleCookStationUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
