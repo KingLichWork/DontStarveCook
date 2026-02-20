@@ -23,7 +23,7 @@ public class FoodViewUI : FoodView
         transform.SetAsLastSibling();
 
         if (_station != null)
-            _station.ClearStation();
+            _station.ClearStationCell(this);
     }
 
     public override void Drag(Vector2 pointerPos)

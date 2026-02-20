@@ -6,14 +6,17 @@ public class GameController : MonoBehaviour
     private GameSpawner _spawner;
     private FoodViewFactory _foodViewFactory;
     private SingleCookStationUI _singleCookStationUI;
+    private MultiCookStationUI _multiCookStationUI;
+
     private GameTimer _gameTimer = new GameTimer(100);
 
     [Inject]
-    public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI)
+    public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI)
     {
         _spawner = spawner;
         _foodViewFactory = foodViewFactory;
         _singleCookStationUI = singleCookStationUI;
+        _multiCookStationUI = multiCookStationUI;
     }
 
     private void OnEnable()
@@ -69,7 +72,7 @@ public class GameController : MonoBehaviour
 
     private void TryDropOnStation(FoodView view, Collider2D collider)
     {
-        SingleCookingStation station = collider.GetComponent<SingleCookingStation>();
+        Station station = collider.GetComponent<Station>();
 
         if (station == null || station.IsBusy)
         {
@@ -80,7 +83,8 @@ public class GameController : MonoBehaviour
         Food food = view.Food;
         Destroy(view.gameObject);
 
-        FoodViewUI newView = _foodViewFactory.CreateUIView(food, _singleCookStationUI.ViewParent);
+        FoodViewUI newView = _foodViewFactory.CreateUIView(food, (station is SingleCookStation) ? _singleCookStationUI.ViewParent 
+            : _multiCookStationUI.ViewParent);
 
         station.SetFood(newView);
     }

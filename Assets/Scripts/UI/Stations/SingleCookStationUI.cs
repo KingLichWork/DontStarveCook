@@ -2,18 +2,12 @@
 using UnityEngine.UI;
 using VContainer;
 
-public class SingleCookStationUI : MonoBehaviour
+public class SingleCookStationUI : CookStationUI
 {
-    [SerializeField] private Image _timerImage;
-    [SerializeField] private Transform _viewParent;
-
-    [SerializeField] private GameObject _holder;
-
-    public Transform ViewParent => _viewParent;
-    private SingleCookingStation _cookingStation;
+    private SingleCookStation _cookingStation;
 
     [Inject]
-    public void Construct(SingleCookingStation cookingStation)
+    public void Construct(SingleCookStation cookingStation)
     {
         _cookingStation = cookingStation;
     }
@@ -33,28 +27,6 @@ public class SingleCookStationUI : MonoBehaviour
         _cookingStation.OnCookStartAction -= StartCook;
         _cookingStation.CookInProgressAction -= ChangeCookTimer;
         _cookingStation.OnCookCompleteAction -= ChangeCookStage;
-    }
-
-    private void StartCook()
-    {
-        _timerImage.color = new Color(0,1,0,0.3f);
-        ClearCook();
-    }
-
-    private void ChangeCookTimer(float value)
-    {
-        _timerImage.fillAmount = value;
-    }
-
-    private void ChangeCookStage()
-    {
-        _timerImage.color = new Color(1,0,0,0.3f);
-        ClearCook();
-    }
-
-    private void ClearCook()
-    {
-        _timerImage.fillAmount = 0;
     }
 
     private void StartPosition()
