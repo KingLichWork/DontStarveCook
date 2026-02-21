@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: SmallMeat
   _type: 0
+  _foodTypeValue: 0.5
   _sprite: {fileID: 21300000, guid: 2e6db877d1e50b643a2cecd9d4ff710e, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 436da9acef08d89488e2cc99ca9ad321, type: 2}

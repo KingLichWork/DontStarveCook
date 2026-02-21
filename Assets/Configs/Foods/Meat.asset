@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: Meat
   _type: 0
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: 5b51081126d5eb8409237f75abcc050b, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 9d2dbee49e6970a468b185b7468c2c60, type: 2}

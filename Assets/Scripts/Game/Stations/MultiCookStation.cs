@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class MultiCookStation : Station
 {
-    [SerializeField] private Food _gruel;
+    [SerializeField] private Recipe _gruel;
+    [SerializeField] private RecipesData _recipes;
 
-    private CookMergeController _cookController = new CookMergeController();
+    private CookMergeController _cookController;
     private FoodViewFactory _foodViewFactory;
 
     private FoodViewUI[] _usedFoods = new FoodViewUI[4];
@@ -21,6 +22,7 @@ public class MultiCookStation : Station
     public void Construct(FoodViewFactory foodViewFactory)
     {
         _foodViewFactory = foodViewFactory;
+        _cookController = new CookMergeController(_recipes, _gruel);
     }
 
     public override void ClearStationCell(FoodViewUI foodView)
@@ -63,7 +65,7 @@ public class MultiCookStation : Station
 
         for (int i = 0; i < 4; i++)
         {
-            ingredients[i] = _usedFoods[i].Food;
+            ingredients[i] = (Food)_usedFoods[i].Food;
         }
 
         await CookPhase(_cookingTime, _cookController.Cook(ingredients), token);
@@ -71,7 +73,7 @@ public class MultiCookStation : Station
         await CookPhase(_overCookingTime, _ash, token);
     }
 
-    private async UniTask CookPhase(float duration, Food resultFood, CancellationToken token)
+    private async UniTask CookPhase(float duration, FoodBase resultFood, CancellationToken token)
     {
         float elapsed = 0f;
 

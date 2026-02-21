@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: BlueMushroom
   _type: 2
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: c16f17e38130eff4f9663a17e7a0a7aa, type: 3}
   _cookedVersion: {fileID: 0}

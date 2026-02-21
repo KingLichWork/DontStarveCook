@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: Banana
   _type: 3
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: 0ebd1f933f64773489d4ca3a9f5f36a2, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 663dfde525a9e5e47863519ed3876d45, type: 2}

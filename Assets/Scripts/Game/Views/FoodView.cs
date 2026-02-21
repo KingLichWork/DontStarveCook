@@ -3,13 +3,13 @@ using UnityEngine;
 
 public abstract class FoodView : MonoBehaviour
 {
-    protected Food _food;
+    protected FoodBase _food;
 
-    public Food Food => _food;
+    public FoodBase Food => _food;
 
     public static event Action<FoodView> EatFoodAction;
 
-    public virtual void SetFood(Food food)
+    public virtual void SetFood(FoodBase food)
     {
         _food = food;
     }

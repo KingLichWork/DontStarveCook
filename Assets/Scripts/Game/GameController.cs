@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        Food food = view.Food;
+        Food food = (Food)view.Food;
         Destroy(view.gameObject);
 
         FoodViewUI newView = _foodViewFactory.CreateUIView(food, (station is SingleCookStation) ? _singleCookStationUI.ViewParent 

@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: Corn
   _type: 2
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: 0beb5590d3c25ad43917bdfe3efe2e6e, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 160096f04ee1c0e40ab94b75eddbee07, type: 2}

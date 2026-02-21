@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: BigEgg
   _type: 4
+  _foodTypeValue: 4
   _sprite: {fileID: 21300000, guid: d8bb4e9ed4ce0d6408cfb8eb6ab8c1e7, type: 3}
   _cookedVersion: {fileID: 11400000, guid: e641281fffb89a946917b592dc67d29f, type: 2}

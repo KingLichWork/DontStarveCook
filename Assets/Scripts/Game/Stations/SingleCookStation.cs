@@ -33,7 +33,7 @@ public class SingleCookStation : Station
         _isBusy = true;
         OnCookStartAction?.Invoke();
 
-        await CookPhase(_cookingTime, _foodView.Food.HasCookedVersion ? _foodView.Food.CookedVersion : _ash, token);
+        await CookPhase(_cookingTime, ((Food)_foodView.Food).HasCookedVersion ? ((Food)_foodView.Food).CookedVersion : _ash, token);
 
         await CookPhase(_overCookingTime, _ash, token);
     }

@@ -2,19 +2,13 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Game/Recipe")]
-public class Recipe : ScriptableObject
+public class Recipe : FoodBase
 {
-    [SerializeField] private int _foodValue;
-    [SerializeField] private int _decayTime;
-    [SerializeField] private string _name;
-    [SerializeField] private Sprite _sprite;
-
     [SerializeField] private RecipeFoodType[] _recipeFoodTypes;
+    [SerializeField] private FoodType[] _excludeFoodTypes;
 
-    public int FoodValue => _foodValue;
-    public int DecayTime => _decayTime;
-    public string Name => _name;
-    public Sprite Sprite => _sprite;
+    public RecipeFoodType[] RecipeFoodTypes => _recipeFoodTypes;
+    public FoodType[] ExcludeFoodTypes => _excludeFoodTypes;
 }
 
 [Serializable]

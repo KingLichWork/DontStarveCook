@@ -15,6 +15,7 @@ MonoBehaviour:
   _foodValue: 10
   _decayTime: 0
   _name: MonsterMeat
-  _type: 0
+  _type: 5
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: ac87f1f8a6384ec4f8a12fe4ad591b17, type: 3}
   _cookedVersion: {fileID: 11400000, guid: bc60b48a1ea0e334697934bf00abb48d, type: 2}

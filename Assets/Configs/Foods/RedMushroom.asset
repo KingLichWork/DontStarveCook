@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: RedMushroom
   _type: 2
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: f2907ab4e7a25e041bf6c88c88f719d1, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 9a27f7bb28353d14cb984d445a6b4b94, type: 2}

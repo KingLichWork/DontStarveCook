@@ -9,7 +9,7 @@ public class FoodViewUI : FoodView
     private Station _station;
     private Transform _stationParent;
     private Camera _mainCamera;
-    public override void SetFood(Food food)
+    public override void SetFood(FoodBase food)
     {
         base.SetFood(food);
         _image.sprite = _food.Sprite;

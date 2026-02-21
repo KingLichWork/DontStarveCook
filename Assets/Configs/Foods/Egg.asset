@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: Egg
   _type: 4
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: 51517e3ecfe9a3a41b927906d6da7de3, type: 3}
   _cookedVersion: {fileID: 11400000, guid: b96eeb3e945459948baa4ed1e2316785, type: 2}

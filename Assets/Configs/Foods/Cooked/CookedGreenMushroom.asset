@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: GreenMushroom
   _type: 2
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: ab4bcab93665a8241be5d62a4293ddee, type: 3}
   _cookedVersion: {fileID: 0}

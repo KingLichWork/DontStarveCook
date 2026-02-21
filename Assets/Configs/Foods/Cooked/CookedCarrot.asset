@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: Carrot
   _type: 2
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: 34664f37c86a29c4fae8eacb76c45015, type: 3}
   _cookedVersion: {fileID: 0}

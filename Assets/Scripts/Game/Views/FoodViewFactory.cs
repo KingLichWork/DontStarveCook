@@ -16,14 +16,14 @@ public class FoodViewFactory
         _objectResolver = objectResolver;
     }
 
-    public FoodViewGame CreateGameView(Food food, Vector3 worldPos)
+    public FoodViewGame CreateGameView(FoodBase food, Vector3 worldPos)
     {
         var view = _objectResolver.Instantiate(_gamePrefab, worldPos, Quaternion.identity);
         view.SetFood(food);
         return view;
     }
 
-    public FoodViewUI CreateUIView(Food food, Transform parent)
+    public FoodViewUI CreateUIView(FoodBase food, Transform parent)
     {
         var view = _objectResolver.Instantiate(_uiPrefab, parent);
         view.SetFood(food);

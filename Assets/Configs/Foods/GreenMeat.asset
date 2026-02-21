@@ -15,6 +15,7 @@ MonoBehaviour:
   _foodValue: 10
   _decayTime: 0
   _name: GreenMeat
-  _type: 2
+  _type: 0
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: 664477a6c5173fa4d872021909d97d47, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 01ec23b02618df14a90390c368a5d765, type: 2}

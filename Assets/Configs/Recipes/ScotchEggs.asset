@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
-  m_Name: New Recipe
+  m_Name: ScotchEggs
   m_EditorClassIdentifier: 
   _foodValue: 0
   _decayTime: 0
-  _name: 
-  _sprite: {fileID: 0}
+  _name: ScotchEggs
+  _sprite: {fileID: 21300000, guid: 49d9b96248f44cf47ac4757d18e8df99, type: 3}
   _recipeFoodTypes:
-  - _valueFoodType: 0
+  - _valueFoodType: 4
+    _foodType: 4
+  - _valueFoodType: 1
     _foodType: 0
-  - _valueFoodType: 0
-    _foodType: 0
+  _excludeFoodTypes: 

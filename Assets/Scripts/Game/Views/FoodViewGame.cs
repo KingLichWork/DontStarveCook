@@ -11,7 +11,7 @@ public class FoodViewGame : FoodView
 
     private Vector3 _startPosition;
 
-    public override void SetFood(Food food)
+    public override void SetFood(FoodBase food)
     {
         base.SetFood(food);
         _sprite.sprite = _food.Sprite;

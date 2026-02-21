@@ -11,7 +11,7 @@ public class FoodData : ScriptableObject
 
     public Food GetRandomFoodByType(FoodType type)
     {
-        List<Food> foodsOfType = _foods.Where(f => f.Type == type).ToList();
+        List<Food> foodsOfType = _foods.Where(f => f.FoodType == type).ToList();
 
         return foodsOfType[Random.Range(0, foodsOfType.Count)];
     }

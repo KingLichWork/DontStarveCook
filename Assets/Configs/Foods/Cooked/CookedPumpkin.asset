@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: Pumpkin
   _type: 2
+  _foodTypeValue: 2
   _sprite: {fileID: 21300000, guid: ef63640c0f9b39e4bae828e28c4f0254, type: 3}
   _cookedVersion: {fileID: 0}

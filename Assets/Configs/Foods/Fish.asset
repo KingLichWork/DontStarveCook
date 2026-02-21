@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: Fish
   _type: 1
+  _foodTypeValue: 1
   _sprite: {fileID: 21300000, guid: 63edfc82e09347c46977b355ecbdec6b, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 2b1f498755b81744089a514025853d25, type: 2}

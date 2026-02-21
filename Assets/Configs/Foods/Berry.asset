@@ -16,5 +16,6 @@ MonoBehaviour:
   _decayTime: 0
   _name: Berry
   _type: 3
+  _foodTypeValue: 0.5
   _sprite: {fileID: 21300000, guid: 8a7db80858b9df84ca594ca9aaed708b, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 536fc337441dc3c46884f46edc2da40e, type: 2}
