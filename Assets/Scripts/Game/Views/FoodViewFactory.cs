@@ -16,17 +16,21 @@ public class FoodViewFactory
         _objectResolver = objectResolver;
     }
 
-    public FoodViewGame CreateGameView(FoodBase food, Vector3 worldPos)
+    public FoodViewGame CreateGameView(FoodView foodView, Vector3 worldPos)
     {
         var view = _objectResolver.Instantiate(_gamePrefab, worldPos, Quaternion.identity);
-        view.SetFood(food);
+        view.SetFood(foodView.Food);
+
+        if (foodView is FoodViewUI foodViewUI && foodViewUI.IsRecipe)
+            view.transform.localScale = Vector3.one * 0.25f;
+
         return view;
     }
 
-    public FoodViewUI CreateUIView(FoodBase food, Transform parent)
+    public FoodViewUI CreateUIView(FoodBase food, Transform parent, bool isRecipe = false)
     {
         var view = _objectResolver.Instantiate(_uiPrefab, parent);
-        view.SetFood(food);
+        view.SetFood(food, isRecipe);
         return view;
     }
 }

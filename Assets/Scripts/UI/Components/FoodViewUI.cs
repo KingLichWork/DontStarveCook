@@ -9,10 +9,21 @@ public class FoodViewUI : FoodView
     private Station _station;
     private Transform _stationParent;
     private Camera _mainCamera;
+    private bool _isRecipe;
+
+    public bool IsRecipe => _isRecipe;
+
     public override void SetFood(FoodBase food)
     {
         base.SetFood(food);
         _image.sprite = _food.Sprite;
+    }
+
+    public void SetFood(FoodBase food, bool isRecipe)
+    {
+        _food = food;
+        _image.sprite = _food.Sprite;
+        _isRecipe = isRecipe;
     }
 
     public override void StartDrag(Vector2 pointerPos)

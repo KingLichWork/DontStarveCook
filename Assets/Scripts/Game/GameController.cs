@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        _foodViewFactory.CreateGameView(view.Food, worldPos);
+        _foodViewFactory.CreateGameView(view, worldPos);
         Destroy(view.gameObject);
     }
 
