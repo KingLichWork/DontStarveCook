@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using VContainer;
 
 public class MultiCookStation : Station
 {
@@ -14,11 +15,12 @@ public class MultiCookStation : Station
 
     private FoodViewUI[] _usedFoods = new FoodViewUI[4];
 
-    protected override float _cookingTime => 10f;
+    protected override float _cookingTime => 1f; //10
     protected override float _overCookingTime => 10f;
 
     public event Action<FoodViewUI> CreateFoodViewAction;
 
+    [Inject]
     public void Construct(FoodViewFactory foodViewFactory)
     {
         _foodViewFactory = foodViewFactory;
@@ -51,9 +53,18 @@ public class MultiCookStation : Station
             {
                 _usedFoods[i] = foodView;
                 _usedFoods[i].UsedForStation(this);
+
+                if (i == _usedFoods.Length - 1)
+                    StartCook();
+
                 return;
             }
         }
+    }
+
+    public void ClearCell(int number)
+    {
+        _usedFoods[number] = null;
     }
 
     protected async override UniTask Cook(CancellationToken token)
@@ -69,6 +80,7 @@ public class MultiCookStation : Station
         }
 
         await CookPhase(_cookingTime, _cookController.Cook(ingredients), token);
+        DestroyIngredients();
 
         await CookPhase(_overCookingTime, _ash, token);
     }
@@ -86,13 +98,20 @@ public class MultiCookStation : Station
             CookInProgressAction?.Invoke(Mathf.Clamp01(elapsed / duration));
         }
 
+        DestroyIngredients();
         FoodViewUI resultFoodView = _foodViewFactory.CreateUIView(resultFood, null);
         CreateFoodViewAction?.Invoke(resultFoodView);
         OnCookCompleteAction?.Invoke();
     }
 
-    public void ClearCell(int number)
+    private void DestroyIngredients()
     {
-        _usedFoods[number] = null;
+        int lenght = _usedFoods.Length;
+
+        for (int i = 0; i < lenght; i++)
+        {
+            if (_usedFoods[i] != null)
+                Destroy(_usedFoods[i].gameObject);
+        }
     }
 }

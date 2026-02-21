@@ -657,6 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ash: {fileID: 11400000, guid: b00b54f3c7a851947b06dbd6f17137f2, type: 2}
   _gruel: {fileID: 11400000, guid: 9c7711a796cf3ad44855116c9bb60102, type: 2}
+  _recipes: {fileID: 11400000, guid: aecc9057d1ea04c45b47b3d71bf4bb23, type: 2}
 --- !u!61 &5680278162408827258
 BoxCollider2D:
   m_ObjectHideFlags: 0

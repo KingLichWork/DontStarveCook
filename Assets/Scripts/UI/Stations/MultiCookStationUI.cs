@@ -3,6 +3,8 @@ using VContainer;
 
 public class MultiCookStationUI : CookStationUI
 {
+    [SerializeField] private Transform _resultParent;
+
     private MultiCookStation _multiCookingStation;
 
     [Inject]
@@ -31,8 +33,8 @@ public class MultiCookStationUI : CookStationUI
 
     private void ViewSetParent(FoodViewUI foodViewUI)
     {
-        foodViewUI.transform.parent = ViewParent;
-        foodViewUI.transform.position = ViewParent.position;
+        foodViewUI.transform.parent = _resultParent;
+        foodViewUI.transform.position = _resultParent.position;
     }
 
     private void StartPosition()

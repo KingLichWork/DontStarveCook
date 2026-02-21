@@ -310,9 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d2f4e95f83c734f8ba4726c7ea307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timerImage: {fileID: 0}
+  _timerImage: {fileID: 4387498092260828244}
   _holder: {fileID: 7160665455566417434}
   _viewParent: {fileID: 3997503003578950124}
+  _resultParent: {fileID: 1318213308998654021}
 --- !u!1 &5420898518001461409
 GameObject:
   m_ObjectHideFlags: 0
