@@ -51,13 +51,15 @@ public class GameController : MonoBehaviour
 
         RaycastHit2D[] hits = Physics2D.RaycastAll(worldPos, Vector2.zero);
 
+        bool isBlock = false;
+
         foreach (var hit in hits)
         {
             switch (hit.collider.tag)
             {
                 case "Block":
-                    view.ReturnToStartPosition();
-                    return;
+                    isBlock = true;
+                    break;
 
                 case "SingleCook":
                 case "MultiCook":
@@ -65,6 +67,9 @@ public class GameController : MonoBehaviour
                     return;
             }
         }
+
+        if(isBlock)
+            view.ReturnToStartPosition();
 
         _foodViewFactory.CreateGameView(view, worldPos);
         Destroy(view.gameObject);

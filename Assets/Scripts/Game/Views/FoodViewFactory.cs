@@ -22,7 +22,7 @@ public class FoodViewFactory
         view.SetFood(foodView.Food);
 
         if (foodView is FoodViewUI foodViewUI && foodViewUI.IsRecipe)
-            view.transform.localScale = Vector3.one * 0.25f;
+            view.transform.localScale = Vector3.one * 0.3f;
 
         return view;
     }

@@ -99,7 +99,7 @@ public class MultiCookStation : Station
         }
 
         DestroyIngredients();
-        FoodViewUI resultFoodView = _foodViewFactory.CreateUIView(resultFood, null);
+        FoodViewUI resultFoodView = _foodViewFactory.CreateUIView(resultFood, null, true);
         CreateFoodViewAction?.Invoke(resultFoodView);
         OnCookCompleteAction?.Invoke();
     }
