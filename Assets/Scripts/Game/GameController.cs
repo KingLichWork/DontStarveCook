@@ -34,9 +34,6 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         Game();
-
-        for (int i = 0; i < 10; i++)
-            _spawner.SpawnFood();
     }
 
     private void EatFood(FoodView foodView)
@@ -94,9 +91,10 @@ public class GameController : MonoBehaviour
         station.SetFood(newView);
     }
 
-    public void Game()
+    private void Game()
     {
         _gameTimer.StartTimer();
-        //_spawner.StartSpawn(1f);
+        _spawner.SpawnStartFood(5);
+        _spawner.StartSpawn(2f);
     }
 }

@@ -15,7 +15,7 @@ public class MultiCookStation : Station
 
     private FoodViewUI[] _usedFoods = new FoodViewUI[4];
 
-    protected override float _cookingTime => 1f; //10
+    protected override float _cookingTime => 10f;
     protected override float _overCookingTime => 10f;
 
     public event Action<FoodViewUI> CreateFoodViewAction;
@@ -38,6 +38,15 @@ public class MultiCookStation : Station
             }
         }
 
+        _isBusy = false;
+
+        _cts?.Cancel();
+        _cts?.Dispose();
+        _cts = null;
+    }
+
+    public override void StopCooking()
+    {
         _isBusy = false;
 
         _cts?.Cancel();
@@ -100,6 +109,7 @@ public class MultiCookStation : Station
 
         DestroyIngredients();
         FoodViewUI resultFoodView = _foodViewFactory.CreateUIView(resultFood, null, true);
+        resultFoodView.SetResult();
         CreateFoodViewAction?.Invoke(resultFoodView);
         OnCookCompleteAction?.Invoke();
     }

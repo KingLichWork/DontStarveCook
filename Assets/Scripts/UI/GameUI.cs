@@ -1,12 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] private Button _button;
-
-    [SerializeField] private Image _timerImage;
+    [SerializeField] private Slider _timerSlider;
+    [SerializeField] private ParticleSystem _timerParticles;
 
     [SerializeField] private TextMeshProUGUI _timerText;
 
@@ -22,7 +22,8 @@ public class GameUI : MonoBehaviour
 
     private void ChangeTimer(int value, int maxValue)
     {
-        _timerImage.fillAmount = (float)value / maxValue;
+        _timerSlider.DOKill();
+        _timerSlider.DOValue((float)value / maxValue, 1f);
         _timerText.text = value.ToString();
     }
 }

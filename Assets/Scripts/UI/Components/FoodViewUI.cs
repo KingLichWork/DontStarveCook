@@ -10,8 +10,10 @@ public class FoodViewUI : FoodView
     private Transform _stationParent;
     private Camera _mainCamera;
     private bool _isRecipe;
+    private bool _isResultCooking;
 
     public bool IsRecipe => _isRecipe;
+    public bool IsResultCooking => _isResultCooking;
 
     public override void SetFood(FoodBase food)
     {
@@ -33,8 +35,11 @@ public class FoodViewUI : FoodView
 
         transform.SetAsLastSibling();
 
-        if (_station != null)
+        if (_station != null )
             _station.ClearStationCell(this);
+
+        if (_isResultCooking)
+            _station.StopCooking();
     }
 
     public override void Drag(Vector2 pointerPos)
@@ -58,6 +63,11 @@ public class FoodViewUI : FoodView
     {
         _station = station;
         _stationParent = transform.parent;
+    }
+
+    public void SetResult()
+    {
+        _isResultCooking = true;
     }
 
     public override Vector3 GetDescriptionPosition()

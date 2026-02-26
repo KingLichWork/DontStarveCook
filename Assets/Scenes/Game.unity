@@ -131,6 +131,90 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2237144271275347170, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237144271275347170, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237144271275347170, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237144271275391808, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237144271275391808, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237144271275391808, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237144271291218782, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481824863847840247, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 2481824863847840247, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 2842987271123554178, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842987271123554178, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842987271123554178, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256774156061143369, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256774156061143369, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256774156061143369, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256774156061230827, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256774156061230827, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256774156061230827, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6737977362000111585, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6737977362000111585, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298017183219499865, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8430140821188749927, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -14,6 +14,12 @@ public class GameSpawner : MonoBehaviour
     private float _spawnTime;
     private float _toNextSpawnTime;
 
+    public void SpawnStartFood(int count)
+    {
+        for (int i = 0; i < count; i++)
+            SpawnFood();
+    }
+
     public void StartSpawn(float timeSpawn)
     {
         _spawnTime = timeSpawn;

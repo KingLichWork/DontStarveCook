@@ -20,13 +20,15 @@ public abstract class Station : MonoBehaviour
     public Action<float> CookInProgressAction;
     public Action OnCookCompleteAction;
 
-    public abstract void SetFood(FoodViewUI foodView);
-
     public virtual void StartCook()
     {
         _cts = new CancellationTokenSource();
         Cook(_cts.Token).Forget();
     }
+
+    public virtual void StopCooking() { }
+
+    public abstract void SetFood(FoodViewUI foodView);
 
     public abstract void ClearStationCell(FoodViewUI foodView);
 
