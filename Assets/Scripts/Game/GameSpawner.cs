@@ -14,6 +14,16 @@ public class GameSpawner : MonoBehaviour
     private float _spawnTime;
     private float _toNextSpawnTime;
 
+    private void OnEnable()
+    {
+        GameUI.ExtractAction += SpawnFood;
+    }
+
+    private void OnDisable()
+    {
+        GameUI.ExtractAction -= SpawnFood;
+    }
+
     public void SpawnStartFood(int count)
     {
         for (int i = 0; i < count; i++)

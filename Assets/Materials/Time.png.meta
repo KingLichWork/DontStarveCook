@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dab0e10ece5e24a4f8ef5ccb20f55dab
+guid: 1bc6de758c006c14ab88ce2d470d0519
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2225047878848440703
-    second: 28px-HungerMeter_0
+      213: -3092223754324887936
+    second: Time_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 28px-HungerMeter_0
+      name: Time_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 28
-        height: 29
+        width: 492
+        height: 516
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f796ffac145f0ee10800000000000000
-      internalID: 2225047878848440703
+      spriteID: 086b075f0e63615d0800000000000000
+      internalID: -3092223754324887936
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      28px-HungerMeter_0: 2225047878848440703
+      Time_0: -3092223754324887936
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

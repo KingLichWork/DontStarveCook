@@ -2,28 +2,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] private Slider _timerSlider;
-    [SerializeField] private ParticleSystem _timerParticles;
+    [SerializeField] private Button _extractButton;
 
-    [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private TimerSliderUI _hungerTimer;
+    [SerializeField] private TimerSliderUI _healthTimer;
+
+    public static event Action ExtractAction;
 
     private void OnEnable()
     {
-        GameTimer.ChangeTimerAction += ChangeTimer;
+        GameTimer.ChangeTimerAction += _hungerTimer.ChangeTimer;
+
+        _extractButton.onClick.AddListener(Extract);
     }
 
     private void OnDisable()
     {
-        GameTimer.ChangeTimerAction -= ChangeTimer;      
+        GameTimer.ChangeTimerAction -= _hungerTimer.ChangeTimer;
+
+        _extractButton.onClick.RemoveAllListeners();
     }
 
-    private void ChangeTimer(int value, int maxValue)
+    private void Extract()
     {
-        _timerSlider.DOKill();
-        _timerSlider.DOValue((float)value / maxValue, 1f);
-        _timerText.text = value.ToString();
+        ExtractAction.Invoke();
     }
 }
