@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     private SingleCookStationUI _singleCookStationUI;
     private MultiCookStationUI _multiCookStationUI;
 
-    private HungerTimer _hungerTimer = new HungerTimer(10);
+    private HungerTimer _hungerTimer = new HungerTimer(100);
     private Health _health = new Health(100);
 
     [Inject]
@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
 
     private void StarvingDamage()
     {
-        _health.ChangeHealth(1);
+        _health.ChangeHealth(-1);
     }
 
     private void EatFood(FoodView foodView)

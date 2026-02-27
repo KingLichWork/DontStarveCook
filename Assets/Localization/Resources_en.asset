@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Resources_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 691e7da52c4624f418395a5581e93f61, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 77228646400
+    m_Localized: Ash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 96316923904
+    m_Localized: Banana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 113631010816
+    m_Localized: Berry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130022350848
+    m_Localized: Big egg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 167183884288
+    m_Localized: Blue mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 216030748672
+    m_Localized: Red mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227892240384
+    m_Localized: Green mushroom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 250331766784
+    m_Localized: Carrot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 269491347456
+    m_Localized: Corn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 286092402688
+    m_Localized: Egg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 297274417152
+    m_Localized: Fish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 311090454528
+    m_Localized: Green meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341541101568
+    m_Localized: Honey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 384427859968
+    m_Localized: Monster meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 430670061568
+    m_Localized: Pumpkin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 361682149376
+    m_Localized: Meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 459451375616
+    m_Localized: Small meat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 554745962496
+    m_Localized: Breakfast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 590573707264
+    m_Localized: Dumplings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 618247725056
+    m_Localized: Eggs with bacon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 707301187584
+    m_Localized: Gruel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 719481446400
+    m_Localized: HoneyNuggets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 733339426816
+    m_Localized: HoneyRoll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 745511297024
+    m_Localized: HotChili
+    m_Metadata:
+      m_Items: []
+  - m_Id: 758471696384
+    m_Localized: Jam
+    m_Metadata:
+      m_Items: []
+  - m_Id: 777740328960
+    m_Localized: Meatballs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 794525933568
+    m_Localized: MeatStew
+    m_Metadata:
+      m_Items: []
+  - m_Id: 808509743104
+    m_Localized: MonsterLasagna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 822510329856
+    m_Localized: Ratatouille
+    m_Metadata:
+      m_Items: []
+  - m_Id: 839388209152
+    m_Localized: Roast
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1396693770240
+    m_Localized: Scotch eggs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1410702745600
+    m_Localized: Seafood gumbo
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

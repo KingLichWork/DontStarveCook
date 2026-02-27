@@ -127,6 +127,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 99139226}
     m_Modifications:
+    - target: {fileID: 1280262286921003537, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280262286921003537, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280262286921003537, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1625493109195899416, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
       propertyPath: m_Name
       value: GameUI
@@ -176,6 +188,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2842987271123554178, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199413483963300458, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199413483963300458, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313554473630063665, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313554473630063665, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313554473630063665, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
@@ -860,6 +892,7 @@ MonoBehaviour:
   _gameController: {fileID: 91024476}
   _spawner: {fileID: 256785850}
   _inputController: {fileID: 1574099363}
+  _foodViewDescription: {fileID: 1714364504}
   _gamePrefab: {fileID: 6604506133043863910, guid: d10d7ce92fbc9d44395b40a483bd6441, type: 3}
   _uiPrefab: {fileID: 5841352372772477376, guid: 5e4f5689191fcf840ab2b7307ab4b00d, type: 3}
 --- !u!4 &1159300773 stripped
@@ -1002,6 +1035,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _graphicRaycaster: {fileID: 99139227}
+--- !u!114 &1714364504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4949071430952182936, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}
+  m_PrefabInstance: {fileID: 85626032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e83f17505b7a346884f88e596254fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1874831012 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 546507759623414758, guid: 709df8b5e61237649b0e1f846275a4d8, type: 3}

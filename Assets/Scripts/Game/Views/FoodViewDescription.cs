@@ -1,20 +1,26 @@
-﻿using TMPro;
+﻿using System.Threading.Tasks;
+using TMPro;
+using UnityEditor.Localization.Editor;
 using UnityEngine;
+using VContainer;
 
 public class FoodViewDescription : MonoBehaviour
 {
     [SerializeField] private RectTransform _rectTransform;
 
     [SerializeField] private TextMeshProUGUI _nameText;
-    [SerializeField] private TextMeshProUGUI _valueText;
+    [SerializeField] private TextMeshProUGUI _hungerValueText;
+    [SerializeField] private TextMeshProUGUI _healthValueText;
 
     [SerializeField] private GameObject _holder;
+
+    private LocalizationService _localization;
 
     private void OnEnable()
     {
         InputController.ShowDescriptionAction += Show;
         InputController.HideDescriptionAction += Hide;
-
+            
         FoodView.EatFoodAction += Hide;
     }
 
@@ -26,7 +32,13 @@ public class FoodViewDescription : MonoBehaviour
         FoodView.EatFoodAction -= Hide;
     }
 
-    public void Show(FoodView foodView)
+    [Inject]
+    public void Construct(LocalizationService localization)
+    {
+        _localization = localization;
+    }
+
+    public async void Show(FoodView foodView)
     {
         if (foodView == null) 
             return;
@@ -35,8 +47,9 @@ public class FoodViewDescription : MonoBehaviour
 
         _rectTransform.position = screenPos + Vector3.up * 200;
 
-        _nameText.text = foodView.Food.Name;
-        _valueText.text = foodView.Food.FoodValue.ToString();
+        _nameText.text = await _localization.Get(foodView.Food.Name, LocalizationTable.Resources);
+        _hungerValueText.text = foodView.Food.FoodValue.ToString();
+        _healthValueText.text = foodView.Food.HealthValue.ToString();
 
         _holder.SetActive(true);
     }
