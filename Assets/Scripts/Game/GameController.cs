@@ -8,7 +8,8 @@ public class GameController : MonoBehaviour
     private SingleCookStationUI _singleCookStationUI;
     private MultiCookStationUI _multiCookStationUI;
 
-    private GameTimer _gameTimer = new GameTimer(100);
+    private HungerTimer _hungerTimer = new HungerTimer(10);
+    private Health _health = new Health(100);
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI)
@@ -23,12 +24,14 @@ public class GameController : MonoBehaviour
     {
         FoodView.EatFoodAction += EatFood;
         InputController.DropAction += HandleDrop;
+        _hungerTimer.StarvingAction += StarvingDamage;
     }
 
     private void OnDisable()
     {
         FoodView.EatFoodAction -= EatFood;
         InputController.DropAction -= HandleDrop;
+        _hungerTimer.StarvingAction -= StarvingDamage;
     }
 
     private void Start()
@@ -36,9 +39,14 @@ public class GameController : MonoBehaviour
         Game();
     }
 
+    private void StarvingDamage()
+    {
+        _health.ChangeHealth(1);
+    }
+
     private void EatFood(FoodView foodView)
     {
-        _gameTimer.ChangeTimer(foodView.Food.FoodValue);
+        _hungerTimer.ChangeTimer(foodView.Food.FoodValue);
     }
 
     private void HandleDrop(FoodView view, Vector2 worldPos)
@@ -93,8 +101,8 @@ public class GameController : MonoBehaviour
 
     private void Game()
     {
-        _gameTimer.StartTimer();
+        _hungerTimer.StartTimer();
         _spawner.SpawnStartFood(5);
-        _spawner.StartSpawn(2f);
+        //_spawner.StartSpawn(2f);
     }
 }

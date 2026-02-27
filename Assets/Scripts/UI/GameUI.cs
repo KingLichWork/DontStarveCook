@@ -15,14 +15,16 @@ public class GameUI : MonoBehaviour
 
     private void OnEnable()
     {
-        GameTimer.ChangeTimerAction += _hungerTimer.ChangeTimer;
+        HungerTimer.ChangeTimerAction += _hungerTimer.ChangeTimer;
+        Health.HealthChangeAction += _healthTimer.ChangeTimer;
 
         _extractButton.onClick.AddListener(Extract);
     }
 
     private void OnDisable()
     {
-        GameTimer.ChangeTimerAction -= _hungerTimer.ChangeTimer;
+        HungerTimer.ChangeTimerAction -= _hungerTimer.ChangeTimer;
+        Health.HealthChangeAction -= _healthTimer.ChangeTimer;
 
         _extractButton.onClick.RemoveAllListeners();
     }
