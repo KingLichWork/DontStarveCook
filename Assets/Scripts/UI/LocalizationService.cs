@@ -11,5 +11,6 @@ public class LocalizationService
 
 public enum LocalizationTable
 {
-    Resources
+    Resources,
+    UI
 }

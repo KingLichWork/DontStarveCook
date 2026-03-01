@@ -13,6 +13,7 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private GameSpawner _spawner;
     [SerializeField] private InputController _inputController;
     [SerializeField] private FoodViewDescription _foodViewDescription;
+    [SerializeField] private GameUI _gameUI;
 
     [SerializeField] private FoodViewGame _gamePrefab;
     [SerializeField] private FoodViewUI _uiPrefab;
@@ -30,6 +31,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterComponent(_spawner);
         builder.RegisterComponent(_inputController);
         builder.RegisterComponent(_foodViewDescription);
+        builder.RegisterComponent(_gameUI);
 
         builder.Register<FoodViewFactory>(Lifetime.Singleton);
         builder.Register<LocalizationService>(Lifetime.Singleton);

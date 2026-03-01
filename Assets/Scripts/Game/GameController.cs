@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     private HungerTimer _hungerTimer = new HungerTimer(100);
     private Health _health = new Health(100);
 
+    private GameTime _gameTime = new GameTime(30);
+
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI)
     {
@@ -101,6 +103,7 @@ public class GameController : MonoBehaviour
 
     private void Game()
     {
+        _gameTime.StartTime();
         _hungerTimer.StartTimer();
         _spawner.SpawnStartFood(5);
         //_spawner.StartSpawn(2f);
