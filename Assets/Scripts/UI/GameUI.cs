@@ -34,6 +34,7 @@ public class GameUI : MonoBehaviour
         Health.HealthChangeAction += _healthTimer.ChangeTimer;
         GameTime.ChangeTimeAction += ChangeClockArrow;
         GameTime.ChangeDayAction += ChangeDay;
+        GameTime.ChangeDayPhaseAction += ChangeDayPhase;
 
         _extractButton.onClick.AddListener(Extract);
         SetDay();
@@ -43,6 +44,9 @@ public class GameUI : MonoBehaviour
     {
         HungerTimer.ChangeTimerAction -= _hungerTimer.ChangeTimer;
         Health.HealthChangeAction -= _healthTimer.ChangeTimer;
+        GameTime.ChangeTimeAction -= ChangeClockArrow;
+        GameTime.ChangeDayAction -= ChangeDay;
+        GameTime.ChangeDayPhaseAction -= ChangeDayPhase;
 
         _extractButton.onClick.RemoveAllListeners();
     }
@@ -66,5 +70,18 @@ public class GameUI : MonoBehaviour
     private async void ChangeDay(int number)
     {
         _dayNumber.text = await _localization.Get("Day", LocalizationTable.UI) + " " + number.ToString();
+    }
+
+    private void ChangeDayPhase(DayPhase dayPhase)
+    {
+        switch (dayPhase)
+        {
+            case DayPhase.Day:
+                break;
+            case DayPhase.Evening:
+                break;
+            case DayPhase.Night:
+                break;
+        }
     }
 }

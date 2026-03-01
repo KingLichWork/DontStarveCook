@@ -11,15 +11,21 @@ public class GameController : MonoBehaviour
     private HungerTimer _hungerTimer = new HungerTimer(100);
     private Health _health = new Health(100);
 
-    private GameTime _gameTime = new GameTime(30);
+    private GameTime _gameTime;
+
+    private DayCycleData _dayCycleData;
 
     [Inject]
-    public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI)
+    public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
+        DayCycleData dayCycleData)
     {
         _spawner = spawner;
         _foodViewFactory = foodViewFactory;
         _singleCookStationUI = singleCookStationUI;
         _multiCookStationUI = multiCookStationUI;
+        _dayCycleData = dayCycleData;
+
+        _gameTime = new GameTime(_dayCycleData);
     }
 
     private void OnEnable()

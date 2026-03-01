@@ -18,10 +18,13 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private FoodViewGame _gamePrefab;
     [SerializeField] private FoodViewUI _uiPrefab;
 
+    [SerializeField] private DayCycleData _dayCycleData;
+
     protected override void Configure(IContainerBuilder builder)
     {
         builder.RegisterInstance(_gamePrefab);
         builder.RegisterInstance(_uiPrefab);
+        builder.RegisterInstance(_dayCycleData);
 
         builder.RegisterComponent(_singleCookStationUI);
         builder.RegisterComponent(_multiCookStationUI);
