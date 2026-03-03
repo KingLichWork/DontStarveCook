@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using VContainer;
 
 public class GameController : MonoBehaviour
@@ -7,6 +10,8 @@ public class GameController : MonoBehaviour
     private FoodViewFactory _foodViewFactory;
     private SingleCookStationUI _singleCookStationUI;
     private MultiCookStationUI _multiCookStationUI;
+    private GraphicRaycaster _graphicRaycaster;
+    private Camera _camera;
 
     private HungerTimer _hungerTimer = new HungerTimer(100);
     private Health _health = new Health(100);
@@ -17,13 +22,15 @@ public class GameController : MonoBehaviour
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
-        DayCycleData dayCycleData)
+        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster)
     {
         _spawner = spawner;
         _foodViewFactory = foodViewFactory;
         _singleCookStationUI = singleCookStationUI;
         _multiCookStationUI = multiCookStationUI;
         _dayCycleData = dayCycleData;
+        _graphicRaycaster = graphicRaycaster;
+        _camera = Camera.main;
 
         _gameTime = new GameTime(_dayCycleData);
     }
@@ -33,6 +40,7 @@ public class GameController : MonoBehaviour
         FoodView.EatFoodAction += EatFood;
         InputController.DropAction += HandleDrop;
         _hungerTimer.StarvingAction += StarvingDamage;
+
     }
 
     private void OnDisable()
@@ -52,6 +60,14 @@ public class GameController : MonoBehaviour
         _health.ChangeHealth(-1);
     }
 
+    private void NightDamage()
+    {
+        if (_gameTime.IsNight)
+        {
+            _health.ChangeHealth(-30);
+        }
+    }
+
     private void EatFood(FoodView foodView)
     {
         _hungerTimer.ChangeTimer(foodView.Food.FoodValue);
@@ -62,22 +78,35 @@ public class GameController : MonoBehaviour
         if (view == null)
             return;
 
+        PointerEventData eventData = new PointerEventData(EventSystem.current)
+        {
+            position = _camera.WorldToScreenPoint(worldPos)
+        };
+
+        var results = new List<RaycastResult>();
+        _graphicRaycaster.Raycast(eventData, results);
+
+        foreach (var result in results)
+        {
+            switch (result.gameObject.tag)
+            {
+                case "SingleCook":
+                case "MultiCook":
+                    TryDropOnStation(view, result.gameObject);
+                    return;
+            }
+        }
+
         RaycastHit2D[] hits = Physics2D.RaycastAll(worldPos, Vector2.zero);
 
         bool isBlock = false;
 
         foreach (var hit in hits)
         {
-            switch (hit.collider.tag)
+            if(hit.collider.tag == "Block")
             {
-                case "Block":
-                    isBlock = true;
-                    break;
-
-                case "SingleCook":
-                case "MultiCook":
-                    TryDropOnStation(view, hit.collider);
-                    return;
+                isBlock = true;
+                break;
             }
         }
 
@@ -88,9 +117,9 @@ public class GameController : MonoBehaviour
         Destroy(view.gameObject);
     }
 
-    private void TryDropOnStation(FoodView view, Collider2D collider)
+    private void TryDropOnStation(FoodView view, GameObject gameObject)
     {
-        Station station = collider.GetComponent<Station>();
+        Station station = gameObject.GetComponent<Station>();
 
         if (station == null || station.IsBusy)
         {

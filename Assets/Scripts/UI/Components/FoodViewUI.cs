@@ -35,7 +35,7 @@ public class FoodViewUI : FoodView
 
         transform.SetAsLastSibling();
 
-        if (_station != null )
+        if (_station != null)
             _station.ClearStationCell(this);
 
         if (_isResultCooking)
@@ -65,8 +65,9 @@ public class FoodViewUI : FoodView
         _stationParent = transform.parent;
     }
 
-    public void SetResult()
+    public void SetResult(Station station)
     {
+        _station = station;
         _isResultCooking = true;
     }
 

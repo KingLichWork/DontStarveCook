@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 
@@ -14,6 +15,7 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private InputController _inputController;
     [SerializeField] private FoodViewDescription _foodViewDescription;
     [SerializeField] private GameUI _gameUI;
+    [SerializeField] private GraphicRaycaster _graphicRaycaster;
 
     [SerializeField] private FoodViewGame _gamePrefab;
     [SerializeField] private FoodViewUI _uiPrefab;
@@ -26,6 +28,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterInstance(_uiPrefab);
         builder.RegisterInstance(_dayCycleData);
 
+        builder.RegisterComponent(_graphicRaycaster);
         builder.RegisterComponent(_singleCookStationUI);
         builder.RegisterComponent(_multiCookStationUI);
         builder.RegisterComponent(_cookingStation);

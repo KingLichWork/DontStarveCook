@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using VContainer;
 
 public class InputController : MonoBehaviour
 {
-    [SerializeField] private GraphicRaycaster _graphicRaycaster;
-
+    private GraphicRaycaster _graphicRaycaster;
     private Camera _camera;
 
     private const float LongPressTime = 0.5f;
@@ -31,6 +31,12 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
+    }
+
+    [Inject]
+    public void Construct(GraphicRaycaster graphicRaycaster)
+    {
+        _graphicRaycaster = graphicRaycaster;
     }
 
     private void Update()

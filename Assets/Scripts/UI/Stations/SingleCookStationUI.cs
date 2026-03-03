@@ -19,7 +19,6 @@ public class SingleCookStationUI : CookStationUI
         _cookingStation.OnCookCompleteAction += ChangeCookStage;
 
         ClearCook();
-        StartPosition();
     }
 
     private void OnDisable()
@@ -27,11 +26,5 @@ public class SingleCookStationUI : CookStationUI
         _cookingStation.OnCookStartAction -= StartCook;
         _cookingStation.CookInProgressAction -= ChangeCookTimer;
         _cookingStation.OnCookCompleteAction -= ChangeCookStage;
-    }
-
-    private void StartPosition()
-    {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(_cookingStation.transform.position);
-        GetComponent<RectTransform>().position = screenPos;
     }
 }

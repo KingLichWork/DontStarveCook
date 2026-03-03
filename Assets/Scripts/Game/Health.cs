@@ -13,6 +13,7 @@ public class Health
     public Health(int maxHealth)
     {
         _maxHealthValue = maxHealth;
+        _healthValue = _maxHealthValue;
     }
 
     public void ChangeHealth(int value)

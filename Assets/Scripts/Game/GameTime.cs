@@ -17,6 +17,8 @@ public class GameTime
     public float CurrentDayTime => _currentDayTime;
     public DayPhase DayPhase => _dayPhase;
 
+    public bool IsNight => DayPhase == DayPhase.Night;
+
     public static event Action<int> ChangeDayAction;
     public static event Action<float, float> ChangeTimeAction;
     public static event Action<DayPhase> ChangeDayPhaseAction;

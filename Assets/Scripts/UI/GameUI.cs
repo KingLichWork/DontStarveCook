@@ -15,8 +15,13 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private Image _dayImage;
     [SerializeField] private Image _clockArrowImage;
+    [SerializeField] private Image _backGroundImage;
 
     [SerializeField] private TextMeshProUGUI _dayNumber;
+
+    [SerializeField] private Color _dayColor;
+    [SerializeField] private Color _eveningColor;
+    [SerializeField] private Color _nightColor;
 
     private LocalizationService _localization;
 
@@ -77,10 +82,13 @@ public class GameUI : MonoBehaviour
         switch (dayPhase)
         {
             case DayPhase.Day:
+                _backGroundImage.color = _dayColor;
                 break;
             case DayPhase.Evening:
+                _backGroundImage.color = _eveningColor;
                 break;
             case DayPhase.Night:
+                _backGroundImage.color = _nightColor;
                 break;
         }
     }

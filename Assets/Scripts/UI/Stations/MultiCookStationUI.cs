@@ -19,8 +19,6 @@ public class MultiCookStationUI : CookStationUI
         _multiCookingStation.CookInProgressAction += ChangeCookTimer;
         _multiCookingStation.OnCookCompleteAction += ChangeCookStage;
         _multiCookingStation.CreateFoodViewAction += ViewSetParent;
-
-        StartPosition();
     }
 
     private void OnDisable()
@@ -35,11 +33,5 @@ public class MultiCookStationUI : CookStationUI
     {
         foodViewUI.transform.parent = _resultParent;
         foodViewUI.transform.position = _resultParent.position;
-    }
-
-    private void StartPosition()
-    {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(_multiCookingStation.transform.position);
-        GetComponent<RectTransform>().position = screenPos;
     }
 }
