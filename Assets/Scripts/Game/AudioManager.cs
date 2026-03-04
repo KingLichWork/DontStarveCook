@@ -40,11 +40,13 @@ namespace FindTheDifference.Audio
 
         public void Init()
         {
-            PlayMusic(AudioType.MainMusic, 0, 0.5f);
+            PlayMusic(AudioType.MainMusic, 0, 0.1f);
         }
 
         public void SetVolume(bool isOn)
         {
+            IsVolumeActive = isOn;
+
             if (isOn)
                 AudioListener.volume = 1;
             else
@@ -81,7 +83,7 @@ namespace FindTheDifference.Audio
             {
                 _musicAudioSource.clip = _sounds.GetSoundWithRandom(music);
                 _musicAudioSource.loop = true;
-                _musicAudioSource.volume = 0.3f;
+                _musicAudioSource.volume = 0.1f;
                 _musicAudioSource.Play();
             }).WaitForKill();
 

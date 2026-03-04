@@ -64,6 +64,7 @@ public class GameController : MonoBehaviour
 
     private void Init()
     {
+        _spawner.Init();
         _hungerTimer = new HungerTimer(SaveManager.PlayerData.Hunger, SaveManager.PlayerData.MaxHunger);
         _health = new Health(SaveManager.PlayerData.Health, SaveManager.PlayerData.MaxHealth);
         _scoreManager.Init();
@@ -75,7 +76,12 @@ public class GameController : MonoBehaviour
         SaveManager.PlayerData.Hunger = _hungerTimer.ValueTimer;
         SaveManager.PlayerData.Health = _health.HealthValue;
         SaveManager.PlayerData.Day = day;
-        Leaderboard.SetScore(SaveManager.PlayerData.Score);
+        SaveManager.PlayerData.ExtractValue = _spawner.ExtractValue;
+
+        if(SaveManager.PlayerData.MaxScore < SaveManager.PlayerData.Score)
+            SaveManager.PlayerData.MaxScore = SaveManager.PlayerData.Score;
+
+        Leaderboard.SetScore(SaveManager.PlayerData.MaxScore);
     }
 
     private void StarvingDamage()

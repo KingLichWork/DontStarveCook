@@ -4,7 +4,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using VContainer;
 
 public class GameUI : MonoBehaviour
 {
@@ -15,12 +14,15 @@ public class GameUI : MonoBehaviour
     [SerializeField] private TimerSliderUI _hungerTimer;
     [SerializeField] private TimerSliderUI _healthTimer;
 
+    [SerializeField] private Slider _extractSlider;
+
     [SerializeField] private Image _dayImage;
     [SerializeField] private Image _clockArrowImage;
     [SerializeField] private Image _backGroundImage;
 
     [SerializeField] private TextMeshProUGUI _dayNumber;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _extractText;
 
     [SerializeField] private Color _dayColor;
     [SerializeField] private Color _eveningColor;
@@ -41,6 +43,7 @@ public class GameUI : MonoBehaviour
         GameTime.ChangeDayAction += ChangeDay;
         GameTime.ChangeDayPhaseAction += ChangeDayPhase;
         ScoreManager.ChangeScoreAction += ChangeScore;
+        GameSpawner.ExtractAction += ChangeExtract;
 
         _extractButton.onClick.AddListener(Extract);
         _changeSoundButton.onClick.AddListener(ChangeSound);
@@ -56,6 +59,7 @@ public class GameUI : MonoBehaviour
         GameTime.ChangeDayAction -= ChangeDay;
         GameTime.ChangeDayPhaseAction -= ChangeDayPhase;
         ScoreManager.ChangeScoreAction -= ChangeScore;
+        GameSpawner.ExtractAction -= ChangeExtract;
 
         _extractButton.onClick.RemoveAllListeners();
         _changeSoundButton.onClick.RemoveAllListeners();
@@ -64,6 +68,13 @@ public class GameUI : MonoBehaviour
     private void Extract()
     {
         ExtractAction.Invoke();
+    }
+
+    private void ChangeExtract(int value, int maxValue)
+    {
+        _extractSlider.DOKill();
+        _extractSlider.DOValue((float)value / maxValue, 1f);
+        _extractText.text = $"{value}/{maxValue}";
     }
 
     private void ChangeSound()

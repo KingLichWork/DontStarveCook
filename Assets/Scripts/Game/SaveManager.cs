@@ -66,6 +66,7 @@ public static class SaveManager
 public class PlayerData
 {
     private int _score = 0;
+    private int _maxScore = 0;
 
     private int _health = 100;
     private int _hunger = 100;
@@ -73,15 +74,20 @@ public class PlayerData
     private int _maxHealth = 100;
     private int _maxHunger = 100;
 
+    private int _extractValue = 5;
+
     private int _day = 1;
 
     private bool _tutorial = false;
 
     public int Score { get { return _score; } set { _score = value; SaveManager.Save(this); } }
+    public int MaxScore { get { return _maxScore; } set { _maxScore = value; SaveManager.Save(this); } }
     public int Health { get { return _health; } set { _health = value; SaveManager.Save(this); } }
     public int Hunger { get { return _hunger; } set { _hunger = value; SaveManager.Save(this); } }
     public int MaxHealth { get { return _maxHealth; } set { _maxHealth = value; SaveManager.Save(this); } }
     public int MaxHunger { get { return _maxHunger; } set { _maxHunger = value; SaveManager.Save(this); } }
+
+    public int ExtractValue { get { return _extractValue; } set { _extractValue = value; SaveManager.Save(this); } }
 
     public int Day { get { return _day; } set { _day = value; SaveManager.Save(this); } }
 

@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
-using UnityEditor.Localization.Editor;
 using UnityEngine;
 using VContainer;
 
@@ -17,20 +17,33 @@ public class GameSpawner : MonoBehaviour
     private float _spawnTime;
     private float _toNextSpawnTime;
 
+    private int _currentExtractValue; 
+    private int _extractValue = 5;
+
+    public int ExtractValue => _extractValue;
+
+    public static event Action<int,int> ExtractAction;
+
     [Inject]
     public void Construct(GameUI gameUI)
     {
         _gameUI = gameUI;
     }
 
+    public void Init()
+    {
+        _extractValue = SaveManager.PlayerData.ExtractValue;
+        ExtractAction.Invoke(_currentExtractValue, _extractValue);
+    }
+
     private void OnEnable()
     {
-        _gameUI.ExtractAction += SpawnFood;
+        _gameUI.ExtractAction += Extract;
     }
 
     private void OnDisable()
     {
-        _gameUI.ExtractAction -= SpawnFood;
+        _gameUI.ExtractAction -= Extract;
     }
 
     public void SpawnStartFood(int count)
@@ -62,6 +75,21 @@ public class GameSpawner : MonoBehaviour
                 SpawnFood();
             }
         }
+    }
+
+    private void Extract()
+    {
+        _currentExtractValue++;
+
+        if(_currentExtractValue >= _extractValue)
+        {
+            SpawnFood();
+
+            _extractValue++;
+            _currentExtractValue = 0;
+        }
+
+        ExtractAction.Invoke(_currentExtractValue, _extractValue);
     }
 
     public void StopSpawn()
