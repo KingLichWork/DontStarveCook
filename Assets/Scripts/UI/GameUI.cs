@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
+using FindTheDifference.Audio;
 using System;
 using TMPro;
-using UnityEditor.Localization.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -9,6 +9,8 @@ using VContainer;
 public class GameUI : MonoBehaviour
 {
     [SerializeField] private Button _extractButton;
+
+    [SerializeField] private Button _changeSoundButton;
 
     [SerializeField] private TimerSliderUI _hungerTimer;
     [SerializeField] private TimerSliderUI _healthTimer;
@@ -18,20 +20,18 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Image _backGroundImage;
 
     [SerializeField] private TextMeshProUGUI _dayNumber;
+    [SerializeField] private TextMeshProUGUI _scoreText;
 
     [SerializeField] private Color _dayColor;
     [SerializeField] private Color _eveningColor;
     [SerializeField] private Color _nightColor;
 
-    private LocalizationService _localization;
+    [SerializeField] private Sprite[] _soundChangeSprite = new Sprite[2];
 
-    public static event Action ExtractAction;
+    private Tween _scoreTween;
 
-    [Inject]
-    public void Construct(LocalizationService localization)
-    {
-        _localization = localization;
-    }
+    public event Action ExtractAction;
+    public event Action<bool> ChangeSoundAction;
 
     private void OnEnable()
     {
@@ -40,8 +40,11 @@ public class GameUI : MonoBehaviour
         GameTime.ChangeTimeAction += ChangeClockArrow;
         GameTime.ChangeDayAction += ChangeDay;
         GameTime.ChangeDayPhaseAction += ChangeDayPhase;
+        ScoreManager.ChangeScoreAction += ChangeScore;
 
         _extractButton.onClick.AddListener(Extract);
+        _changeSoundButton.onClick.AddListener(ChangeSound);
+
         SetDay();
     }
 
@@ -52,8 +55,10 @@ public class GameUI : MonoBehaviour
         GameTime.ChangeTimeAction -= ChangeClockArrow;
         GameTime.ChangeDayAction -= ChangeDay;
         GameTime.ChangeDayPhaseAction -= ChangeDayPhase;
+        ScoreManager.ChangeScoreAction -= ChangeScore;
 
         _extractButton.onClick.RemoveAllListeners();
+        _changeSoundButton.onClick.RemoveAllListeners();
     }
 
     private void Extract()
@@ -61,9 +66,33 @@ public class GameUI : MonoBehaviour
         ExtractAction.Invoke();
     }
 
+    private void ChangeSound()
+    {
+        ChangeSoundAction.Invoke(!AudioManager.IsVolumeActive);
+        _changeSoundButton.image.sprite = AudioManager.IsVolumeActive ? _soundChangeSprite[0] : _soundChangeSprite[1];
+    }
+
     private void SetDay()
     {
-        ChangeDay(0);
+        ChangeDay(SaveManager.PlayerData.Day);
+    }
+
+    private void ChangeScore(int targetScore)
+    {
+        _scoreTween?.Kill();
+
+        int current = int.Parse(_scoreText.text);
+
+        _scoreTween = DOTween.To(
+            () => current,
+            x =>
+            {
+                current = x;
+                _scoreText.text = current.ToString();
+            },
+            targetScore,
+            0.5f
+        ).SetEase(Ease.OutQuad);
     }
 
     private void ChangeClockArrow(float time, float maxTime)
@@ -74,7 +103,7 @@ public class GameUI : MonoBehaviour
 
     private async void ChangeDay(int number)
     {
-        _dayNumber.text = await _localization.Get("Day", LocalizationTable.UI) + " " + number.ToString();
+        _dayNumber.text = await LocalizationService.GetLocalizedStringAsync("Day", LocalizationTable.UI) + " " + number.ToString();
     }
 
     private void ChangeDayPhase(DayPhase dayPhase)

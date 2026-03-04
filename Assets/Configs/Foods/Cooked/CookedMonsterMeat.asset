@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502a43fa55baed449b713d87bc8b6aea, type: 3}
   m_Name: CookedMonsterMeat
   m_EditorClassIdentifier: 
-  _foodValue: 10
+  _foodValue: 8
+  _healthValue: -6
   _decayTime: 0
   _name: MonsterMeat
+  _sprite: {fileID: 21300000, guid: 8d8726965ec4d4a47b68a12fe431e0d8, type: 3}
   _type: 0
   _foodTypeValue: 1
-  _sprite: {fileID: 21300000, guid: 8d8726965ec4d4a47b68a12fe431e0d8, type: 3}
   _cookedVersion: {fileID: 0}

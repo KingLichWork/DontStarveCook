@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: Meatballs
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 20
+  _healthValue: 2
   _decayTime: 0
   _name: Meatballs
   _sprite: {fileID: 21300000, guid: 9ac35d5cec3dfdd41a1070b5cc50a8f6, type: 3}

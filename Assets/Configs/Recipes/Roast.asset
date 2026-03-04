@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: Roast
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 25
+  _healthValue: 10
   _decayTime: 0
   _name: Roast
   _sprite: {fileID: 21300000, guid: 367a597f3f9e917429003af94400c98a, type: 3}

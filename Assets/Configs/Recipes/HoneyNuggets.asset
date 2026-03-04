@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: HoneyNuggets
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 15
+  _healthValue: 10
   _decayTime: 0
   _name: HoneyNuggets
   _sprite: {fileID: 21300000, guid: f2339fd422a7ba74387998a37e3d56f5, type: 3}

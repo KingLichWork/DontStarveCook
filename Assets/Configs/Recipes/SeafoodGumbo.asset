@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: SeafoodGumbo
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 15
+  _healthValue: 20
   _decayTime: 0
   _name: SeafoodGumbo
   _sprite: {fileID: 21300000, guid: 13c8fa67cce287c45a9a19dfe03c83b6, type: 3}

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502a43fa55baed449b713d87bc8b6aea, type: 3}
   m_Name: Meat
   m_EditorClassIdentifier: 
-  _foodValue: 10
+  _foodValue: 15
+  _healthValue: 2
   _decayTime: 0
   _name: Meat
+  _sprite: {fileID: 21300000, guid: 5b51081126d5eb8409237f75abcc050b, type: 3}
   _type: 0
   _foodTypeValue: 1
-  _sprite: {fileID: 21300000, guid: 5b51081126d5eb8409237f75abcc050b, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 9d2dbee49e6970a468b185b7468c2c60, type: 2}

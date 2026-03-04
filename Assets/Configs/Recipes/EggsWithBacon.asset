@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: EggsWithBacon
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 30
+  _healthValue: 10
   _decayTime: 0
   _name: Meatballs
   _sprite: {fileID: 21300000, guid: 967bb691a91f0fb44a14901061896aae, type: 3}

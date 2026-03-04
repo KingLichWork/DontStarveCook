@@ -13,8 +13,10 @@ public class GameController : MonoBehaviour
     private GraphicRaycaster _graphicRaycaster;
     private Camera _camera;
 
-    private HungerTimer _hungerTimer = new HungerTimer(100);
-    private Health _health = new Health(100);
+    private HungerTimer _hungerTimer;
+    private Health _health;
+
+    private ScoreManager _scoreManager;
 
     private GameTime _gameTime;
 
@@ -22,7 +24,7 @@ public class GameController : MonoBehaviour
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
-        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster)
+        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager)
     {
         _spawner = spawner;
         _foodViewFactory = foodViewFactory;
@@ -30,6 +32,7 @@ public class GameController : MonoBehaviour
         _multiCookStationUI = multiCookStationUI;
         _dayCycleData = dayCycleData;
         _graphicRaycaster = graphicRaycaster;
+        _scoreManager = scoreManager;
         _camera = Camera.main;
 
         _gameTime = new GameTime(_dayCycleData);
@@ -37,22 +40,40 @@ public class GameController : MonoBehaviour
 
     private void OnEnable()
     {
+        Init();
+
         FoodView.EatFoodAction += EatFood;
         InputController.DropAction += HandleDrop;
+        GameTime.ChangeDayAction += Save;
         _hungerTimer.StarvingAction += StarvingDamage;
-
     }
 
     private void OnDisable()
     {
         FoodView.EatFoodAction -= EatFood;
         InputController.DropAction -= HandleDrop;
+        GameTime.ChangeDayAction -= Save;
         _hungerTimer.StarvingAction -= StarvingDamage;
     }
 
     private void Start()
     {
         Game();
+    }
+
+    private void Init()
+    {
+        _hungerTimer = new HungerTimer(SaveManager.PlayerData.Hunger, SaveManager.PlayerData.MaxHunger);
+        _health = new Health(SaveManager.PlayerData.Health, SaveManager.PlayerData.MaxHealth);
+        _scoreManager.Init();
+    }
+
+    private void Save(int day)
+    {
+        SaveManager.PlayerData.Score = _scoreManager.Score;
+        SaveManager.PlayerData.Hunger = _hungerTimer.ValueTimer;
+        SaveManager.PlayerData.Health = _health.HealthValue;
+        SaveManager.PlayerData.Day = day;
     }
 
     private void StarvingDamage()
@@ -71,6 +92,8 @@ public class GameController : MonoBehaviour
     private void EatFood(FoodView foodView)
     {
         _hungerTimer.ChangeTimer(foodView.Food.FoodValue);
+        _health.ChangeHealth(foodView.Food.HealthValue);
+        _scoreManager.GetScore(foodView.Food.FoodValue);
     }
 
     private void HandleDrop(FoodView view, Vector2 worldPos)

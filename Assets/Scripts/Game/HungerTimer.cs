@@ -21,8 +21,9 @@ public class HungerTimer
     public event Action StarvingAction;
     public static event Action<int, int> ChangeTimerAction;
 
-    public HungerTimer(int maxValue = 100)
+    public HungerTimer(int currentValue = 100, int maxValue = 100)
     {
+        _currentValue = currentValue;
         _maxTimerValue = maxValue;
     }
 

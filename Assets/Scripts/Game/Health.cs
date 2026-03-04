@@ -10,10 +10,10 @@ public class Health
     public event Action GameOverAction;
     public static event Action<int, int> HealthChangeAction;
 
-    public Health(int maxHealth)
+    public Health(int currentValue = 100, int maxHealth = 100)
     {
+        _healthValue = currentValue;
         _maxHealthValue = maxHealth;
-        _healthValue = _maxHealthValue;
     }
 
     public void ChangeHealth(int value)

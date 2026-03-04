@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: MonsterLasagna
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 12
+  _healthValue: -4
   _decayTime: 0
   _name: MonsterLasagna
   _sprite: {fileID: 21300000, guid: 4be4d0b46bf118848b5a1ce2b7b65a7f, type: 3}

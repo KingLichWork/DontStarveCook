@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: Dumplings
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 15
+  _healthValue: 25
   _decayTime: 0
   _name: Dumplings
   _sprite: {fileID: 21300000, guid: 1a5d03f3a8aeffe45bfefc161466ffa4, type: 3}

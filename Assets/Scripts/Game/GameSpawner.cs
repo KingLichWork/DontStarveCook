@@ -1,6 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Threading;
+using UnityEditor.Localization.Editor;
 using UnityEngine;
+using VContainer;
 
 public class GameSpawner : MonoBehaviour
 {
@@ -10,18 +12,25 @@ public class GameSpawner : MonoBehaviour
     [SerializeField] private FoodData _foodData;
 
     private CancellationTokenSource _cts;
+    private GameUI _gameUI;
 
     private float _spawnTime;
     private float _toNextSpawnTime;
 
+    [Inject]
+    public void Construct(GameUI gameUI)
+    {
+        _gameUI = gameUI;
+    }
+
     private void OnEnable()
     {
-        GameUI.ExtractAction += SpawnFood;
+        _gameUI.ExtractAction += SpawnFood;
     }
 
     private void OnDisable()
     {
-        GameUI.ExtractAction -= SpawnFood;
+        _gameUI.ExtractAction -= SpawnFood;
     }
 
     public void SpawnStartFood(int count)

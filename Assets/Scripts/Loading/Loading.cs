@@ -18,7 +18,7 @@ public class Loading : MonoBehaviour
         await YandexGamesSdk.Initialize();
         await Cloud.Initialize();
         await Billing.Initialize();
-        //await Localizer.Initialize();
+        await LocalizationService.Initialize();
 
         Advertisement.Initialize();
         WebApplication.Initialize(OnStopGame);
@@ -26,12 +26,12 @@ public class Loading : MonoBehaviour
 
         //await Purchase.Initialize();
         await PictureDownloadRoutine();
-        //await SaveManager.LoadAll();
+        await SaveManager.LoadAll();
 
         await UniTask.WaitForSeconds(1f);
 
         //AdManager.ShowInterstitial(ignoreAdClicker: true);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Game");
     }
 
     private void OnStopGame(bool value)

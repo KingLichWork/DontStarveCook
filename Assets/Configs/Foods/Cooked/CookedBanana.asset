@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502a43fa55baed449b713d87bc8b6aea, type: 3}
   m_Name: CookedBanana
   m_EditorClassIdentifier: 
-  _foodValue: 10
+  _foodValue: 7
+  _healthValue: 5
   _decayTime: 0
   _name: Banana
+  _sprite: {fileID: 21300000, guid: f6b09e8631832774ba16558453e66718, type: 3}
   _type: 3
   _foodTypeValue: 1
-  _sprite: {fileID: 21300000, guid: f6b09e8631832774ba16558453e66718, type: 3}
   _cookedVersion: {fileID: 0}

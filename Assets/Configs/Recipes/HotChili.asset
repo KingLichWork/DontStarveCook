@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: HotChili
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 15
+  _healthValue: -1
   _decayTime: 0
   _name: HotChili
   _sprite: {fileID: 21300000, guid: c394e2f4972c1564c85c0f198334f183, type: 3}

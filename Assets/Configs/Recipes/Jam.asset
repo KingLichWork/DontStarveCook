@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: Jam
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 10
+  _healthValue: 5
   _decayTime: 0
   _name: 
   _sprite: {fileID: 21300000, guid: 710847c5fbbd9c3439e681a5434ee641, type: 3}

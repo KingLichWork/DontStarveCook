@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502a43fa55baed449b713d87bc8b6aea, type: 3}
   m_Name: Corn
   m_EditorClassIdentifier: 
-  _foodValue: 10
+  _foodValue: 12
+  _healthValue: 1
   _decayTime: 0
   _name: Corn
+  _sprite: {fileID: 21300000, guid: 0beb5590d3c25ad43917bdfe3efe2e6e, type: 3}
   _type: 2
   _foodTypeValue: 1
-  _sprite: {fileID: 21300000, guid: 0beb5590d3c25ad43917bdfe3efe2e6e, type: 3}
   _cookedVersion: {fileID: 11400000, guid: 160096f04ee1c0e40ab94b75eddbee07, type: 2}

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: MeatStew
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 30
+  _healthValue: 4
   _decayTime: 0
   _name: MeatStew
   _sprite: {fileID: 21300000, guid: ea455568e821c5f4f8ab8df6acb8a715, type: 3}

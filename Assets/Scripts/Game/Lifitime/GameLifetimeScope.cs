@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FindTheDifference.Audio;
+using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
@@ -16,6 +17,8 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private FoodViewDescription _foodViewDescription;
     [SerializeField] private GameUI _gameUI;
     [SerializeField] private GraphicRaycaster _graphicRaycaster;
+    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private ScoreManager _scoreManager;
 
     [SerializeField] private FoodViewGame _gamePrefab;
     [SerializeField] private FoodViewUI _uiPrefab;
@@ -38,8 +41,9 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterComponent(_inputController);
         builder.RegisterComponent(_foodViewDescription);
         builder.RegisterComponent(_gameUI);
+        builder.RegisterComponent(_audioManager);
+        builder.RegisterComponent(_scoreManager);
 
         builder.Register<FoodViewFactory>(Lifetime.Singleton);
-        builder.Register<LocalizationService>(Lifetime.Singleton);
     }
 }

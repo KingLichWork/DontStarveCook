@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: Extract
     m_Metadata:
       m_Items: []
+  - m_Id: 5672903528914944
+    m_Key: Score
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: Breakfast
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 20
+  _healthValue: 3
   _decayTime: 0
   _name: Breakfast
   _sprite: {fileID: 21300000, guid: ffb96d23ffd7e6f4fb8425e811e6c484, type: 3}

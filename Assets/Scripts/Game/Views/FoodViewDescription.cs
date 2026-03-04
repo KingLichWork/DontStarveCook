@@ -14,8 +14,6 @@ public class FoodViewDescription : MonoBehaviour
 
     [SerializeField] private GameObject _holder;
 
-    private LocalizationService _localization;
-
     private void OnEnable()
     {
         InputController.ShowDescriptionAction += Show;
@@ -32,12 +30,6 @@ public class FoodViewDescription : MonoBehaviour
         FoodView.EatFoodAction -= Hide;
     }
 
-    [Inject]
-    public void Construct(LocalizationService localization)
-    {
-        _localization = localization;
-    }
-
     public async void Show(FoodView foodView)
     {
         if (foodView == null) 
@@ -47,7 +39,7 @@ public class FoodViewDescription : MonoBehaviour
 
         _rectTransform.position = screenPos + Vector3.up * 200;
 
-        _nameText.text = await _localization.Get(foodView.Food.Name, LocalizationTable.Resources);
+        _nameText.text = await LocalizationService.GetLocalizedStringAsync(foodView.Food.Name, LocalizationTable.Resources);
         _hungerValueText.text = foodView.Food.FoodValue.ToString();
         _healthValueText.text = foodView.Food.HealthValue.ToString();
 

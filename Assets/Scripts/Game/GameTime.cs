@@ -7,7 +7,7 @@ public class GameTime
 {
     private float _maxDayTime;
     private float _currentDayTime;
-    private int _dayCount;
+    private int _dayCount = 1;
 
     private DayPhase _dayPhase;
     private DayCycleData _data;
@@ -18,6 +18,9 @@ public class GameTime
     public DayPhase DayPhase => _dayPhase;
 
     public bool IsNight => DayPhase == DayPhase.Night;
+
+    public static event Action ChangeTimeScoreAction;
+    public static event Action ChangeDayScoreAction;
 
     public static event Action<int> ChangeDayAction;
     public static event Action<float, float> ChangeTimeAction;
@@ -39,7 +42,7 @@ public class GameTime
     public void StopTimer()
     {
         _currentDayTime = 0;
-        _dayCount = 0;
+        _dayCount = 1;
 
         _cts?.Cancel();
         _cts?.Dispose();
@@ -54,15 +57,21 @@ public class GameTime
             _currentDayTime++;
 
             if(_currentDayTime >= _maxDayTime)
-            {
-                _currentDayTime = 0;
-                _dayCount++;
-                ChangeDayAction.Invoke(_dayCount);
-            }
+                ChangeDay();
 
             ChangeDayPhase(_currentDayTime);
+            ChangeTimeScoreAction.Invoke();
             ChangeTimeAction.Invoke(_currentDayTime, _maxDayTime);
         }
+    }
+
+    private void ChangeDay()
+    {
+        _currentDayTime = 0;
+        _dayCount++;
+
+        ChangeDayScoreAction.Invoke();
+        ChangeDayAction.Invoke(_dayCount);
     }
 
     private void ChangeDayPhase(float time)

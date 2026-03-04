@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e92759dc2101747aedf05fad8bc62c, type: 3}
   m_Name: Gruel
   m_EditorClassIdentifier: 
-  _foodValue: 0
+  _foodValue: 1
+  _healthValue: -4
   _decayTime: 0
   _name: Gruel
   _sprite: {fileID: 21300000, guid: 01849b39d5e69fd43abc75caa2a6a4e3, type: 3}

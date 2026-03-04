@@ -26,6 +26,10 @@ MonoBehaviour:
     m_Localized: Extract
     m_Metadata:
       m_Items: []
+  - m_Id: 5672903528914944
+    m_Localized: Score
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
