@@ -19,6 +19,7 @@ public class Loading : MonoBehaviour
         await Cloud.Initialize();
         await Billing.Initialize();
         await LocalizationService.Initialize();
+        await Leaderboard.Initialize();
 
         Advertisement.Initialize();
         WebApplication.Initialize(OnStopGame);
@@ -27,8 +28,6 @@ public class Loading : MonoBehaviour
         //await Purchase.Initialize();
         await PictureDownloadRoutine();
         await SaveManager.LoadAll();
-
-        await UniTask.WaitForSeconds(1f);
 
         //AdManager.ShowInterstitial(ignoreAdClicker: true);
         SceneManager.LoadScene("Game");

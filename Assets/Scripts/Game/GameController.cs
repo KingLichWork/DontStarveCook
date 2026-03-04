@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Kimicu.YandexGames;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -74,6 +75,7 @@ public class GameController : MonoBehaviour
         SaveManager.PlayerData.Hunger = _hungerTimer.ValueTimer;
         SaveManager.PlayerData.Health = _health.HealthValue;
         SaveManager.PlayerData.Day = day;
+        Leaderboard.SetScore(SaveManager.PlayerData.Score);
     }
 
     private void StarvingDamage()
