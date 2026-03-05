@@ -65,6 +65,8 @@ public static class SaveManager
 [Serializable]
 public class PlayerData
 {
+    private int _gold = 0;
+
     private int _score = 0;
     private int _maxScore = 0;
 
@@ -80,6 +82,9 @@ public class PlayerData
 
     private bool _tutorial = false;
 
+    private int[] _upgrades = new int[4];
+
+    public int Gold { get { return _gold; } set { _gold = value; SaveManager.Save(this); } }
     public int Score { get { return _score; } set { _score = value; SaveManager.Save(this); } }
     public int MaxScore { get { return _maxScore; } set { _maxScore = value; SaveManager.Save(this); } }
     public int Health { get { return _health; } set { _health = value; SaveManager.Save(this); } }
@@ -92,4 +97,6 @@ public class PlayerData
     public int Day { get { return _day; } set { _day = value; SaveManager.Save(this); } }
 
     public bool Tutorial { get { return _tutorial; } set { _tutorial = value; SaveManager.Save(this); } }
+
+    public int[] Upgrades { get { return _upgrades; } set { _upgrades = value; SaveManager.Save(this); } }
 }

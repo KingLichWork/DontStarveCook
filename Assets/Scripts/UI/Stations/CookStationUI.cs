@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class CookStationUI : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class CookStationUI : MonoBehaviour
 
     protected void ChangeCookTimer(float value)
     {
-        _timerImage.fillAmount = value;
+        _timerImage.DOKill();
+        _timerImage.DOFillAmount(value, 1f);
     }
 
     protected void ChangeCookStage()

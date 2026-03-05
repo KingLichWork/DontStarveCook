@@ -30,6 +30,14 @@ MonoBehaviour:
     m_Localized: Score
     m_Metadata:
       m_Items: []
+  - m_Id: 6041345956225024
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6046781119897600
+    m_Localized: Upgrades
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

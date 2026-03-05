@@ -7,9 +7,12 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    [SerializeField] private ShopUI _shopUI;
+
     [SerializeField] private Button _extractButton;
 
     [SerializeField] private Button _changeSoundButton;
+    [SerializeField] private Button _shopButton;
 
     [SerializeField] private TimerSliderUI _hungerTimer;
     [SerializeField] private TimerSliderUI _healthTimer;
@@ -47,6 +50,7 @@ public class GameUI : MonoBehaviour
 
         _extractButton.onClick.AddListener(Extract);
         _changeSoundButton.onClick.AddListener(ChangeSound);
+        _shopButton.onClick.AddListener(_shopUI.ChangeShowed);
 
         SetDay();
     }
@@ -61,8 +65,9 @@ public class GameUI : MonoBehaviour
         ScoreManager.ChangeScoreAction -= ChangeScore;
         GameSpawner.ExtractAction -= ChangeExtract;
 
-        _extractButton.onClick.RemoveAllListeners();
-        _changeSoundButton.onClick.RemoveAllListeners();
+        _extractButton.onClick.RemoveListener(Extract);
+        _changeSoundButton.onClick.RemoveListener(ChangeSound);
+        _shopButton.onClick.RemoveListener(_shopUI.ChangeShowed);
     }
 
     private void Extract()

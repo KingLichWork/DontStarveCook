@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     private Health _health;
 
     private ScoreManager _scoreManager;
+    private GoldGetter _goldGetter;
 
     private GameTime _gameTime;
 
@@ -25,7 +26,7 @@ public class GameController : MonoBehaviour
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
-        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager)
+        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager, GoldGetter goldGetter)
     {
         _spawner = spawner;
         _foodViewFactory = foodViewFactory;
@@ -34,6 +35,7 @@ public class GameController : MonoBehaviour
         _dayCycleData = dayCycleData;
         _graphicRaycaster = graphicRaycaster;
         _scoreManager = scoreManager;
+        _goldGetter = goldGetter;
         _camera = Camera.main;
 
         _gameTime = new GameTime(_dayCycleData);
@@ -125,6 +127,10 @@ public class GameController : MonoBehaviour
                 case "MultiCook":
                     TryDropOnStation(view, result.gameObject);
                     return;
+
+                case "GoldGetter":
+                    DropOnGoldGetter(view);
+                    break;
             }
         }
 
@@ -165,6 +171,11 @@ public class GameController : MonoBehaviour
             : _multiCookStationUI.ViewParent);
 
         station.SetFood(newView);
+    }
+
+    private void DropOnGoldGetter(FoodView view)
+    {
+        _goldGetter.GetGold(view);
     }
 
     private void Game()

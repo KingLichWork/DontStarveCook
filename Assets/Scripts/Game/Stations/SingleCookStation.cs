@@ -7,7 +7,7 @@ public class SingleCookStation : Station
 {
     private FoodViewUI _foodView;
 
-    protected override float _cookingTime => 5f;
+    protected override float _cookingTime => 3f;
     protected override float _overCookingTime => 10f;
 
     public override void SetFood(FoodViewUI foodView)

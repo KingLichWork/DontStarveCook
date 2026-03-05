@@ -15,7 +15,7 @@ public class MultiCookStation : Station
 
     private FoodViewUI[] _usedFoods = new FoodViewUI[4];
 
-    protected override float _cookingTime => 10f;
+    protected override float _cookingTime => 5f;
     protected override float _overCookingTime => 10f;
 
     public event Action<FoodViewUI> CreateFoodViewAction;

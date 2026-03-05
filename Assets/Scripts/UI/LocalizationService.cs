@@ -18,6 +18,11 @@ public class LocalizationService
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[IsRu ? 1 : 0];
     }
 
+    public static string GetLocalizedString(string key, LocalizationTable table)
+    {
+        return LocalizationSettings.StringDatabase.GetLocalizedString($"{table}", key);
+    }
+
     public static async UniTask<string> GetLocalizedStringAsync(string key, LocalizationTable table)
     {
         return await LocalizationSettings.StringDatabase.GetLocalizedStringAsync($"{table}", key);

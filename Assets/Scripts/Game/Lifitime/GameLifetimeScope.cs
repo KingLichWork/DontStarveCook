@@ -10,12 +10,14 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private SingleCookStationUI _singleCookStationUI;
     [SerializeField] private MultiCookStation _multiCookingStation;
     [SerializeField] private MultiCookStationUI _multiCookStationUI;
+    [SerializeField] private GameUI _gameUI;
+    [SerializeField] private FoodViewDescription _foodViewDescription;
+    [SerializeField] private ShopUI _shopUI;
 
+    [SerializeField] private GoldGetter _goldGetter;
     [SerializeField] private GameController _gameController;
     [SerializeField] private GameSpawner _spawner;
     [SerializeField] private InputController _inputController;
-    [SerializeField] private FoodViewDescription _foodViewDescription;
-    [SerializeField] private GameUI _gameUI;
     [SerializeField] private GraphicRaycaster _graphicRaycaster;
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private ScoreManager _scoreManager;
@@ -43,6 +45,8 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterComponent(_gameUI);
         builder.RegisterComponent(_audioManager);
         builder.RegisterComponent(_scoreManager);
+        builder.RegisterComponent(_goldGetter);
+        builder.RegisterComponent(_shopUI);
 
         builder.Register<FoodViewFactory>(Lifetime.Singleton);
     }
