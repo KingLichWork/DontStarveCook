@@ -986,6 +986,7 @@ MonoBehaviour:
     _timerParticles: {fileID: 0}
     _timerText: {fileID: 7651098343718035158}
   _extractSlider: {fileID: 146942463799501515}
+  _extractSliderImage: {fileID: 3302604605141660113}
   _dayImage: {fileID: 87855488843729617}
   _clockArrowImage: {fileID: 89075267931032992}
   _backGroundImage: {fileID: 4589997205198223969}
@@ -1515,7 +1516,6 @@ RectTransform:
   - {fileID: 1614232407303508576}
   - {fileID: 1813202265119363325}
   - {fileID: 4059136322527090491}
-  - {fileID: 5708676068074757659}
   - {fileID: 7744684391101615202}
   - {fileID: 5164910009126079608}
   - {fileID: 3769293752854170806}
@@ -1524,6 +1524,7 @@ RectTransform:
   - {fileID: 3460355691246139622}
   - {fileID: 7572450811316087177}
   - {fileID: 4454607077039800842}
+  - {fileID: 5708676068074757659}
   m_Father: {fileID: 8430140821188749927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2444,7 +2445,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1296349154751420640
 CanvasRenderer:
@@ -2822,7 +2823,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.544
+  m_Value: 0.119
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

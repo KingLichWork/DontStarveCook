@@ -27,6 +27,8 @@ public class GameLifetimeScope : LifetimeScope
 
     [SerializeField] private DayCycleData _dayCycleData;
 
+    [SerializeField] private UpgradesData _ugradesData;
+
     protected override void Configure(IContainerBuilder builder)
     {
         builder.RegisterInstance(_gamePrefab);
@@ -47,6 +49,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterComponent(_scoreManager);
         builder.RegisterComponent(_goldGetter);
         builder.RegisterComponent(_shopUI);
+        builder.RegisterComponent(_ugradesData);
 
         builder.Register<FoodViewFactory>(Lifetime.Singleton);
     }

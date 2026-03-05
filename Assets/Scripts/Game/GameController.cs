@@ -23,10 +23,11 @@ public class GameController : MonoBehaviour
     private GameTime _gameTime;
 
     private DayCycleData _dayCycleData;
+    private UpgradesData _upgradesData;
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
-        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager, GoldGetter goldGetter)
+        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager, GoldGetter goldGetter, UpgradesData upgradesData)
     {
         _spawner = spawner;
         _foodViewFactory = foodViewFactory;
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour
         _graphicRaycaster = graphicRaycaster;
         _scoreManager = scoreManager;
         _goldGetter = goldGetter;
+        _upgradesData = upgradesData;
         _camera = Camera.main;
 
         _gameTime = new GameTime(_dayCycleData);
@@ -67,8 +69,7 @@ public class GameController : MonoBehaviour
     private void Init()
     {
         _spawner.Init();
-        _hungerTimer = new HungerTimer(SaveManager.PlayerData.Hunger, SaveManager.PlayerData.MaxHunger);
-        _health = new Health(SaveManager.PlayerData.Health, SaveManager.PlayerData.MaxHealth);
+        LoadCharacteristics();
         _scoreManager.Init();
     }
 
@@ -84,6 +85,12 @@ public class GameController : MonoBehaviour
             SaveManager.PlayerData.MaxScore = SaveManager.PlayerData.Score;
 
         Leaderboard.SetScore(SaveManager.PlayerData.MaxScore);
+    }
+
+    private void LoadCharacteristics()
+    {
+        _hungerTimer = new HungerTimer(SaveManager.PlayerData.Hunger, SaveManager.PlayerData.MaxHunger + _upgradesData.GetUpgradeValue(UpgradeType.MaxHunger));
+        _health = new Health(SaveManager.PlayerData.Health, SaveManager.PlayerData.MaxHealth + _upgradesData.GetUpgradeValue(UpgradeType.MaxHealth));
     }
 
     private void StarvingDamage()

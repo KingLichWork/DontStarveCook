@@ -9,6 +9,17 @@ public class UpgradesData : ScriptableObject
     [SerializeField] private List<Upgrade> _upgrades = new();
 
     public IReadOnlyList<Upgrade> Upgrades => _upgrades;
+
+    public int GetUpgradeValue(UpgradeType type)
+    {
+        foreach (var upgrade in _upgrades)
+        {
+            if(upgrade.Type == type)
+                return upgrade.ValuePerLevel * SaveManager.PlayerData.Upgrades[(int)type];
+        }
+
+        return 0;
+    }
 }
 
 [Serializable]

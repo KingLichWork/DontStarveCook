@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 public class ShopUI : UIPanel
 {
@@ -13,7 +14,14 @@ public class ShopUI : UIPanel
     [SerializeField] private ShopUpgrade _upgradePrefab;
 
     [SerializeField] private List<ShopUpgrade> _upgrades;
-    [SerializeField] private UpgradesData _upgradesData;
+
+    private UpgradesData _upgradesData;
+
+    [Inject]
+    private void Cunstruct(UpgradesData upgradesData)
+    {
+        _upgradesData = upgradesData;
+    }
 
     private void OnEnable()
     {
