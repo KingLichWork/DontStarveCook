@@ -176,6 +176,7 @@ public class GameController : MonoBehaviour
     private void DropOnGoldGetter(FoodView view)
     {
         _goldGetter.GetGold(view);
+        Destroy(view.gameObject);
     }
 
     private void Game()

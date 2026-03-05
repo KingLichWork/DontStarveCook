@@ -18,14 +18,14 @@ public class LocalizationService
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[IsRu ? 1 : 0];
     }
 
-    public static string GetLocalizedString(string key, LocalizationTable table)
+    public static string GetLocalizedString(string key, LocalizationTable table, object args = null)
     {
-        return LocalizationSettings.StringDatabase.GetLocalizedString($"{table}", key);
+        return LocalizationSettings.StringDatabase.GetLocalizedString(table.ToString(), key, arguments: args);
     }
 
-    public static async UniTask<string> GetLocalizedStringAsync(string key, LocalizationTable table)
+    public static async UniTask<string> GetLocalizedStringAsync(string key, LocalizationTable table, object args = null)
     {
-        return await LocalizationSettings.StringDatabase.GetLocalizedStringAsync($"{table}", key);
+        return await LocalizationSettings.StringDatabase.GetLocalizedStringAsync(table.ToString(), key, arguments: args);
     }
 }
 

@@ -16,10 +16,13 @@ public class Upgrade
 {
     [SerializeField] private string _name;
     [SerializeField] private UpgradeType _type;
+    [SerializeField] private int _valuePerLevel;
+
     [SerializeField] private UpgradeInfo[] _upgradeInfo = new UpgradeInfo[4];
 
     public string Name => _name;
     public UpgradeType Type => _type;
+    public int ValuePerLevel => _valuePerLevel;
 
     public UpgradeInfo[] UpgradeInfo => _upgradeInfo;
 }

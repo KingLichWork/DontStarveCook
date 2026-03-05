@@ -19,6 +19,38 @@ MonoBehaviour:
     m_Key: Day
     m_Metadata:
       m_Items: []
+  - m_Id: 1501973151981568
+    m_Key: extractCount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502030261624832
+    m_Key: autoExtract
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502044052496384
+    m_Key: maxHunger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502055477780480
+    m_Key: maxHealth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502843763662848
+    m_Key: extractCountDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502854576578560
+    m_Key: autoExtractDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502918254501888
+    m_Key: maxHungerDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1515535870173184
+    m_Key: maxHealthDesc
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

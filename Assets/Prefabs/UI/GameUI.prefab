@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b64bce3e0fc41843a267c1b42b609dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shopUI: {fileID: 0}
+  _shopUI: {fileID: 613960648248517085}
   _extractButton: {fileID: 1959814127716125331}
   _changeSoundButton: {fileID: 3409195275549239580}
   _shopButton: {fileID: 8486222937524513521}
@@ -4479,6 +4479,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ff43110018a28948b78d8d1cf3c2199, type: 3}
+--- !u!114 &613960648248517085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4369970150683181514, guid: 5ff43110018a28948b78d8d1cf3c2199, type: 3}
+  m_PrefabInstance: {fileID: 3756135430888874007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87fac39429d179342980be2b85608976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4454607077039800842 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 716504238343447069, guid: 5ff43110018a28948b78d8d1cf3c2199, type: 3}

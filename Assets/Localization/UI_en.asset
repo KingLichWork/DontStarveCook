@@ -16,12 +16,58 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: 70a4264c2fd081146b2f5584ec818654, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 3940429893529501840
   m_TableData:
   - m_Id: 6881779712
     m_Localized: Day
     m_Metadata:
       m_Items: []
+  - m_Id: 1501973151981568
+    m_Localized: Extract+
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502030261624832
+    m_Localized: Auto Extract
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502044052496384
+    m_Localized: Max Hunger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502055477780480
+    m_Localized: Max Health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1502843763662848
+    m_Localized: Increases loot by <color=#00FF00>{value}</color> per click
+    m_Metadata:
+      m_Items:
+      - rid: 3940429893529501840
+  - m_Id: 1502854576578560
+    m_Localized: Automatically mines <color=#00FF00>{value}</color> per second
+    m_Metadata:
+      m_Items:
+      - rid: 3940429893529501840
+  - m_Id: 1502918254501888
+    m_Localized: Increases max hunger by <color=#00FF00>{value}</color>
+    m_Metadata:
+      m_Items:
+      - rid: 3940429893529501840
+  - m_Id: 1515535870173184
+    m_Localized: Increases max health by <color=#00FF00>{value}</color>
+    m_Metadata:
+      m_Items:
+      - rid: 3940429893529501840
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3940429893529501840
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 1502918254501888
+        - id: 1502854576578560
+        - id: 1502843763662848
+        - id: 1515535870173184

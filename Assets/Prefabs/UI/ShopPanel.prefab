@@ -111,11 +111,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _holder: {fileID: 7762608363602362701}
   _hideButton: {fileID: 0}
-  _gold: {fileID: 0}
-  _upgradeParent: {fileID: 0}
-  _upgradePrefab: {fileID: 0}
+  _gold: {fileID: 5755766530015561384}
+  _upgradeParent: {fileID: 2876049701817231773}
+  _upgradePrefab: {fileID: 752608194183105329, guid: 9118f8cab3f56404585791778db377a1, type: 3}
   _upgrades: []
-  _upgradesData: {fileID: 0}
+  _upgradesData: {fileID: 11400000, guid: d3cb3e5eea8ecb3468ff825dfc2a7329, type: 2}
 --- !u!1 &2263214404225211121
 GameObject:
   m_ObjectHideFlags: 0

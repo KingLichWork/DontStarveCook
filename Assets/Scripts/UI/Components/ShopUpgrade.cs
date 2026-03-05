@@ -10,6 +10,7 @@ public class ShopUpgrade : MonoBehaviour
     [SerializeField] private GameObject _allBuyed;
 
     [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _buyCostText;
     [SerializeField] private TextMeshProUGUI _progressText;
 
@@ -35,6 +36,7 @@ public class ShopUpgrade : MonoBehaviour
         _level = SaveManager.PlayerData.Upgrades[_number];
 
         _nameText.text = LocalizationService.GetLocalizedString(_upgrade.Name, LocalizationTable.UI);
+        _descriptionText.text = LocalizationService.GetLocalizedString(_upgrade.Name + "Desc", LocalizationTable.UI, new {value = _upgrade.ValuePerLevel});
         _progressText.text = $"{_level}/{_upgrade.UpgradeInfo.Length}";
         _buyCostText.text = _upgrade.UpgradeInfo[_level].UpgradeCost.ToString();
         _upgradeImage.sprite = _upgrade.UpgradeInfo[_level].UpgradeSprite;

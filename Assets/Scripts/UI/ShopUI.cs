@@ -19,7 +19,7 @@ public class ShopUI : UIPanel
     {
         GoldGetter.GetGoldAction += SetGold;
 
-        _hideButton.onClick.AddListener(Hide);
+        //_hideButton.onClick.AddListener(Hide);
 
         Init();
     }
@@ -28,7 +28,7 @@ public class ShopUI : UIPanel
     {
         GoldGetter.GetGoldAction -= SetGold;
 
-        _hideButton.onClick.RemoveListener(Hide);
+        //_hideButton.onClick.RemoveListener(Hide);
     }
 
     public void Init()
