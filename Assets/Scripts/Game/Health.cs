@@ -22,6 +22,7 @@ public class Health
     {
         _maxHealthValue += value;
         _healthValue += value;
+        HealthChangeAction?.Invoke(_healthValue, _maxHealthValue);
     }
 
     public void ChangeHealth(int value)

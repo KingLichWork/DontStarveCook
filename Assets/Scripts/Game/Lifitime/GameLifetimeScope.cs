@@ -19,7 +19,7 @@ public class GameLifetimeScope : LifetimeScope
 
     [SerializeField] private SingleCookStation _cookingStation;
     [SerializeField] private MultiCookStation _multiCookingStation;
-    [SerializeField] private GoldGetter _goldGetter;
+    [SerializeField] private GoldGetterUI _goldGetter;
     [SerializeField] private GameController _gameController;
     [SerializeField] private GameSpawner _spawner;
     [SerializeField] private InputController _inputController;

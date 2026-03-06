@@ -82,6 +82,16 @@ MonoBehaviour:
     m_Localized: All right
     m_Metadata:
       m_Items: []
+  - m_Id: 6433505784340480
+    m_Localized: Food
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6433562810097664
+    m_Localized: 'Click to eat
+
+      Drag to cook and share'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

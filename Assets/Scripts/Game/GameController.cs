@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     private Health _health;
 
     private ScoreManager _scoreManager;
-    private GoldGetter _goldGetter;
+    private GoldGetterUI _goldGetter;
 
     private GameTime _gameTime;
 
@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
-        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager, GoldGetter goldGetter, UpgradesData upgradesData,
+        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager, GoldGetterUI goldGetter, UpgradesData upgradesData,
         TutorialUI tutorialUI)
     {
         _spawner = spawner;

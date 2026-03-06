@@ -50,6 +50,7 @@ public class HungerTimer
     {
         _maxTimerValue += value;
         _currentValue += value;
+        ChangeTimerAction?.Invoke(ValueTimer, _maxTimerValue);
     }
 
     public void ChangeTimer(int value)

@@ -40,6 +40,12 @@ public class ShopUpgrade : MonoBehaviour
 
         _nameText.text = LocalizationService.GetLocalizedString(_upgrade.Name, LocalizationTable.UI);
         _descriptionText.text = LocalizationService.GetLocalizedString(_upgrade.Name + "Desc", LocalizationTable.UI, new {value = _upgrade.ValuePerLevel});
+
+        ChangeView();
+    }
+
+    private void ChangeView()
+    {
         _progressText.text = $"{_level}/{_upgrade.UpgradeInfo.Length}";
         _buyCostText.text = _upgrade.UpgradeInfo[_level].UpgradeCost.ToString();
         _upgradeImage.sprite = _upgrade.UpgradeInfo[_level].UpgradeSprite;
@@ -56,6 +62,7 @@ public class ShopUpgrade : MonoBehaviour
             _level = SaveManager.PlayerData.Upgrades[_number]++;
             
             BuyUpgradeAction.Invoke(_upgrade.Type);
+            ChangeView();
         }
     }
 }
