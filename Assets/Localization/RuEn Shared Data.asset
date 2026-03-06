@@ -47,6 +47,42 @@ MonoBehaviour:
     m_Key: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
     m_Metadata:
       m_Items: []
+  - m_Id: 6425551123226624
+    m_Key: Sho
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6425639111335936
+    m_Key: ShopDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6426114435031040
+    m_Key: HealthAndHunger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6426693576138752
+    m_Key: SwineKing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6426819547865088
+    m_Key: SwineKingDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6427100138414080
+    m_Key: CookingStation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6427324131024896
+    m_Key: CookingStationDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6428073418268672
+    m_Key: HealthAndHungerDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6429291033108480
+    m_Key: AllRight
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

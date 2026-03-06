@@ -109,7 +109,7 @@ public class PlayerData
         _maxHealth = 100;
         _maxHunger = 100;
         _extractValue = 5;
-        _day = 1;
+        _day = 0;
         _upgrades = new int[4];
 
         SaveManager.Save(this);

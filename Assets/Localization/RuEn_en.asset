@@ -50,6 +50,38 @@ MonoBehaviour:
     m_Localized: Continue
     m_Metadata:
       m_Items: []
+  - m_Id: 6426114435031040
+    m_Localized: Hp and Hunger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6426693576138752
+    m_Localized: Swine King
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6427100138414080
+    m_Localized: Cooking stations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6427324131024896
+    m_Localized: Turn food into dishes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6425639111335936
+    m_Localized: I'm considering upgrading to gold.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6428073418268672
+    m_Localized: Basic stats, if HP drops to 0 the game will end
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6426819547865088
+    m_Localized: Gives gold for food
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6429291033108480
+    m_Localized: All right
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TMPro;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -25,7 +26,7 @@ public class ShopUI : UIPanel
 
     private void OnEnable()
     {
-        GoldGetter.GetGoldAction += SetGold;
+        ResourcesWallet.OnResourcesCountChanged += SetGold;
 
         //_hideButton.onClick.AddListener(Hide);
 
@@ -34,20 +35,20 @@ public class ShopUI : UIPanel
 
     private void OnDisable()
     {
-        GoldGetter.GetGoldAction -= SetGold;
+        ResourcesWallet.OnResourcesCountChanged -= SetGold;
 
         //_hideButton.onClick.RemoveListener(Hide);
     }
 
     public void Init()
     {
-        SetGold();
+        SetGold(ResourcesType.Gold, SaveManager.PlayerData.Gold);
         InitUprades();
     }
 
-    private void SetGold()
+    private void SetGold(ResourcesType resourcesType, int value)
     {
-        _gold.text = SaveManager.PlayerData.Gold.ToString();
+        _gold.text = value.ToString();
     }
 
     private void InitUprades()

@@ -30,7 +30,7 @@ public class Health
 
         HealthChangeAction?.Invoke(_healthValue, _maxHealthValue);
 
-        if (value <= 0)
+        if (_healthValue <= 0)
             GameOverAction?.Invoke();
     }
 }

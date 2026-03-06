@@ -51,11 +51,10 @@ public class ShopUpgrade : MonoBehaviour
     {
         int cost = _upgrade.UpgradeInfo[_level].UpgradeCost;
 
-        if (SaveManager.PlayerData.Gold >= cost)
+        if (ResourcesWallet.SpendResource(ResourcesType.Gold, cost))
         {
-            SaveManager.PlayerData.Gold -= cost;
             _level = SaveManager.PlayerData.Upgrades[_number]++;
-
+            
             BuyUpgradeAction.Invoke(_upgrade.Type);
         }
     }

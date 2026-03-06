@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     private FoodViewFactory _foodViewFactory;
     private SingleCookStationUI _singleCookStationUI;
     private MultiCookStationUI _multiCookStationUI;
+    private TutorialUI _tutorialUI;
     private GraphicRaycaster _graphicRaycaster;
     private Camera _camera;
 
@@ -28,7 +29,8 @@ public class GameController : MonoBehaviour
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
-        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager, GoldGetter goldGetter, UpgradesData upgradesData)
+        DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager, GoldGetter goldGetter, UpgradesData upgradesData,
+        TutorialUI tutorialUI)
     {
         _spawner = spawner;
         _foodViewFactory = foodViewFactory;
@@ -39,6 +41,7 @@ public class GameController : MonoBehaviour
         _scoreManager = scoreManager;
         _goldGetter = goldGetter;
         _upgradesData = upgradesData;
+        _tutorialUI = tutorialUI;
         _camera = Camera.main;
 
         _gameTime = new GameTime(_dayCycleData);
@@ -51,8 +54,9 @@ public class GameController : MonoBehaviour
         FoodView.EatFoodAction += EatFood;
         InputController.DropAction += HandleDrop;
         GameTime.ChangeDayAction += Save;
+        ShopUpgrade.BuyUpgradeAction += Upgrade;
         _hungerTimer.StarvingAction += StarvingDamage;
-        ShopUpgrade.BuyUpgradeAction -= Upgrade;
+        _tutorialUI.CompleteTutorialAction += Game;
 
         EndGameUI.RestartAction += Restart;
         EndGameUI.ContinueAction += Continue;
@@ -63,8 +67,9 @@ public class GameController : MonoBehaviour
         FoodView.EatFoodAction -= EatFood;
         InputController.DropAction -= HandleDrop;
         GameTime.ChangeDayAction -= Save;
-        _hungerTimer.StarvingAction -= StarvingDamage;
         ShopUpgrade.BuyUpgradeAction -= Upgrade;
+        _hungerTimer.StarvingAction -= StarvingDamage;
+        _tutorialUI.CompleteTutorialAction -= Game;
 
         EndGameUI.RestartAction -= Restart;
         EndGameUI.ContinueAction -= Continue;
@@ -72,7 +77,10 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        Game();
+        if (SaveManager.PlayerData.Tutorial)
+            Game();
+        else
+            _tutorialUI.Show();
     }
 
     private void Init()
@@ -180,7 +188,7 @@ public class GameController : MonoBehaviour
 
                 case "GoldGetter":
                     DropOnGoldGetter(view);
-                    break;
+                    return;
             }
         }
 
@@ -234,6 +242,5 @@ public class GameController : MonoBehaviour
         _gameTime.StartTime();
         _hungerTimer.StartTimer();
         _spawner.SpawnStartFood(5);
-        //_spawner.StartSpawn(2f);
     }
 }

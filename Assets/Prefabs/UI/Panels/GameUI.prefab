@@ -986,16 +986,15 @@ MonoBehaviour:
     _timerParticles: {fileID: 0}
     _timerText: {fileID: 7651098343718035158}
   _extractSlider: {fileID: 146942463799501515}
-  _extractSliderImage: {fileID: 3302604605141660113}
   _dayImage: {fileID: 87855488843729617}
   _clockArrowImage: {fileID: 89075267931032992}
   _backGroundImage: {fileID: 4589997205198223969}
   _dayNumber: {fileID: 5046865253724710973}
   _scoreText: {fileID: 6054822693141747208}
   _extractText: {fileID: 2651919720873835946}
-  _dayColor: {r: 0, g: 0, b: 0, a: 0}
-  _eveningColor: {r: 0, g: 0, b: 0, a: 0}
-  _nightColor: {r: 0, g: 0, b: 0, a: 0}
+  _dayColor: {r: 1, g: 1, b: 1, a: 0}
+  _eveningColor: {r: 0.44313726, g: 0.30980393, b: 0.21176471, a: 0.3137255}
+  _nightColor: {r: 0.023529412, g: 0, b: 0.2, a: 0.7058824}
   _soundChangeSprite:
   - {fileID: 652590476, guid: 96fd080be9746e8429ca95548753d4b7, type: 3}
   - {fileID: 1746362431, guid: 96fd080be9746e8429ca95548753d4b7, type: 3}
@@ -1431,7 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.3137255}
+  m_Color: {r: 0.44313726, g: 0.30980393, b: 0.21176471, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
