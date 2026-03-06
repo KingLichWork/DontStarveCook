@@ -76,7 +76,7 @@ public class PlayerData
     private int _maxHealth = 100;
     private int _maxHunger = 100;
 
-    private int _extractValue = 5;
+    private int _maxExtractValue = 5;
 
     private int _day = 1;
 
@@ -92,7 +92,7 @@ public class PlayerData
     public int MaxHealth { get { return _maxHealth; } set { _maxHealth = value; SaveManager.Save(this); } }
     public int MaxHunger { get { return _maxHunger; } set { _maxHunger = value; SaveManager.Save(this); } }
 
-    public int ExtractValue { get { return _extractValue; } set { _extractValue = value; SaveManager.Save(this); } }
+    public int MaxExtractValue { get { return _maxExtractValue; } set { _maxExtractValue = value; SaveManager.Save(this); } }
 
     public int Day { get { return _day; } set { _day = value; SaveManager.Save(this); } }
 
@@ -108,7 +108,7 @@ public class PlayerData
         _hunger = 100;
         _maxHealth = 100;
         _maxHunger = 100;
-        _extractValue = 5;
+        _maxExtractValue = 5;
         _day = 0;
         _upgrades = new int[4];
 

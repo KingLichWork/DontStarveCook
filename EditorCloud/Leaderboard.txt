@@ -1,5 +1,5 @@
 {
-  "score": 79,
+  "score": 139,
   "extraData": "example description",
   "rank": 14389,
   "player": {

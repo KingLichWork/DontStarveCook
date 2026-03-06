@@ -34,12 +34,12 @@ public class GameTime
 
     public void StartTime()
     {
-        StopTimer();
+        StopTime();
         _cts = new CancellationTokenSource();
         Time(_cts.Token).Forget();
     }
 
-    public void StopTimer()
+    public void StopTime()
     {
         _currentDayTime = 0;
         _dayCount = 1;

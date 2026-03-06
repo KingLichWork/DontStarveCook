@@ -58,6 +58,9 @@ public class GameController : MonoBehaviour
         _hungerTimer.StarvingAction += StarvingDamage;
         _tutorialUI.CompleteTutorialAction += Game;
 
+        Health.GameOverAction += StopGame;
+        DebugUI.DebugEndGameAction += StopGame;
+
         EndGameUI.RestartAction += Restart;
         EndGameUI.ContinueAction += Continue;
     }
@@ -70,6 +73,9 @@ public class GameController : MonoBehaviour
         ShopUpgrade.BuyUpgradeAction -= Upgrade;
         _hungerTimer.StarvingAction -= StarvingDamage;
         _tutorialUI.CompleteTutorialAction -= Game;
+
+        Health.GameOverAction -= StopGame;
+        DebugUI.DebugEndGameAction -= StopGame;
 
         EndGameUI.RestartAction -= Restart;
         EndGameUI.ContinueAction -= Continue;
@@ -85,8 +91,8 @@ public class GameController : MonoBehaviour
 
     private void Init()
     {
+        Load();
         _spawner.Init();
-        LoadCharacteristics();
         _scoreManager.Init();
     }
 
@@ -130,12 +136,19 @@ public class GameController : MonoBehaviour
         SaveManager.PlayerData.Hunger = _hungerTimer.ValueTimer;
         SaveManager.PlayerData.Health = _health.HealthValue;
         SaveManager.PlayerData.Day = day;
-        SaveManager.PlayerData.ExtractValue = _spawner.ExtractValue;
+        SaveManager.PlayerData.MaxExtractValue = _spawner.MaxExtractValue;
 
         if(SaveManager.PlayerData.MaxScore < SaveManager.PlayerData.Score)
             SaveManager.PlayerData.MaxScore = SaveManager.PlayerData.Score;
 
         Leaderboard.SetScore(SaveManager.PlayerData.MaxScore);
+    }
+
+    private void Load()
+    {
+
+
+        LoadCharacteristics();
     }
 
     private void LoadCharacteristics()
@@ -242,5 +255,12 @@ public class GameController : MonoBehaviour
         _gameTime.StartTime();
         _hungerTimer.StartTimer();
         _spawner.SpawnStartFood(5);
+    }
+
+
+    private void StopGame()
+    {
+        _gameTime.StopTime();
+        _hungerTimer.StopTimer();
     }
 }

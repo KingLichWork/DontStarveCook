@@ -17,6 +17,7 @@ public class EndGameUI : UIPanel
     private void OnEnable()
     {
         Health.GameOverAction += Show;
+        DebugUI.DebugEndGameAction += Show;
 
         _restartButton.onClick.AddListener(Restart);
         _continueButton.onClick.AddListener(Continue);
@@ -25,6 +26,7 @@ public class EndGameUI : UIPanel
     private void OnDisable()
     {
         Health.GameOverAction -= Show;
+        DebugUI.DebugEndGameAction -= Show;
 
         _restartButton.onClick.RemoveListener(Restart);
         _continueButton.onClick.RemoveListener(Continue);

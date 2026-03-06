@@ -14,9 +14,6 @@ public class GameSpawner : MonoBehaviour
     private CancellationTokenSource _cts;
     private GameUI _gameUI;
 
-    private float _spawnTime;
-    private float _toNextSpawnTime;
-
     private int _currentExtractValue; 
     private int _maxExtractValue = 5;
 
@@ -25,7 +22,7 @@ public class GameSpawner : MonoBehaviour
 
     private UpgradesData _upgradeData;
 
-    public int ExtractValue => _maxExtractValue;
+    public int MaxExtractValue => _maxExtractValue;
 
     public static event Action<int,int> ExtractAction;
 
@@ -38,7 +35,9 @@ public class GameSpawner : MonoBehaviour
 
     public void Init()
     {
-        _maxExtractValue = SaveManager.PlayerData.ExtractValue;
+        Clear();
+
+        _maxExtractValue = SaveManager.PlayerData.MaxExtractValue;
         ExtractAction.Invoke(_currentExtractValue, _maxExtractValue);
     }
 
