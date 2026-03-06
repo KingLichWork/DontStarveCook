@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VContainer;
 
@@ -51,6 +52,10 @@ public class GameController : MonoBehaviour
         InputController.DropAction += HandleDrop;
         GameTime.ChangeDayAction += Save;
         _hungerTimer.StarvingAction += StarvingDamage;
+        ShopUpgrade.BuyUpgradeAction -= Upgrade;
+
+        EndGameUI.RestartAction += Restart;
+        EndGameUI.ContinueAction += Continue;
     }
 
     private void OnDisable()
@@ -59,6 +64,10 @@ public class GameController : MonoBehaviour
         InputController.DropAction -= HandleDrop;
         GameTime.ChangeDayAction -= Save;
         _hungerTimer.StarvingAction -= StarvingDamage;
+        ShopUpgrade.BuyUpgradeAction -= Upgrade;
+
+        EndGameUI.RestartAction -= Restart;
+        EndGameUI.ContinueAction -= Continue;
     }
 
     private void Start()
@@ -71,6 +80,40 @@ public class GameController : MonoBehaviour
         _spawner.Init();
         LoadCharacteristics();
         _scoreManager.Init();
+    }
+
+    private void Upgrade(UpgradeType type)
+    {
+        int value = _upgradesData.GetUpgradeValue(type);
+
+        switch (type)
+        {
+            case UpgradeType.ExtractCount:
+                _spawner.ChangeExtractValue(value);
+                break;
+            case UpgradeType.AutoExtract:
+                _spawner.StartAutoExtract(value);
+                break;
+            case UpgradeType.MaxHunger:
+                _hungerTimer.ChangeMaxValue(value);
+                break;
+            case UpgradeType.MaxHealth:
+                _health.ChangeMaxValue(value);
+                break;
+        }
+    }
+
+    private void Restart()
+    {
+        SaveManager.PlayerData.ResetSaves();
+
+        SceneManager.LoadScene("Game");
+    }
+
+    private void Continue()
+    {
+        _health.ChangeHealth(_health.MaxHealthValue);
+        _hungerTimer.ChangeTimer(_hungerTimer.MaxValueTimer);
     }
 
     private void Save(int day)

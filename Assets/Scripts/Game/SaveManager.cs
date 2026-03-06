@@ -99,4 +99,19 @@ public class PlayerData
     public bool Tutorial { get { return _tutorial; } set { _tutorial = value; SaveManager.Save(this); } }
 
     public int[] Upgrades { get { return _upgrades; } set { _upgrades = value; SaveManager.Save(this); } }
+
+    public void ResetSaves()
+    {
+        _gold = 0;
+        _score = 0;
+        _health = 100;
+        _hunger = 100;
+        _maxHealth = 100;
+        _maxHunger = 100;
+        _extractValue = 5;
+        _day = 1;
+        _upgrades = new int[4];
+
+        SaveManager.Save(this);
+    }
 }

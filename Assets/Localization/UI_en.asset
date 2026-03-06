@@ -59,6 +59,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3940429893529501840
+  - m_Id: 1822658755796992
+    m_Localized: "\u041Dou survive <color=#00FF00>{value}</color> days"
+    m_Metadata:
+      m_Items:
+      - rid: 3940429893529501840
   references:
     version: 2
     RefIds:
@@ -71,3 +76,4 @@ MonoBehaviour:
         - id: 1502854576578560
         - id: 1502843763662848
         - id: 1515535870173184
+        - id: 1822658755796992

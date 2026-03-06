@@ -5,15 +5,23 @@ public class Health
 {
     private int _healthValue;
     private int _maxHealthValue;
-    public int HealthValue => _healthValue;
 
-    public event Action GameOverAction;
+    public int HealthValue => _healthValue;
+    public int MaxHealthValue => MaxHealthValue;
+
+    public static event Action GameOverAction;
     public static event Action<int, int> HealthChangeAction;
 
     public Health(int currentValue = 100, int maxHealth = 100)
     {
         _healthValue = currentValue;
         _maxHealthValue = maxHealth;
+    }
+
+    public void ChangeMaxValue(int value)
+    {
+        _maxHealthValue += value;
+        _healthValue += value;
     }
 
     public void ChangeHealth(int value)

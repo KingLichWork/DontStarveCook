@@ -38,6 +38,18 @@ MonoBehaviour:
     m_Localized: Upgrades
     m_Metadata:
       m_Items: []
+  - m_Id: 6407060328521728
+    m_Localized: You survive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6408733205700608
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6409128980226048
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -17,6 +17,7 @@ public class HungerTimer
     private CancellationTokenSource _cts;
 
     public int ValueTimer => Mathf.CeilToInt(_currentValue);
+    public int MaxValueTimer => _maxTimerValue;
 
     public event Action StarvingAction;
     public static event Action<int, int> ChangeTimerAction;
@@ -43,6 +44,12 @@ public class HungerTimer
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
+    }
+
+    public void ChangeMaxValue(int value)
+    {
+        _maxTimerValue += value;
+        _currentValue += value;
     }
 
     public void ChangeTimer(int value)

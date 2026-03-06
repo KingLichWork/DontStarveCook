@@ -35,6 +35,18 @@ MonoBehaviour:
     m_Key: Upgrades
     m_Metadata:
       m_Items: []
+  - m_Id: 6407060328521728
+    m_Key: You survive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6408733205700608
+    m_Key: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6409128980226048
+    m_Key: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

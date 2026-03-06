@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,8 @@ public class ShopUpgrade : MonoBehaviour
 
     private int _number;
     private int _level;
+
+    public static event Action<UpgradeType> BuyUpgradeAction;
 
     private void OnEnable()
     {
@@ -52,6 +55,8 @@ public class ShopUpgrade : MonoBehaviour
         {
             SaveManager.PlayerData.Gold -= cost;
             _level = SaveManager.PlayerData.Upgrades[_number]++;
+
+            BuyUpgradeAction.Invoke(_upgrade.Type);
         }
     }
 }

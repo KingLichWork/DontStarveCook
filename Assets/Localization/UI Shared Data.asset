@@ -51,6 +51,10 @@ MonoBehaviour:
     m_Key: maxHealthDesc
     m_Metadata:
       m_Items: []
+  - m_Id: 1822658755796992
+    m_Key: youSurvive
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

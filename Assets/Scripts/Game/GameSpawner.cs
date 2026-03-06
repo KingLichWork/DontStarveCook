@@ -18,11 +18,14 @@ public class GameSpawner : MonoBehaviour
     private float _toNextSpawnTime;
 
     private int _currentExtractValue; 
-    private int _extractValue = 5;
+    private int _maxExtractValue = 5;
+
+    private int _extractValue = 1;
+    private int _autoExtractValue;
 
     private UpgradesData _upgradeData;
 
-    public int ExtractValue => _extractValue;
+    public int ExtractValue => _maxExtractValue;
 
     public static event Action<int,int> ExtractAction;
 
@@ -35,8 +38,8 @@ public class GameSpawner : MonoBehaviour
 
     public void Init()
     {
-        _extractValue = SaveManager.PlayerData.ExtractValue;
-        ExtractAction.Invoke(_currentExtractValue, _extractValue);
+        _maxExtractValue = SaveManager.PlayerData.ExtractValue;
+        ExtractAction.Invoke(_currentExtractValue, _maxExtractValue);
     }
 
     private void OnEnable()
@@ -47,6 +50,19 @@ public class GameSpawner : MonoBehaviour
     private void OnDisable()
     {
         _gameUI.ExtractAction -= Extract;
+    }
+
+    public void Clear()
+    {
+        _autoExtractValue = 0;
+        _currentExtractValue = 0;
+        _extractValue = 1;
+        _maxExtractValue = 5;
+    }
+
+    public void ChangeExtractValue(int value)
+    {
+        _extractValue = 1 + value;
     }
 
     public void SpawnStartFood(int count)
@@ -70,8 +86,12 @@ public class GameSpawner : MonoBehaviour
         _cts = null;
     }
 
-    private void StartAuto()
+    public void StartAutoExtract(int value)
     {
+        _autoExtractValue = value;
+
+        StopAuto();
+
         _cts = new CancellationTokenSource();
         AutoExtract(_cts.Token).Forget();
     }
@@ -82,27 +102,27 @@ public class GameSpawner : MonoBehaviour
         {
             await UniTask.WaitForSeconds(1);
 
-            _currentExtractValue += _upgradeData.GetUpgradeValue(UpgradeType.AutoExtract);
+            _currentExtractValue += _autoExtractValue;
             CheckExtract();
         }
     }
 
     private void Extract()
     {
-        _currentExtractValue += _upgradeData.GetUpgradeValue(UpgradeType.ExtractCount);
+        _currentExtractValue += _extractValue;
         CheckExtract();
     }
 
     private void CheckExtract()
     {
-        if (_currentExtractValue >= _extractValue)
+        if (_currentExtractValue >= _maxExtractValue)
         {
             SpawnFood();
 
-            _extractValue++;
+            _maxExtractValue++;
             _currentExtractValue = 0;
         }
 
-        ExtractAction.Invoke(_currentExtractValue, _extractValue);
+        ExtractAction.Invoke(_currentExtractValue, _maxExtractValue);
     }
 }

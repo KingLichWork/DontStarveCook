@@ -15,10 +15,16 @@ public abstract class UIPanel : MonoBehaviour
     public void Show()
     {
         _holder.SetActive(true);
+        OnShow();
     }
 
     public void Hide()
     {
         _holder.SetActive(false);
+        OnHide();
     }
+
+    protected virtual void OnShow() { }
+
+    protected virtual void OnHide() { }
 }
