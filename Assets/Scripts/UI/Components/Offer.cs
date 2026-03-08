@@ -12,9 +12,9 @@ public class Offer : MonoBehaviour
 
     public string BuyKey => _buyKey;
 
-    public void Init(Action<Offer> onClick, bool isActive = true)
+    public void Init(Action onClick, bool isActive = true)
     {
-        if (!isActive)
+        if (isActive)
         {
             gameObject.SetActive(false);
             return;
@@ -22,10 +22,10 @@ public class Offer : MonoBehaviour
 
         _button.onClick.AddListener(() =>
         {
-            Purchase.BuyPurchase(_buyKey, onConsume: () => onClick.Invoke(this));
+            Purchase.BuyPurchase(_buyKey, onConsume: () => onClick.Invoke());
         });
 
-        Purchase.CheckConsume(_buyKey, () => onClick.Invoke(this));
+        Purchase.CheckConsume(_buyKey, () => onClick.Invoke());
     }
 
     private void OnDestroy() => _button.onClick.RemoveAllListeners();

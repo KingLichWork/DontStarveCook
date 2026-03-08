@@ -102,12 +102,14 @@ public class GameUI : MonoBehaviour
     {
         SetDay();
 
-        _noAdsOffer.Init(BuyNoAds, !SaveManager.PlayerData.NoAds);
+        _noAdsOffer.Init(BuyNoAds, SaveManager.PlayerData.NoAds);
+        Purchase.CheckConsume("noAds", onSuccess: BuyNoAds);
     }
 
-    private void BuyNoAds(Offer offer)
+    private void BuyNoAds()
     {
         _noAdsOffer.gameObject.SetActive(false);
+        SaveManager.PlayerData.NoAds = true;
     }
 
     private void SetDay()

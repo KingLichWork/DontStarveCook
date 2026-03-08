@@ -1,10 +1,12 @@
 ﻿using Cysharp.Threading.Tasks;
+using GameAnalyticsSDK;
 using Kimicu.YandexGames;
 using Kimicu.YandexGames.Extension;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class Loading : MonoBehaviour
 {
@@ -23,13 +25,13 @@ public class Loading : MonoBehaviour
 
         Advertisement.Initialize();
         WebApplication.Initialize(OnStopGame);
-        //GameAnalytics.Initialize();
+        GameAnalytics.Initialize();
 
-        //await Purchase.Initialize();
+        await Purchase.Initialize();
         await PictureDownloadRoutine();
         await SaveManager.LoadAll();
 
-        //AdManager.ShowInterstitial(ignoreAdClicker: true);
+        AdManager.ShowInterstitial(ignoreAdClicker: true);
         SceneManager.LoadScene("Game");
     }
 
