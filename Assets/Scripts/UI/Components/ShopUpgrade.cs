@@ -50,7 +50,10 @@ public class ShopUpgrade : MonoBehaviour
         _buyCostText.text = _upgrade.UpgradeInfo[_level].UpgradeCost.ToString();
         _upgradeImage.sprite = _upgrade.UpgradeInfo[_level].UpgradeSprite;
 
-        _allBuyed.SetActive(SaveManager.PlayerData.Upgrades[_number] >= _upgrade.UpgradeInfo.Length);
+        bool isAllBuyed = SaveManager.PlayerData.Upgrades[_number] >= _upgrade.UpgradeInfo.Length;
+
+        _allBuyed.SetActive(isAllBuyed);
+        _buyButton.gameObject.SetActive(!isAllBuyed);
     }
 
     private void Buy()

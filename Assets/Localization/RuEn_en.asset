@@ -92,6 +92,14 @@ MonoBehaviour:
       Drag to cook and share'
     m_Metadata:
       m_Items: []
+  - m_Id: 7197118878949376
+    m_Localized: Collected
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7197184695967744
+    m_Localized: TAP TAP TAP
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -84,6 +84,8 @@ public class PlayerData
 
     private int[] _upgrades = new int[4];
 
+    private bool _noAds;
+
     public int Gold { get { return _gold; } set { _gold = value; SaveManager.Save(this); } }
     public int Score { get { return _score; } set { _score = value; SaveManager.Save(this); } }
     public int MaxScore { get { return _maxScore; } set { _maxScore = value; SaveManager.Save(this); } }
@@ -99,6 +101,8 @@ public class PlayerData
     public bool Tutorial { get { return _tutorial; } set { _tutorial = value; SaveManager.Save(this); } }
 
     public int[] Upgrades { get { return _upgrades; } set { _upgrades = value; SaveManager.Save(this); } }
+
+    public bool NoAds { get { return _noAds; } set { _noAds = value; SaveManager.Save(this); } }
 
     public void ResetSaves()
     {

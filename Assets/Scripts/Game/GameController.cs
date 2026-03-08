@@ -146,13 +146,6 @@ public class GameController : MonoBehaviour
 
     private void Load()
     {
-
-
-        LoadCharacteristics();
-    }
-
-    private void LoadCharacteristics()
-    {
         _hungerTimer = new HungerTimer(SaveManager.PlayerData.Hunger, SaveManager.PlayerData.MaxHunger + _upgradesData.GetUpgradeValue(UpgradeType.MaxHunger));
         _health = new Health(SaveManager.PlayerData.Health, SaveManager.PlayerData.MaxHealth + _upgradesData.GetUpgradeValue(UpgradeType.MaxHealth));
     }
@@ -254,6 +247,7 @@ public class GameController : MonoBehaviour
     {
         _gameTime.StartTime();
         _hungerTimer.StartTimer();
+        _spawner.StartAutoExtract(SaveManager.PlayerData.Upgrades[(int)UpgradeType.AutoExtract]);
         _spawner.SpawnStartFood(5);
     }
 

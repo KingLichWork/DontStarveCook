@@ -4,6 +4,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 public class GameUI : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private Sprite[] _soundChangeSprite = new Sprite[2];
 
+    [SerializeField] private RectTransform _gameplayArea;
+
+    [SerializeField] private Offer _noAdsOffer;
+
+    public RectTransform GameplayArea => _gameplayArea;
+
     private Tween _scoreTween;
 
     public event Action ExtractAction;
@@ -52,7 +59,7 @@ public class GameUI : MonoBehaviour
         _changeSoundButton.onClick.AddListener(ChangeSound);
         _shopButton.onClick.AddListener(_shopUI.ChangeShowed);
 
-        SetDay();
+        Init();
     }
 
     private void OnDisable()
@@ -72,7 +79,10 @@ public class GameUI : MonoBehaviour
 
     private void Extract()
     {
-        ExtractAction.Invoke();
+        AdManager.ShowInterstitial(onClose: () =>
+        {
+            ExtractAction.Invoke();
+        });
     }
 
     private void ChangeExtract(int value, int maxValue)
@@ -86,6 +96,18 @@ public class GameUI : MonoBehaviour
     {
         ChangeSoundAction.Invoke(!AudioManager.IsVolumeActive);
         _changeSoundButton.image.sprite = AudioManager.IsVolumeActive ? _soundChangeSprite[0] : _soundChangeSprite[1];
+    }
+
+    private void Init()
+    {
+        SetDay();
+
+        _noAdsOffer.Init(BuyNoAds, !SaveManager.PlayerData.NoAds);
+    }
+
+    private void BuyNoAds(Offer offer)
+    {
+        _noAdsOffer.gameObject.SetActive(false);
     }
 
     private void SetDay()

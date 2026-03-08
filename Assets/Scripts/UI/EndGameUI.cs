@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 public class EndGameUI : UIPanel
 {
@@ -42,8 +43,12 @@ public class EndGameUI : UIPanel
     {
         RestartAction.Invoke();
     }
+
     private void Continue()
     {
-        ContinueAction.Invoke();
+        AdManager.ShowRewarded(onRewarded: () =>
+        {
+            ContinueAction.Invoke();
+        });
     }
 }

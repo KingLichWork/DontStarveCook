@@ -51,14 +51,6 @@ public class GameSpawner : MonoBehaviour
         _gameUI.ExtractAction -= Extract;
     }
 
-    public void Clear()
-    {
-        _autoExtractValue = 0;
-        _currentExtractValue = 0;
-        _extractValue = 1;
-        _maxExtractValue = 5;
-    }
-
     public void ChangeExtractValue(int value)
     {
         _extractValue = 1 + value;
@@ -74,8 +66,32 @@ public class GameSpawner : MonoBehaviour
     {
         Food food = _foodData.GetRandomFood();
 
-        FoodViewGame prefab = Instantiate(_prefab, _spawnPoint).GetComponent<FoodViewGame>();
+        Vector3 random = new Vector3(UnityEngine.Random.Range(-4, 4), 0);
+
+        FoodViewGame prefab = Instantiate(_prefab, _spawnPoint.position + random, Quaternion.identity).GetComponent<FoodViewGame>();
+        prefab.transform.SetParent(_spawnPoint);
         prefab.SetFood(food);
+    }
+
+    public void StartAutoExtract(int value)
+    {
+        if (value == 0)
+            return;
+
+        _autoExtractValue = value;
+
+        StopAuto();
+
+        _cts = new CancellationTokenSource();
+        AutoExtract(_cts.Token).Forget();
+    }
+
+    private void Clear()
+    {
+        _autoExtractValue = 0;
+        _currentExtractValue = 0;
+        _extractValue = 1;
+        _maxExtractValue = 5;
     }
 
     private void StopAuto()
@@ -83,16 +99,6 @@ public class GameSpawner : MonoBehaviour
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
-    }
-
-    public void StartAutoExtract(int value)
-    {
-        _autoExtractValue = value;
-
-        StopAuto();
-
-        _cts = new CancellationTokenSource();
-        AutoExtract(_cts.Token).Forget();
     }
 
     private async UniTaskVoid AutoExtract(CancellationToken token)

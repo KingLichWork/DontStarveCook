@@ -1,8 +1,5 @@
-﻿using System.Threading.Tasks;
-using TMPro;
-using UnityEditor.Localization.Editor;
+﻿using TMPro;
 using UnityEngine;
-using VContainer;
 
 public class FoodViewDescription : MonoBehaviour
 {

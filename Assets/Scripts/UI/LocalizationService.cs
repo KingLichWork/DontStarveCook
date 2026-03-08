@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Kimicu.YandexGames;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
