@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 public class GameSpawner : MonoBehaviour
 {
@@ -21,16 +22,18 @@ public class GameSpawner : MonoBehaviour
     private int _autoExtractValue;
 
     private UpgradesData _upgradeData;
+    private IObjectResolver _objectResolver;
 
     public int MaxExtractValue => _maxExtractValue;
 
     public static event Action<int,int> ExtractAction;
 
     [Inject]
-    public void Construct(GameUI gameUI, UpgradesData upgradeData)
+    public void Construct(GameUI gameUI, UpgradesData upgradeData, IObjectResolver objectResolver)
     {
         _gameUI = gameUI;
         _upgradeData = upgradeData;
+        _objectResolver = objectResolver;
     }
 
     public void Init()
@@ -67,7 +70,7 @@ public class GameSpawner : MonoBehaviour
 
         Vector3 random = new Vector3(UnityEngine.Random.Range(-4, 4), 0);
 
-        FoodViewGame prefab = Instantiate(_prefab, _spawnPoint.position + random, Quaternion.identity).GetComponent<FoodViewGame>();
+        FoodViewGame prefab = _objectResolver.Instantiate(_prefab, _spawnPoint.position + random, Quaternion.identity).GetComponent<FoodViewGame>();
         prefab.transform.SetParent(_spawnPoint);
         prefab.SetFood(food);
     }

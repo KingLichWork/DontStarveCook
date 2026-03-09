@@ -22,35 +22,37 @@ public class InputController : MonoBehaviour
 
     private bool _isPressing;
     private bool _isDragging;
+    private bool _isMobile;
 
     public static event Action<FoodView> ShowDescriptionAction;
     public static event Action<FoodView> HideDescriptionAction;
 
+    public static event Func <FoodBase, Vector3, bool, FoodViewUI> DragFoodViewAction;
     public static event Action<FoodView, Vector2> DropAction;
-
-    private void Awake()
-    {
-        _camera = Camera.main;
-    }
 
     [Inject]
     public void Construct(GraphicRaycaster graphicRaycaster)
     {
         _graphicRaycaster = graphicRaycaster;
+        _camera = Camera.main;
+    }
+
+    public void Init()
+    {
+#if !UNITY_EDITOR
+        _isMobile = Kimicu.YandexGames.Device.IsMobile;
+#else
+        _isMobile = false;
+#endif
     }
 
     private void Update()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE
-        HandleMouse();
-#endif
-
-#if UNITY_IOS || UNITY_ANDROID
-        HandleTouch();
-#endif
+        if(_isMobile)
+            HandleTouch();
+        else 
+            HandleMouse();
     }
-
-    #region Mouse
 
     private void HandleMouse()
     {
@@ -67,10 +69,6 @@ public class InputController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
             EndPress(screenPos);
     }
-
-    #endregion
-
-    #region Touch
 
     private void HandleTouch()
     {
@@ -89,8 +87,6 @@ public class InputController : MonoBehaviour
         if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             EndPress(screenPos);
     }
-
-    #endregion
 
     private void HandleHover(Vector2 screenPos)
     {
@@ -173,8 +169,19 @@ public class InputController : MonoBehaviour
         _isDragging = true;
         _draggedFood = _pressedFood;
 
+        if (_draggedFood is FoodViewGame view)
+            CreateUIView(view);
+
         _draggedFood.StartDrag(worldPos);
         HideDescriptionAction?.Invoke(_draggedFood);
+    }
+
+    private void CreateUIView(FoodViewGame view)
+    {
+        FoodViewUI uiView = DragFoodViewAction?.Invoke(view.Food, view.transform.position, view.IsRecipe);
+
+        Destroy(_draggedFood.gameObject);
+        _pressedFood = _draggedFood = uiView;
     }
 
     private FoodView RaycastFood(Vector2 screenPos)

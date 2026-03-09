@@ -10,6 +10,9 @@ public class FoodViewGame : FoodView
     [SerializeField] private Rigidbody2D _rb2D;
 
     private Vector3 _startPosition;
+    private bool _isRecipe = false;
+
+    public bool IsRecipe => _isRecipe;
 
     public override void SetFood(FoodBase food)
     {
@@ -17,6 +20,11 @@ public class FoodViewGame : FoodView
         _sprite.sprite = _food.Sprite;
 
         RefreshCollider();
+    }
+
+    public void SetRecipe()
+    {
+        _isRecipe = true;
     }
 
     public override void StartDrag(Vector2 pointerWorldPos)
@@ -33,6 +41,9 @@ public class FoodViewGame : FoodView
     public override void EndDrag()
     {
         EnableRB();
+
+        if(_isRecipe)
+            transform.localScale = Vector3.one * 0.3f;
     }
 
     public override void ReturnToStartPosition()

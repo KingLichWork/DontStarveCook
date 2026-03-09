@@ -35,10 +35,12 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Sprite[] _soundChangeSprite = new Sprite[2];
 
     [SerializeField] private RectTransform _gameplayArea;
+    [SerializeField] private Transform _foodViewParent;
 
     [SerializeField] private Offer _noAdsOffer;
 
     public RectTransform GameplayArea => _gameplayArea;
+    public Transform FoodViewParent => _foodViewParent;
 
     private Tween _scoreTween;
 
