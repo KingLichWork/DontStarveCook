@@ -48,6 +48,7 @@ public class EndGameUI : UIPanel
     {
         AdManager.ShowRewarded(onRewarded: () =>
         {
+            Hide();
             ContinueAction.Invoke();
         });
     }

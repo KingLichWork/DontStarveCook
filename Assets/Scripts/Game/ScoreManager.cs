@@ -24,13 +24,13 @@ public class ScoreManager : MonoBehaviour
     public void Init()
     {
         _score = SaveManager.PlayerData.Score;
-        ChangeScoreAction.Invoke(_score);
+        ChangeScoreAction?.Invoke(_score);
     }
 
     public void GetScore(int value)
     {
         _score += value;
-        ChangeScoreAction.Invoke(_score);
+        ChangeScoreAction?.Invoke(_score);
     }
 
     private void TimeScore()

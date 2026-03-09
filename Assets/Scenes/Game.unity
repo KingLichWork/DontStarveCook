@@ -1850,6 +1850,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 99139226}
     m_Modifications:
+    - target: {fileID: 428337793488742259, guid: f3f4bd552f2d8044e9200b07063fecfc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.370117
+      objectReference: {fileID: 0}
     - target: {fileID: 1470456209635188268, guid: f3f4bd552f2d8044e9200b07063fecfc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1930,6 +1934,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2632833327908573226, guid: f3f4bd552f2d8044e9200b07063fecfc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3273112876176218005, guid: f3f4bd552f2d8044e9200b07063fecfc, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1937,6 +1945,14 @@ PrefabInstance:
     - target: {fileID: 3712238157709235063, guid: f3f4bd552f2d8044e9200b07063fecfc, type: 3}
       propertyPath: m_Name
       value: PreAdScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746568657439573253, guid: f3f4bd552f2d8044e9200b07063fecfc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598185318552868047, guid: f3f4bd552f2d8044e9200b07063fecfc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.2591553
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5354847167659852217, guid: f3f4bd552f2d8044e9200b07063fecfc, type: 3}

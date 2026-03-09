@@ -38,7 +38,6 @@ public class GameSpawner : MonoBehaviour
         Clear();
 
         _maxExtractValue = SaveManager.PlayerData.MaxExtractValue;
-        ExtractAction.Invoke(_currentExtractValue, _maxExtractValue);
     }
 
     private void OnEnable()

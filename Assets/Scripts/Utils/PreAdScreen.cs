@@ -32,7 +32,7 @@ public class PreAdScreen : UIPanel
 
         for (var i = _adDelaySec; i > 0; i--)
         {
-            _timer.text = LocalizationService.GetLocalizedString("Ad in", LocalizationTable.UI) + i;
+            _timer.text = LocalizationService.GetLocalizedString("Ad in", LocalizationTable.UI) + " " + i;
             yield return new WaitForSecondsRealtime(1);
         }
 

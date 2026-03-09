@@ -30,6 +30,7 @@ public class HungerTimer
 
     public void StartTimer()
     {
+        ResetTimer();
         StopTimer();
         ChangeTimerAction?.Invoke(ValueTimer, _maxTimerValue);
 
@@ -39,8 +40,6 @@ public class HungerTimer
 
     public void StopTimer()
     {
-        ResetTimer();
-
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;

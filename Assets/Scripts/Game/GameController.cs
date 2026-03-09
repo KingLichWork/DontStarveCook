@@ -49,8 +49,6 @@ public class GameController : MonoBehaviour
 
     private void OnEnable()
     {
-        Init();
-
         FoodView.EatFoodAction += EatFood;
         InputController.DropAction += HandleDrop;
         GameTime.ChangeDayAction += Save;
@@ -81,19 +79,17 @@ public class GameController : MonoBehaviour
         EndGameUI.ContinueAction -= Continue;
     }
 
-    private void Start()
+    public void Init()
     {
+        Load();
+
+        _spawner.Init();
+        _scoreManager.Init();
+
         if (SaveManager.PlayerData.Tutorial)
             Game();
         else
             _tutorialUI.Show();
-    }
-
-    private void Init()
-    {
-        Load();
-        _spawner.Init();
-        _scoreManager.Init();
     }
 
     private void Upgrade(UpgradeType type)
@@ -128,6 +124,8 @@ public class GameController : MonoBehaviour
     {
         _health.ChangeHealth(_health.MaxHealthValue);
         _hungerTimer.ChangeTimer(_hungerTimer.MaxValueTimer);
+
+        Game();
     }
 
     private void Save(int day)

@@ -34,6 +34,7 @@ public class GameTime
 
     public void StartTime()
     {
+        ResetTime();
         StopTime();
         _cts = new CancellationTokenSource();
         Time(_cts.Token).Forget();
@@ -41,12 +42,15 @@ public class GameTime
 
     public void StopTime()
     {
-        _currentDayTime = 0;
-        _dayCount = 1;
-
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
+    }
+
+    private void ResetTime()
+    {
+        _currentDayTime = 0;
+        _dayCount = 1;
     }
 
     private async UniTask Time(CancellationToken token)

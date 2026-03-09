@@ -58,8 +58,6 @@ public class GameUI : MonoBehaviour
         _extractButton.onClick.AddListener(Extract);
         _changeSoundButton.onClick.AddListener(ChangeSound);
         _shopButton.onClick.AddListener(_shopUI.ChangeShowed);
-
-        Init();
     }
 
     private void OnDisable()
@@ -98,11 +96,12 @@ public class GameUI : MonoBehaviour
         _changeSoundButton.image.sprite = AudioManager.IsVolumeActive ? _soundChangeSprite[0] : _soundChangeSprite[1];
     }
 
-    private void Init()
+    public void Init()
     {
         SetDay();
 
         _noAdsOffer.Init(BuyNoAds, SaveManager.PlayerData.NoAds);
+        ChangeExtract(0, SaveManager.PlayerData.MaxExtractValue);
         Purchase.CheckConsume("noAds", onSuccess: BuyNoAds);
     }
 

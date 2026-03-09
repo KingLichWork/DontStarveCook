@@ -57,5 +57,6 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterComponent(_ugradesData);
 
         builder.Register<FoodViewFactory>(Lifetime.Singleton);
+        builder.RegisterEntryPoint<GameBootstrap>();
     }
 }

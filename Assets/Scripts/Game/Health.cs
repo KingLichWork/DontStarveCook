@@ -7,7 +7,7 @@ public class Health
     private int _maxHealthValue;
 
     public int HealthValue => _healthValue;
-    public int MaxHealthValue => MaxHealthValue;
+    public int MaxHealthValue => _maxHealthValue;
 
     public static event Action GameOverAction;
     public static event Action<int, int> HealthChangeAction;

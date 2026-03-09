@@ -23,7 +23,6 @@ namespace FindTheDifference.Audio
         public void Construct(GameUI gameUI)
         {
             _gameUI = gameUI;
-            Init();
         }
 
         private void OnEnable()
