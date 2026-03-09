@@ -11,14 +11,14 @@ public class EndGameUI : UIPanel
 
     [SerializeField] private TextMeshProUGUI _headerText;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _maxScoreText;
 
     public static event Action RestartAction;
     public static event Action ContinueAction;
 
     private void OnEnable()
     {
-        Health.GameOverAction += Show;
-        DebugUI.DebugEndGameAction += Show;
+        GameController.EndGameAction += Show;
 
         _restartButton.onClick.AddListener(Restart);
         _continueButton.onClick.AddListener(Continue);
@@ -26,8 +26,7 @@ public class EndGameUI : UIPanel
 
     private void OnDisable()
     {
-        Health.GameOverAction -= Show;
-        DebugUI.DebugEndGameAction -= Show;
+        GameController.EndGameAction -= Show;
 
         _restartButton.onClick.RemoveListener(Restart);
         _continueButton.onClick.RemoveListener(Continue);
@@ -36,7 +35,8 @@ public class EndGameUI : UIPanel
     protected override void OnShow()
     {
         _headerText.text = LocalizationService.GetLocalizedString("youSurvive", LocalizationTable.UI, new {value = SaveManager.PlayerData.Day});
-        _scoreText.text = SaveManager.PlayerData.Score.ToString(); 
+        _scoreText.text = SaveManager.PlayerData.Score.ToString();
+        _maxScoreText.text = SaveManager.PlayerData.MaxScore.ToString();
     }
 
     private void Restart()

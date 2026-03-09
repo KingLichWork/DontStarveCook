@@ -99,6 +99,10 @@ MonoBehaviour:
     m_Key: TAP TAP TAP
     m_Metadata:
       m_Items: []
+  - m_Id: 7519508192272384
+    m_Key: MaxScore
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

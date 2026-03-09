@@ -1,4 +1,5 @@
 ﻿using Kimicu.YandexGames;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,6 +27,8 @@ public class GameController : MonoBehaviour
 
     private DayCycleData _dayCycleData;
     private UpgradesData _upgradesData;
+
+    public static event Action EndGameAction;
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
@@ -56,8 +59,8 @@ public class GameController : MonoBehaviour
         _hungerTimer.StarvingAction += StarvingDamage;
         _tutorialUI.CompleteTutorialAction += Game;
 
-        Health.GameOverAction += StopGame;
-        DebugUI.DebugEndGameAction += StopGame;
+        Health.GameOverAction += EndGame;
+        DebugUI.DebugEndGameAction += EndGame;
 
         EndGameUI.RestartAction += Restart;
         EndGameUI.ContinueAction += Continue;
@@ -72,8 +75,8 @@ public class GameController : MonoBehaviour
         _hungerTimer.StarvingAction -= StarvingDamage;
         _tutorialUI.CompleteTutorialAction -= Game;
 
-        Health.GameOverAction -= StopGame;
-        DebugUI.DebugEndGameAction -= StopGame;
+        Health.GameOverAction -= EndGame;
+        DebugUI.DebugEndGameAction -= EndGame;
 
         EndGameUI.RestartAction -= Restart;
         EndGameUI.ContinueAction -= Continue;
@@ -130,13 +133,19 @@ public class GameController : MonoBehaviour
 
     private void Save(int day)
     {
-        SaveManager.PlayerData.Score = _scoreManager.Score;
+        SetScore();
+
         SaveManager.PlayerData.Hunger = _hungerTimer.ValueTimer;
         SaveManager.PlayerData.Health = _health.HealthValue;
         SaveManager.PlayerData.Day = day;
         SaveManager.PlayerData.MaxExtractValue = _spawner.MaxExtractValue;
+    }
 
-        if(SaveManager.PlayerData.MaxScore < SaveManager.PlayerData.Score)
+    private void SetScore()
+    {
+        SaveManager.PlayerData.Score = _scoreManager.Score;
+
+        if (SaveManager.PlayerData.MaxScore < SaveManager.PlayerData.Score)
             SaveManager.PlayerData.MaxScore = SaveManager.PlayerData.Score;
 
         Leaderboard.SetScore(SaveManager.PlayerData.MaxScore);
@@ -249,10 +258,13 @@ public class GameController : MonoBehaviour
         _spawner.SpawnStartFood(5);
     }
 
-
-    private void StopGame()
+    private void EndGame()
     {
         _gameTime.StopTime();
         _hungerTimer.StopTimer();
+
+        SetScore();
+
+        EndGameAction.Invoke();
     }
 }
