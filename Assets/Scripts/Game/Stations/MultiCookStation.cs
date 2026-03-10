@@ -52,6 +52,8 @@ public class MultiCookStation : Station
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
+
+        OnCookEndAction?.Invoke();
     }
 
     public override void SetFood(FoodViewUI foodView)

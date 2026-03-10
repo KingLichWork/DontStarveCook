@@ -220,8 +220,9 @@ public class GameController : MonoBehaviour
 
         if(isBlock)
             view.ReturnToStartPosition();
+        else
+            _foodViewFactory.CreateGameView(view, worldPos);
 
-        _foodViewFactory.CreateGameView(view, worldPos);
         Destroy(view.gameObject);
     }
 

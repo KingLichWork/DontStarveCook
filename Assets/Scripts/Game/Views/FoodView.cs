@@ -21,6 +21,16 @@ public abstract class FoodView : MonoBehaviour
 
     public virtual void EndDrag(){}
 
+    public virtual void Show()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public virtual void Hide() 
+    { 
+        gameObject.SetActive(false);
+    }
+
     public abstract void Drag(Vector2 pointerPos);
 
     public abstract void StartDrag(Vector2 pointerWorldPos);

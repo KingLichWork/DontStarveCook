@@ -26,6 +26,8 @@ public class SingleCookStation : Station
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
+
+        OnCookEndAction?.Invoke();
     }
 
     protected async override UniTask Cook(CancellationToken token)

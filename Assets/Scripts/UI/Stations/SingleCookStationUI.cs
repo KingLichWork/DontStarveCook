@@ -17,8 +17,9 @@ public class SingleCookStationUI : CookStationUI
         _cookingStation.OnCookStartAction += StartCook;
         _cookingStation.CookInProgressAction += ChangeCookTimer;
         _cookingStation.OnCookCompleteAction += ChangeCookStage;
+        _cookingStation.OnCookEndAction += DoClearCook;
 
-        ClearCook();
+        DoClearCook();
     }
 
     private void OnDisable()
@@ -26,5 +27,6 @@ public class SingleCookStationUI : CookStationUI
         _cookingStation.OnCookStartAction -= StartCook;
         _cookingStation.CookInProgressAction -= ChangeCookTimer;
         _cookingStation.OnCookCompleteAction -= ChangeCookStage;
+        _cookingStation.OnCookEndAction -= DoClearCook;
     }
 }

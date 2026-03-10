@@ -16,6 +16,7 @@ public abstract class Station : MonoBehaviour
     public bool IsBusy => _isBusy;
 
 
+    public Action OnCookEndAction;
     public Action OnCookStartAction;
     public Action<float> CookInProgressAction;
     public Action OnCookCompleteAction;

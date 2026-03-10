@@ -19,6 +19,9 @@ public class MultiCookStationUI : CookStationUI
         _multiCookingStation.CookInProgressAction += ChangeCookTimer;
         _multiCookingStation.OnCookCompleteAction += ChangeCookStage;
         _multiCookingStation.CreateFoodViewAction += ViewSetParent;
+        _multiCookingStation.OnCookEndAction += DoClearCook;
+
+        DoClearCook();
     }
 
     private void OnDisable()
@@ -27,6 +30,7 @@ public class MultiCookStationUI : CookStationUI
         _multiCookingStation.CookInProgressAction -= ChangeCookTimer;
         _multiCookingStation.OnCookCompleteAction -= ChangeCookStage;
         _multiCookingStation.CreateFoodViewAction -= ViewSetParent;
+        _multiCookingStation.OnCookEndAction -= DoClearCook;
     }
 
     private void ViewSetParent(FoodViewUI foodViewUI)

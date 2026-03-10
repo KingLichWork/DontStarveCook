@@ -39,7 +39,7 @@ public class ShopUpgrade : MonoBehaviour
         _level = SaveManager.PlayerData.Upgrades[_number];
 
         _nameText.text = LocalizationService.GetLocalizedString(_upgrade.Name, LocalizationTable.UI);
-        _descriptionText.text = LocalizationService.GetLocalizedString(_upgrade.Name + "Desc", LocalizationTable.UI, new {value = _upgrade.ValuePerLevel});
+        _descriptionText.text = LocalizationService.GetLocalizedString(_upgrade.Name + "Desc", LocalizationTable.UI, new {value = _upgrade.ValuePerLevel * (_level + 1)});
 
         ChangeView();
     }

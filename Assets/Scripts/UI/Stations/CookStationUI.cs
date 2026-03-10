@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CookStationUI : MonoBehaviour
 {
@@ -29,8 +30,15 @@ public class CookStationUI : MonoBehaviour
         ClearCook();
     }
 
+    protected void DoClearCook()
+    {
+        _timerImage.DOKill();
+        _timerImage.DOFillAmount(0, 0.5f);
+    }
+
     protected void ClearCook()
     {
+        _timerImage.DOKill();
         _timerImage.fillAmount = 0;
     }
 }

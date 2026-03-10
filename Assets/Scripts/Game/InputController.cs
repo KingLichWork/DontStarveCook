@@ -180,7 +180,9 @@ public class InputController : MonoBehaviour
     {
         FoodViewUI uiView = DragFoodViewAction?.Invoke(view.Food, view.transform.position, view.IsRecipe);
 
-        Destroy(_draggedFood.gameObject);
+        uiView.Init(view);
+        _draggedFood.Hide();
+
         _pressedFood = _draggedFood = uiView;
     }
 

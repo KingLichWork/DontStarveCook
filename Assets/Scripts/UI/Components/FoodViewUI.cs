@@ -12,6 +12,8 @@ public class FoodViewUI : FoodView
     private bool _isRecipe;
     private bool _isResultCooking;
 
+    private FoodViewGame _foodViewGame;
+
     public bool IsRecipe => _isRecipe;
     public bool IsResultCooking => _isResultCooking;
 
@@ -26,6 +28,11 @@ public class FoodViewUI : FoodView
         _food = food;
         _image.sprite = _food.Sprite;
         _isRecipe = isRecipe;
+    }
+
+    public void Init(FoodViewGame viewGame)
+    {
+        _foodViewGame = viewGame;
     }
 
     public override void StartDrag(Vector2 pointerPos)
@@ -55,8 +62,18 @@ public class FoodViewUI : FoodView
 
     public override void ReturnToStartPosition()
     {
-        transform.position = _stationParent.transform.position;
-        _station.SetFood(this);
+        if(_station != null)
+        {
+            transform.position = _stationParent.transform.position;
+            _station.SetFood(this);
+        }
+        else
+        {
+            _foodViewGame.Show();
+            _foodViewGame = null;
+
+            Destroy(gameObject);
+        }
     }
 
     public void UsedForStation(Station station)
@@ -76,5 +93,11 @@ public class FoodViewUI : FoodView
         RectTransform rect = (RectTransform)transform;
 
         return rect.position;
+    }
+
+    private void OnDestroy()
+    {
+        if(_foodViewGame != null)
+            Destroy(_foodViewGame.gameObject);
     }
 }

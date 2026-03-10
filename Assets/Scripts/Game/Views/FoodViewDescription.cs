@@ -34,7 +34,7 @@ public class FoodViewDescription : MonoBehaviour
 
         Vector3 screenPos = foodView.GetDescriptionPosition();
 
-        _rectTransform.position = screenPos + Vector3.up * 200;
+        _rectTransform.position = screenPos + Vector3.up * 50;
 
         _nameText.text = await LocalizationService.GetLocalizedStringAsync(foodView.Food.Name, LocalizationTable.Resources);
         _hungerValueText.text = foodView.Food.FoodValue.ToString();
