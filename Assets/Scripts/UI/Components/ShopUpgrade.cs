@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,37 +33,34 @@ public class ShopUpgrade : MonoBehaviour
         _buyButton.onClick.RemoveListener(Buy);
     }
 
-    public void Init(Upgrade upgrade, int number)
+    public async void Init(Upgrade upgrade, int number)
     {
         _upgrade = upgrade;
         _number = number;
         _level = SaveManager.PlayerData.Upgrades[_number];
-
-        _nameText.text = LocalizationService.GetLocalizedString(_upgrade.Name, LocalizationTable.UI);
-        _descriptionText.text = LocalizationService.GetLocalizedString(_upgrade.Name + "Desc", LocalizationTable.UI, new {value = _upgrade.ValuePerLevel * (_level + 1)});
+ 
+        _nameText.text = await LocalizationService.GetLocalizedStringAsync(_upgrade.Name, LocalizationTable.UI);
 
         ChangeView();
     }
 
-    private void ChangeView()
+    private async void ChangeView()
     {
-        _progressText.text = $"{_level}/{_upgrade.UpgradeInfo.Length}";
-        _buyCostText.text = _upgrade.UpgradeInfo[_level].UpgradeCost.ToString();
-        _upgradeImage.sprite = _upgrade.UpgradeInfo[_level].UpgradeSprite;
+        _progressText.text = _level.ToString();
+        _buyCostText.text = (_upgrade.UpgradeCost * (_level + 1)).ToString();
+        _upgradeImage.sprite = _upgrade.UpgradeInfo[Mathf.Clamp(_level, 0, _upgrade.UpgradeInfo.Length - 1)].UpgradeSprite;
 
-        bool isAllBuyed = SaveManager.PlayerData.Upgrades[_number] >= _upgrade.UpgradeInfo.Length;
-
-        _allBuyed.SetActive(isAllBuyed);
-        _buyButton.gameObject.SetActive(!isAllBuyed);
+        _descriptionText.text = await LocalizationService.GetLocalizedStringAsync(_upgrade.Name + "Desc", LocalizationTable.UI, new {value = _upgrade.ValuePerLevel * (_level + 1)});
     }
 
     private void Buy()
     {
-        int cost = _upgrade.UpgradeInfo[_level].UpgradeCost;
+        int cost = _upgrade.UpgradeCost * (_level + 1);
 
         if (ResourcesWallet.SpendResource(ResourcesType.Gold, cost))
         {
-            _level = SaveManager.PlayerData.Upgrades[_number]++;
+            SaveManager.PlayerData.Upgrades[_number]++;
+            _level = SaveManager.PlayerData.Upgrades[_number];
             
             BuyUpgradeAction.Invoke(_upgrade.Type);
             ChangeView();

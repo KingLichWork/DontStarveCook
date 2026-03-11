@@ -10,7 +10,7 @@ public class InputController : MonoBehaviour
     private GraphicRaycaster _graphicRaycaster;
     private Camera _camera;
 
-    private const float LongPressTime = 0.5f;
+    private const float LongPressTime = 0.25f;
     private const float DragThreshold = 0.1f;
 
     private FoodView _selectedFood;

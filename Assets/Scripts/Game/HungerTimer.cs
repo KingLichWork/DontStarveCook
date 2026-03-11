@@ -8,10 +8,10 @@ public class HungerTimer
     private int _maxTimerValue;
     private float _currentValue;
 
-    private float _timerSpeed = 1f;
+    private float _timerSpeed = 2f;
     private float _difficultyTimer = 0f;
-    private float _changeDiffucultyTime = 10f;
-    private float _starvingTickTime = 0.5f;
+    private float _changeDiffucultyTime = 5f;
+    private float _starvingTickTime = 0.25f;
     private float _starvingTimer;
 
     private CancellationTokenSource _cts;

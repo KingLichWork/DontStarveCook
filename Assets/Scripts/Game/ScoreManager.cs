@@ -35,11 +35,11 @@ public class ScoreManager : MonoBehaviour
 
     private void TimeScore()
     {
-        GetScore(1);
+        GetScore(2);
     }
 
     private void DayScore()
     {
-        GetScore(10);
+        GetScore(50);
     }
 }

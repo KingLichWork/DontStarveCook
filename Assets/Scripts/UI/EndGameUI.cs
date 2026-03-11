@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,9 +33,9 @@ public class EndGameUI : UIPanel
         _continueButton.onClick.RemoveListener(Continue);
     }
 
-    protected override void OnShow()
+    protected override async void OnShow()
     {
-        _headerText.text = LocalizationService.GetLocalizedString("youSurvive", LocalizationTable.UI, new {value = SaveManager.PlayerData.Day});
+        _headerText.text = await LocalizationService.GetLocalizedStringAsync("youSurvive", LocalizationTable.UI, new {value = SaveManager.PlayerData.Day});
         _scoreText.text = SaveManager.PlayerData.Score.ToString();
         _maxScoreText.text = SaveManager.PlayerData.MaxScore.ToString();
     }

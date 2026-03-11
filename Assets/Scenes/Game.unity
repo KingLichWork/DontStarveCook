@@ -1251,7 +1251,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1991,19 +1991,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 306430920863954448, guid: c68b6eae36e95514d867b39f5e2ca92b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.6541986
+      value: 5.370923
       objectReference: {fileID: 0}
     - target: {fileID: 306430920863954448, guid: c68b6eae36e95514d867b39f5e2ca92b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.4526
+      value: -4.5944
       objectReference: {fileID: 0}
     - target: {fileID: 4609634782567611283, guid: c68b6eae36e95514d867b39f5e2ca92b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 16.821743
+      value: 16.804922
       objectReference: {fileID: 0}
     - target: {fileID: 4609634782567611283, guid: c68b6eae36e95514d867b39f5e2ca92b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.9382
+      value: 9.9465
       objectReference: {fileID: 0}
     - target: {fileID: 6962529916275881720, guid: c68b6eae36e95514d867b39f5e2ca92b, type: 3}
       propertyPath: m_LocalPosition.x
