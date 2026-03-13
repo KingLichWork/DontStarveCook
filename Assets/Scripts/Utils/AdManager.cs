@@ -15,7 +15,7 @@ namespace Utils
         private static bool _inAd;
         public static bool IsAdAvailable => Kimicu.YandexGames.Advertisement.AdvertisementIsAvailable;
 
-        public static void ShowInterstitial(Action onOpen = null, Action onClose = null, Action<string> onError = null, bool ignoreAdClicker = false, bool isChoose = false)
+        public static void ShowInterstitial(Action onOpen = null, Action onClose = null, Action<string> onError = null, bool ignoreAdClicker = false)
         {
             if (Kimicu.YandexGames.Advertisement.AdvertisementIsAvailable && !SaveManager.PlayerData.NoAds && !_inAd)
             {
@@ -23,14 +23,9 @@ namespace Utils
 
                 var result = "1";
 #if UNITY_WEBGL && !UNITY_EDITOR
-            result = GameAnalytics.GetRemoteConfigsValueAsString("Clicker", "1");
+                result = GameAnalytics.GetRemoteConfigsValueAsString("Clicker", "1");
 #endif
 
-                if (isChoose && result.Equals("0"))
-                {
-                    onClose?.Invoke();
-                    return;
-                }
                 if (ignoreAdClicker || result.Equals("0"))
                 {
                     ShowInter(onOpen, onClose, onError);
@@ -155,10 +150,12 @@ namespace Utils
 
         private static void OnAdClickerOpened()
         {
+            Time.timeScale = 0;
         }
 
         private static void OnAdClickerClosed()
         {
+            Time.timeScale = 1;
         }
 
         private static void AdStart()

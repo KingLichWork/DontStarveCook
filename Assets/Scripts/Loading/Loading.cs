@@ -40,18 +40,18 @@ public class Loading : MonoBehaviour
         switch (value)
         {
             case true:
+
                 AudioListener.pause = true;
                 Time.timeScale = 0;
 
-                break;
+            break;
 
             case (false):
 
                 AudioListener.pause = false;
-
                 Time.timeScale = 1;
 
-                break;
+            break;
         }
     }
 
