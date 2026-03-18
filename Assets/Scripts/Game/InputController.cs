@@ -150,6 +150,8 @@ public class InputController : MonoBehaviour
     {
         Vector2 worldPos = ScreenToWorld(screenPos);
 
+        HideDescriptionAction?.Invoke(null);
+
         if (_isDragging)
         {
             _draggedFood.EndDrag();
