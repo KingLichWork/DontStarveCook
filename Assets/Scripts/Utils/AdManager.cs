@@ -21,18 +21,18 @@ namespace Utils
             {
                 _inAd = true;
 
-                var result = "1";
+                var result = "0";
 #if UNITY_WEBGL && !UNITY_EDITOR
-                result = GameAnalytics.GetRemoteConfigsValueAsString("Clicker", "1");
+                result = GameAnalytics.GetRemoteConfigsValueAsString("Clicker", "0");
 #endif
 
-                if (ignoreAdClicker || result.Equals("0"))
+                if (ignoreAdClicker)
                 {
                     ShowInter(onOpen, onClose, onError);
                 }
                 else
                 {
-                    ShowInterClicker(onOpen, onClose, onError);
+                    ShowInterClicker(result.Equals("1"), onOpen, onClose, onError);
                 }
             }
             else
@@ -51,19 +51,12 @@ namespace Utils
 
             _inAd = true;
 
-            var result = "1";
+            var result = "0";
 #if UNITY_WEBGL && !UNITY_EDITOR
-            result = GameAnalytics.GetRemoteConfigsValueAsString("Clicker", "1");
+            result = GameAnalytics.GetRemoteConfigsValueAsString("Clicker", "0");
 #endif
 
-            if (result.Equals("0"))
-            {
-                ShowRewardAd(onOpen, onRewarded, onClose, onError);
-            }
-            else
-            {
-                ShowRewardClicker(onOpen, onRewarded, onClose, onError);
-            }
+            ShowRewardClicker(result.Equals("1"), onOpen, onRewarded, onClose, onError);
         }
 
         private static void ShowInter(Action onOpen = null, Action onClose = null, Action<string> onError = null)
@@ -81,7 +74,7 @@ namespace Utils
             Kimicu.YandexGames.Advertisement.ShowInterstitialAd(onOpen, () => onClose?.Invoke(), onError);
         }
 
-        private static void ShowInterClicker(Action onOpen = null, Action onClose = null, Action<string> onError = null)
+        private static void ShowInterClicker(bool isMinigame, Action onOpen = null, Action onClose = null, Action<string> onError = null)
         {
             OnAdClickerOpened();
 
@@ -89,7 +82,7 @@ namespace Utils
             {
                 onOpen?.Invoke();
                 PreAdScreen.Instance.StopField();
-            }, onClose, onError)));
+            }, onClose, onError), isMinigame));
         }
 
         private static void ShowRewardAd(Action onOpen = null, Action onRewarded = null, Action onClose = null, Action<string> onError = null)
@@ -106,7 +99,7 @@ namespace Utils
             Kimicu.YandexGames.Advertisement.ShowVideoAd(onOpen, onRewarded, () => onClose?.Invoke(), onError);
         }
 
-        private static void ShowRewardClicker(Action onOpen = null, Action onRewarded = null, Action onClose = null, Action<string> onError = null)
+        private static void ShowRewardClicker(bool isMinigame, Action onOpen = null, Action onRewarded = null, Action onClose = null, Action<string> onError = null)
         {
             OnAdClickerOpened();
             //onClose = SubscribeOnClose(onClose);
@@ -115,7 +108,7 @@ namespace Utils
             {
                 onOpen?.Invoke();
                 PreAdScreen.Instance.StopField();
-            }, onRewarded, onClose, onError)));
+            }, onRewarded, onClose, onError), isMinigame));
         }
 
         private static Action SubscribeOnOpen(Action onOpen)

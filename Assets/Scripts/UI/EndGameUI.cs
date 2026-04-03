@@ -42,7 +42,10 @@ public class EndGameUI : UIPanel
 
     private void Restart()
     {
-        RestartAction.Invoke();
+        AdManager.ShowInterstitial(onClose: () =>
+        {
+            RestartAction.Invoke();
+        });
     }
 
     private void Continue()

@@ -28,12 +28,14 @@ public class GameController : MonoBehaviour
     private DayCycleData _dayCycleData;
     private UpgradesData _upgradesData;
 
+    private ShopUI _shopUI;
+
     public static event Action EndGameAction;
 
     [Inject]
     public void Construct(GameSpawner spawner, FoodViewFactory foodViewFactory, SingleCookStationUI singleCookStationUI, MultiCookStationUI multiCookStationUI,
         DayCycleData dayCycleData, GraphicRaycaster graphicRaycaster, ScoreManager scoreManager, GoldGetterUI goldGetter, UpgradesData upgradesData,
-        TutorialUI tutorialUI)
+        TutorialUI tutorialUI, ShopUI shopUI)
     {
         _spawner = spawner;
         _foodViewFactory = foodViewFactory;
@@ -45,6 +47,7 @@ public class GameController : MonoBehaviour
         _goldGetter = goldGetter;
         _upgradesData = upgradesData;
         _tutorialUI = tutorialUI;
+        _shopUI = shopUI;
         _camera = Camera.main;
 
         _gameTime = new GameTime(_dayCycleData);
@@ -58,12 +61,15 @@ public class GameController : MonoBehaviour
         ShopUpgrade.BuyUpgradeAction += Upgrade;
         _hungerTimer.StarvingAction += StarvingDamage;
         _tutorialUI.CompleteTutorialAction += Game;
+        _shopUI.AddFoodRewardAction += SpawnAdFood;
 
         Health.GameOverAction += EndGame;
         DebugUI.DebugEndGameAction += EndGame;
 
         EndGameUI.RestartAction += Restart;
         EndGameUI.ContinueAction += Continue;
+
+        _health.ChangeHealth(0);
     }
 
     private void OnDisable()
@@ -74,6 +80,7 @@ public class GameController : MonoBehaviour
         ShopUpgrade.BuyUpgradeAction -= Upgrade;
         _hungerTimer.StarvingAction -= StarvingDamage;
         _tutorialUI.CompleteTutorialAction -= Game;
+        _shopUI.AddFoodRewardAction -= SpawnAdFood;
 
         Health.GameOverAction -= EndGame;
         DebugUI.DebugEndGameAction -= EndGame;
@@ -251,12 +258,17 @@ public class GameController : MonoBehaviour
         Destroy(view.gameObject);
     }
 
+    private void SpawnAdFood()
+    {
+        _spawner.SpawnFood(5);
+    }
+
     private void Game()
     {
         _gameTime.StartTime();
         _hungerTimer.StartTimer();
         _spawner.StartAutoExtract(SaveManager.PlayerData.Upgrades[(int)UpgradeType.AutoExtract]);
-        _spawner.SpawnStartFood(5);
+        _spawner.SpawnFood(5);
     }
 
     private void EndGame()

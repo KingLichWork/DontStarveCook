@@ -16,5 +16,6 @@ public class TimerSliderUI
         _timerSlider.DOKill();
         _timerSlider.DOValue((float)value / maxValue, 1f);
         _timerText.text = value.ToString();
+        _timerText.color = Color.Lerp(Color.red, Color.green, (float)value / maxValue);
     }
 }

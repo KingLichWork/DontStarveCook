@@ -58,7 +58,7 @@ public class GameSpawner : MonoBehaviour
         _extractValue = 1 + value;
     }
 
-    public void SpawnStartFood(int count)
+    public void SpawnFood(int count)
     {
         for (int i = 0; i < count; i++)
             SpawnFood();

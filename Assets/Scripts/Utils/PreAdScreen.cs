@@ -10,6 +10,8 @@ public class PreAdScreen : UIPanel
     [SerializeField] private int _adDelaySec;
     [SerializeField] private PreAdClicker _clicker;
 
+    [SerializeField] private GameObject _minigame;
+
     [SerializeField] private bool _shouldHideOthers;
              
     public static PreAdScreen Instance;
@@ -25,10 +27,15 @@ public class PreAdScreen : UIPanel
         Instance = this;         
     }
 
-    public IEnumerator AdTimer(Action adCallback)
+    public IEnumerator AdTimer(Action adCallback, bool isMinigame)
     {
         AnimatedShow();
-        _clicker.StartField();
+
+        if (isMinigame)
+        {
+            _clicker.StartField();
+            _minigame.SetActive(true);
+        }
 
         for (var i = _adDelaySec; i > 0; i--)
         {

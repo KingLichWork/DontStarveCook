@@ -23,6 +23,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Image _dayImage;
     [SerializeField] private Image _clockArrowImage;
     [SerializeField] private Image _backGroundImage;
+    [SerializeField] private Image _changeSoundImage;
 
     [SerializeField] private TextMeshProUGUI _dayNumber;
     [SerializeField] private TextMeshProUGUI _scoreText;
@@ -95,7 +96,7 @@ public class GameUI : MonoBehaviour
     private void ChangeSound()
     {
         ChangeSoundAction.Invoke(!AudioManager.IsVolumeActive);
-        _changeSoundButton.image.sprite = AudioManager.IsVolumeActive ? _soundChangeSprite[0] : _soundChangeSprite[1];
+        _changeSoundImage.sprite = AudioManager.IsVolumeActive ? _soundChangeSprite[0] : _soundChangeSprite[1];
     }
 
     public void Init()
